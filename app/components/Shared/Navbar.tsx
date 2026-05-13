@@ -9,7 +9,7 @@ export default function Navbar() {
   const navLinks = [
     { name: 'Inicio', href: '/' },
     { name: 'Servicios', href: '/services' },
-    { name: 'Sobre Nosotros', href: '/about' },
+    { name: 'Nosotros', href: '/about' },
     { name: 'Contacto', href: '/contact' },
   ]
 
@@ -36,7 +36,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={`relative text-[13px] font-medium tracking-wide transition-colors py-1 group ${
-                  isActive ? 'text-white' : 'text-zinc-500 hover:text-zinc-200'
+                  isActive ? 'text-blue-800' : 'text-zinc-500 hover:text-blue-700'
                 }`}
               >
                 {link.name}
@@ -53,7 +53,7 @@ export default function Navbar() {
         <div className="hidden md:block">
           <Link
             href="/contact"
-            className="text-[11px] uppercase tracking-[0.15em] border border-zinc-700 px-4 py-2 rounded-full hover:bg-white hover:text-black transition-all duration-300"
+            className="text-[11px] border border-blue-700 p-2 bg-blue-700 uppercase "
           >
             Empezar Proyecto
           </Link>
