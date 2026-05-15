@@ -1,46 +1,48 @@
 import React from 'react';
 
 const services = [
-  { num: "01", title: "Brand Strategy", desc: "We define your positioning, voice, and visual identity so your brand resonates with the right audience from day one.", tags: ["Identity", "Messaging", "Research"] },
-  { num: "02", title: "Web Design & Dev", desc: "Crafting fast, accessible, and beautiful websites that convert visitors into customers and stand out in any market.", tags: ["UI/UX", "React", "CMS"] },
-  { num: "03", title: "Growth Marketing", desc: "Data-driven campaigns across paid, organic, and social channels. We focus on metrics that matter — not vanity numbers.", tags: ["SEO", "Paid Ads", "Analytics"] },
-  { num: "04", title: "Product Strategy", desc: "From discovery to roadmap, we help product teams prioritize ruthlessly and ship features users actually want.", tags: ["Roadmap", "OKRs", "Sprints"] },
-  { num: "05", title: "Content & Copywriting", desc: "Words that work. We write for humans first and algorithms second — blogs, landing pages, emails, and more.", tags: ["Copy", "Editorial", "Email"] },
-  { num: "06", title: "Ongoing Retainers", desc: "A dedicated team extension for companies that need consistent creative and strategic support month to month.", tags: ["Monthly", "Flexible", "Priority"] },
+  { num: "01", title: "Desarrollo Web", desc: "Sitios y aplicaciones web rápidas, accesibles y elegantes que convierten visitantes en clientes y destacan en cualquier mercado.", tags: ["UI/UX", "React", "Next.js"] },
+  { num: "02", title: "Arquitectura de Software", desc: "Diseñamos sistemas robustos y escalables desde la base — microservicios, APIs, bases de datos y más, pensados para crecer.", tags: ["Microservicios", "API REST", "Cloud"] },
+  { num: "03", title: "Consultoría Técnica", desc: "Analizamos su infraestructura actual e identificamos oportunidades de mejora en rendimiento, seguridad y escalabilidad.", tags: ["Auditoría", "Optimización", "Seguridad"] },
+  { num: "04", title: "Estrategia de Producto", desc: "Desde el descubrimiento hasta el roadmap, ayudamos a los equipos a priorizar con criterio y entregar funcionalidades que los usuarios realmente necesitan.", tags: ["Roadmap", "OKRs", "Sprints"] },
+  { num: "05", title: "Integración de Sistemas", desc: "Conectamos plataformas, servicios y datos para que su ecosistema digital funcione como una sola unidad coherente.", tags: ["APIs", "Webhooks", "ETL"] },
+  { num: "06", title: "Soporte Continuo", desc: "Un equipo dedicado para empresas que necesitan soporte técnico estratégico y constante mes a mes.", tags: ["Mensual", "Flexible", "Prioritario"] },
 ];
 
 const stats = [
-  { num: "120+", label: "Projects delivered" },
-  { num: "8 yrs", label: "In the industry" },
-  { num: "98%",  label: "Client satisfaction" },
+  { num: "100%", label: "Satisfacción del cliente" },
 ];
 
 const ServicesPage = () => {
   return (
-    <div className="bg-zinc-950 text-zinc-100 min-h-screen font-['Epilogue',sans-serif] px-6 py-12 md:px-10">
+    <div className="bg-neutral-950 text-neutral-100 min-h-screen font-sans px-6 py-12 md:px-10">
+
       {/* Header */}
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] items-end mb-12 pb-6 border-b border-zinc-800">
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] items-end mb-12 pb-6 border-b border-neutral-800">
         <div>
-          <p className="text-[10px] tracking-[0.15em] uppercase text-zinc-500 mb-3">What we do</p>
-          <h1 className="font-['Playfair_Display',serif] text-4xl md:text-5xl leading-tight">
-            Services built for<br /><span className="italic text-zinc-400">real outcomes.</span>
+          <p className="text-xs tracking-[0.25em] uppercase text-blue-700 font-medium mb-3">
+            Savegre Soft — Servicios
+          </p>
+          <h1 className="text-4xl md:text-5xl font-extralight tracking-tight leading-tight">
+            Soluciones construidas<br />
+            <span className="text-neutral-400">para resultados reales.</span>
           </h1>
         </div>
-        <p className="text-sm text-zinc-400 max-w-[240px] leading-relaxed mt-4 md:mt-0 md:text-right">
-          From strategy to execution, we work alongside you at every stage.
+        <p className="text-sm text-neutral-400 max-w-[240px] leading-relaxed mt-4 md:mt-0 md:text-right font-light">
+          De la estrategia a la ejecución, trabajamos junto a usted en cada etapa.
         </p>
       </div>
 
       {/* Services grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-800 border border-zinc-800 rounded-xl overflow-hidden">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-neutral-800 border border-neutral-800 overflow-hidden">
         {services.map((s) => (
-          <div key={s.num} className="bg-zinc-900 p-7 flex flex-col gap-4 hover:bg-zinc-900/50 transition-colors group">
-            <p className="text-[10px] tracking-widest text-zinc-600 group-hover:text-zinc-400 transition-colors">{s.num}</p>
-            <h3 className="font-['Playfair_Display',serif] text-xl leading-tight">{s.title}</h3>
-            <p className="text-xs leading-relaxed text-zinc-400 flex-1">{s.desc}</p>
+          <div key={s.num} className="bg-neutral-900 p-7 flex flex-col gap-4 hover:bg-neutral-900/50 hover:border-blue-900 transition-colors group">
+            <p className="text-xs tracking-widest text-blue-800 group-hover:text-blue-700 transition-colors font-medium">{s.num}</p>
+            <h3 className="text-xl font-extralight tracking-tight">{s.title}</h3>
+            <p className="text-xs leading-relaxed text-neutral-400 flex-1 font-light">{s.desc}</p>
             <div className="flex flex-wrap gap-2">
               {s.tags.map((t) => (
-                <span key={t} className="text-[9px] px-2 py-1 rounded-full bg-zinc-800 text-zinc-500 border border-zinc-700/50">
+                <span key={t} className="text-[9px] px-2 py-1 bg-blue-950/30 text-blue-700 border border-blue-950">
                   {t}
                 </span>
               ))}
@@ -50,28 +52,30 @@ const ServicesPage = () => {
       </div>
 
       {/* Bottom row */}
-      <div className="grid my-2 grid-cols-1 lg:grid-cols-[2fr_1fr] gap-px bg-zinc-800 border border-zinc-800 rounded-xl overflow-hidden mt-px">
+      <div className="grid my-2 grid-cols-1 lg:grid-cols-[2fr_1fr] gap-px bg-neutral-800 border border-neutral-800 overflow-hidden mt-px">
+
         {/* CTA Block */}
-        <div className="bg-zinc-100 p-8 md:p-10 text-zinc-950">
-          <p className="text-[10px] tracking-[0.15em] uppercase opacity-60 font-bold">Ready to start?</p>
-          <h2 className="font-['Playfair_Display',serif] text-3xl my-4">
-            Let's build something<br /><span className="italic opacity-70">worth remembering.</span>
+        <div className="bg-neutral-100 p-8 md:p-10 text-neutral-950">
+          <p className="text-xs tracking-[0.25em] uppercase text-blue-700 font-medium">¿Listo para comenzar?</p>
+          <h2 className="text-3xl font-extralight tracking-tight my-4">
+            Construyamos algo<br />
+            <span className="text-neutral-500">que valga la pena.</span>
           </h2>
-          <p className="text-sm opacity-80 leading-relaxed max-w-sm">
-            Tell us about your project and we'll put together a tailored proposal within 48 hours.
+          <p className="text-sm text-neutral-600 leading-relaxed max-w-sm font-light">
+            Cuéntenos sobre su proyecto y prepararemos una propuesta personalizada en menos de 48 horas.
           </p>
-          <button className="mt-8 px-6 py-3 bg-zinc-950 text-white rounded-lg text-xs hover:bg-zinc-800 transition-all">
-            Get in touch ↗
+          <button className="mt-8 px-6 py-3 bg-blue-900 text-blue-100 text-xs tracking-[0.2em] uppercase font-medium hover:bg-blue-800 transition-colors">
+            Contáctenos ↗
           </button>
         </div>
 
         {/* Stats Block */}
-        <div className="bg-zinc-900 p-8 md:p-10 flex flex-col justify-between gap-8 md:gap-0">
+        <div className="bg-neutral-900 p-8 md:p-10 flex flex-col justify-between gap-8 md:gap-0">
           {stats.map((s, i) => (
             <div key={s.label}>
-              <p className="font-['Playfair_Display',serif] text-4xl text-zinc-100">{s.num}</p>
-              <p className="text-[10px] uppercase tracking-widest text-zinc-500 mt-1">{s.label}</p>
-              {i < stats.length - 1 && <div className="h-px bg-zinc-800 my-4 lg:my-6" />}
+              <p className="text-4xl font-extralight tracking-tight text-white">{s.num}</p>
+              <p className="text-xs uppercase tracking-widest text-blue-700 mt-1 font-medium">{s.label}</p>
+              {i < stats.length - 1 && <div className="h-px bg-neutral-800 my-4 lg:my-6" />}
             </div>
           ))}
         </div>
@@ -79,17 +83,18 @@ const ServicesPage = () => {
 
       {/* Footer */}
       <div className="mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p className="text-[10px] text-zinc-600">
-          © {new Date().getFullYear()} Studio Name. Digital craftsmanship.
+        <p className="text-xs text-neutral-600">
+          © {new Date().getFullYear()} Savegre Soft. Ingeniería de software.
         </p>
         <div className="flex gap-6">
-          {["LinkedIn", "Twitter", "Instagram"].map((social) => (
-            <a key={social} href="#" className="text-[10px] text-zinc-500 hover:text-zinc-200 transition-colors uppercase tracking-widest">
+          {["LinkedIn", "GitHub", "Instagram"].map((social) => (
+            <a key={social} href="#" className="text-xs text-blue-800 hover:text-blue-500 transition-colors uppercase tracking-widest">
               {social}
             </a>
           ))}
         </div>
       </div>
+
     </div>
   );
 };

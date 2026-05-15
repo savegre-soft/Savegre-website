@@ -16,16 +16,16 @@ const productos = [
   },
   {
     nombre: "PulpPos",
-    descripcion: "Sistema web desarrollado en blazor para la gestión de una pulpería",
+    descripcion: "Sistema web desarrollado en Blazor para la gestión de una pulpería",
     estado: "En Desarrollo",
     enlace: "#",
   },
 ]
 
 const estadoColor: Record<string, string> = {
-  "Disponible": "text-neutral-300 border-neutral-600",
-  "Beta": "text-neutral-400 border-neutral-700",
-  "En desarrollo": "text-neutral-500 border-neutral-800",
+  "Disponible": "text-blue-300 border-blue-700",
+  "Beta": "text-blue-400 border-blue-800",
+  "En Desarrollo": "text-blue-500 border-blue-900",
 }
 
 const PortafolioPage = () => {
@@ -35,7 +35,7 @@ const PortafolioPage = () => {
 
         {/* Header */}
         <div className="flex flex-col gap-4 border-b border-neutral-800 pb-10">
-          <span className="text-xs tracking-[0.25em] uppercase text-neutral-500 font-medium">
+          <span className="text-xs tracking-[0.25em] uppercase text-blue-700 font-medium">
             Savegre Soft — Portafolio
           </span>
           <h1 className="text-5xl font-extralight tracking-tight text-white leading-tight">
@@ -50,18 +50,18 @@ const PortafolioPage = () => {
 
         {/* Casos de Éxito */}
         <div className="flex flex-col gap-6">
-          <span className="text-xs tracking-[0.25em] uppercase text-neutral-500 font-medium">
+          <span className="text-xs tracking-[0.25em] uppercase text-blue-700 font-medium">
             Casos de Éxito
           </span>
           <div className="flex flex-col gap-4">
             {casos.map((c, i) => (
               <div
                 key={c.empresa}
-                className="bg-neutral-900 border border-neutral-800 p-6 grid grid-cols-1 lg:grid-cols-5 gap-6 items-start"
+                className="bg-neutral-900 border border-neutral-800 hover:border-blue-900 transition-colors p-6 grid grid-cols-1 lg:grid-cols-5 gap-6 items-start"
               >
                 {/* Número + empresa */}
                 <div className="lg:col-span-1 flex flex-col gap-1">
-                  <span className="text-xs text-neutral-600 font-medium">
+                  <span className="text-xs text-blue-800 font-medium">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <p className="text-sm text-white font-medium">{c.empresa}</p>
@@ -78,7 +78,7 @@ const PortafolioPage = () => {
                     {c.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-xs text-neutral-500 border border-neutral-800 px-2 py-0.5"
+                        className="text-xs text-blue-700 border border-blue-950 bg-blue-950/30 px-2 py-0.5"
                       >
                         {tag}
                       </span>
@@ -88,7 +88,7 @@ const PortafolioPage = () => {
                     href={c.enlace}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs tracking-widest uppercase text-neutral-500 hover:text-white transition-colors"
+                    className="text-xs tracking-widest uppercase text-blue-700 hover:text-blue-400 transition-colors"
                   >
                     Ver sitio →
                   </a>
@@ -100,22 +100,20 @@ const PortafolioPage = () => {
 
         {/* Productos */}
         <div className="flex flex-col gap-6">
-          <span className="text-xs tracking-[0.25em] uppercase text-neutral-500 font-medium">
+          <span className="text-xs tracking-[0.25em] uppercase text-blue-700 font-medium">
             Productos Propios
           </span>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {productos.map((p) => (
               <div
                 key={p.nombre}
-                className="bg-neutral-900 border border-neutral-800 p-6 flex flex-col gap-4"
+                className="bg-neutral-900 border border-neutral-800 hover:border-blue-900 transition-colors p-6 flex flex-col gap-4"
               >
                 <div className="flex items-start justify-between gap-4">
                   <h3 className="text-base font-extralight tracking-tight text-white">
                     {p.nombre}
                   </h3>
-                  <span
-                    className={`text-xs border px-2 py-0.5 shrink-0 ${estadoColor[p.estado]}`}
-                  >
+                  <span className={`text-xs border px-2 py-0.5 shrink-0 ${estadoColor[p.estado]}`}>
                     {p.estado}
                   </span>
                 </div>
@@ -124,7 +122,7 @@ const PortafolioPage = () => {
                 </p>
                 <a
                   href={p.enlace}
-                  className="text-xs tracking-widest uppercase text-neutral-500 hover:text-white transition-colors self-start"
+                  className="text-xs tracking-widest uppercase text-blue-700 hover:text-blue-400 transition-colors self-start"
                 >
                   Más info →
                 </a>
