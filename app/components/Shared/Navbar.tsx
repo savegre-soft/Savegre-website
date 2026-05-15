@@ -9,6 +9,7 @@ export default function Navbar() {
   const navLinks = [
     { name: 'Inicio', href: '/' },
     { name: 'Servicios', href: '/services' },
+    { name: 'Portafolio', href: '/portafolio' },
     { name: 'Nosotros', href: '/about' },
     { name: 'Contacto', href: '/contact' },
   ]
@@ -16,7 +17,7 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/50">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        
+
         {/* Logo / Brand */}
         <Link
           href="/"
@@ -35,15 +36,13 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative text-[13px] font-medium tracking-wide transition-colors py-1 group ${
-                  isActive ? 'text-blue-800' : 'text-zinc-500 hover:text-blue-700'
-                }`}
+                className={`relative text-[13px] font-medium tracking-wide transition-colors py-1 group ${isActive ? 'text-blue-800' : 'text-zinc-500 hover:text-blue-700'
+                  }`}
               >
                 {link.name}
                 {/* Underline animation */}
-                <span className={`absolute bottom-0 left-0 h-px bg-zinc-400 transition-all duration-300 ${
-                  isActive ? 'w-full' : 'w-0 group-hover:w-full'
-                }`} />
+                <span className={`absolute bottom-0 left-0 h-px bg-zinc-400 transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`} />
               </Link>
             )
           })}
