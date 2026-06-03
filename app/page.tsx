@@ -163,22 +163,6 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* Stats row */}
-          <div
-            className="fade-4 flex flex-wrap gap-12 mt-20 pt-12"
-            style={{ borderTop: '1px solid #18181b' }}
-          >
-            {[
-              { n: '50+', l: 'Proyectos entregados' },
-              { n: '8+', l: 'Años de experiencia' },
-              { n: '100%', l: 'Enfoque en resultados' },
-            ].map(({ n, l }) => (
-              <div key={l} className="stat-item">
-                <span className="stat-num">{n}</span>
-                <span className="stat-label">{l}</span>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
