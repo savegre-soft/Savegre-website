@@ -1,278 +1,483 @@
-import React from 'react';
-import Link from 'next/link';
+import Link from 'next/link'
+import { HeroReveal, Reveal, Stagger, StaggerItem, Lift } from './components/Shared/Motion'
+import {
+  ButtonLink,
+  Card,
+  Container,
+  Eyebrow,
+  IconBox,
+  SectionHeading,
+  Tag,
+} from './components/Shared/ui'
+import {
+  ArrowRightIcon,
+  ArrowUpRightIcon,
+  ChartIcon,
+  ChatIcon,
+  CheckIcon,
+  CodeIcon,
+  CompassIcon,
+  LayersIcon,
+  PlugIcon,
+  ReceiptIcon,
+  ShieldIcon,
+} from './components/Shared/icons'
+import { productos, type IconKey } from './lib/productos'
+import { whatsappEnabled, whatsappUrl } from './lib/site'
+
+const iconosProducto: Record<IconKey, typeof ChatIcon> = {
+  chat: ChatIcon,
+  receipt: ReceiptIcon,
+}
+
+const capacidades = [
+  {
+    Icon: CodeIcon,
+    title: 'Desarrollo Web',
+    desc: 'Arquitecturas modernas con Next.js y React. Velocidad de carga óptima, SEO técnico y experiencias de usuario sin fricción.',
+    tags: ['React & Next.js', 'TypeScript'],
+  },
+  {
+    Icon: LayersIcon,
+    title: 'Arquitectura de Software',
+    desc: 'Sistemas robustos y escalables desde la base: microservicios, APIs, modelos de datos y colas que aguantan el crecimiento.',
+    tags: ['Microservicios', 'API REST'],
+  },
+  {
+    Icon: PlugIcon,
+    title: 'Integración de Sistemas',
+    desc: 'Conectamos plataformas, servicios y datos para que su ecosistema digital funcione como una sola unidad coherente.',
+    tags: ['Webhooks', 'ETL'],
+  },
+  {
+    Icon: ChartIcon,
+    title: 'Analítica Digital',
+    desc: 'No solo desplegamos código, medimos resultados. Datalayers, tracking de eventos y dashboards para decidir con datos.',
+    tags: ['Data Layers', 'Dashboards'],
+  },
+  {
+    Icon: CompassIcon,
+    title: 'Consultoría Técnica',
+    desc: 'Auditamos su infraestructura actual e identificamos oportunidades reales en rendimiento, seguridad y escalabilidad.',
+    tags: ['Auditoría', 'Seguridad'],
+  },
+  {
+    Icon: ShieldIcon,
+    title: 'Soporte Continuo',
+    desc: 'Un equipo dedicado para empresas que necesitan acompañamiento técnico estratégico y constante, mes a mes.',
+    tags: ['Mensual', 'Prioritario'],
+  },
+]
+
+const proceso = [
+  {
+    paso: '01',
+    title: 'Entender',
+    desc: 'Antes de proponer, escuchamos la operación real: quién usa el sistema, dónde duele hoy y qué se mide para saber si mejoró.',
+  },
+  {
+    paso: '02',
+    title: 'Diseñar',
+    desc: 'Definimos arquitectura, modelo de datos y alcance por fases. Lo que no aporta en la primera entrega se pospone.',
+  },
+  {
+    paso: '03',
+    title: 'Construir',
+    desc: 'Entregas frecuentes y revisables, con pruebas automatizadas desde el inicio y no como un añadido al final.',
+  },
+  {
+    paso: '04',
+    title: 'Operar',
+    desc: 'Despliegue documentado, observabilidad y acompañamiento. El proyecto termina cuando funciona en producción, no cuando compila.',
+  },
+]
+
+const pilares = [
+  {
+    title: 'Pruebas, no promesas',
+    desc: 'Nuestros productos suman más de 790 pruebas automatizadas. La fiabilidad se demuestra ejecutándola.',
+  },
+  {
+    title: 'Seguridad desde el diseño',
+    desc: 'Aislamiento por cliente, secretos cifrados en reposo con AES-256-GCM y permisos por rol. No es una fase posterior.',
+  },
+  {
+    title: 'Sin dependencia del proveedor',
+    desc: 'Contenedores estándar, bases de datos abiertas y documentación de despliegue. Su sistema es suyo.',
+  },
+  {
+    title: 'Contexto local',
+    desc: 'Conocemos la normativa costarricense de facturación electrónica y trabajamos en su zona horaria.',
+  },
+]
+
+const stack = [
+  'Next.js',
+  'React',
+  '.NET',
+  'TypeScript',
+  'PostgreSQL',
+  'Prisma',
+  'Fastify',
+  'Supabase',
+  'Tailwind CSS',
+  'Docker',
+  'Azure',
+  'Looker Studio',
+]
 
 export default function HomePage() {
   return (
-    <div
-      className="bg-zinc-950 text-zinc-100 overflow-x-hidden"
-      style={{ fontFamily: "'Instrument Sans', sans-serif" }}
-    >
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Instrument+Sans:wght@400;500;600&display=swap');
-
-        :root {
-          --serif: 'Cormorant Garamond', serif;
-          --blue: #2563eb;
-          --blue-dim: #1d4ed8;
-        }
-
-        .display { font-family: var(--serif); }
-
-        /* Fade-up on load */
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(24px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        .fade-1 { animation: fadeUp 0.9s ease both; }
-        .fade-2 { animation: fadeUp 0.9s 0.15s ease both; }
-        .fade-3 { animation: fadeUp 0.9s 0.3s ease both; }
-        .fade-4 { animation: fadeUp 0.9s 0.45s ease both; }
-
-        /* Hover line underline */
-        .btn-primary {
-          display: inline-flex; align-items: center; gap: 10px;
-          font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
-          text-transform: uppercase; color: white;
-          background: var(--blue); padding: 14px 32px;
-          transition: background 0.25s, gap 0.2s;
-        }
-        .btn-primary:hover { background: var(--blue-dim); gap: 16px; }
-
-        .btn-ghost {
-          display: inline-flex; align-items: center; gap: 10px;
-          font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
-          text-transform: uppercase; color: #a1a1aa;
-          border: 1px solid #3f3f46; padding: 14px 32px;
-          transition: color 0.2s, border-color 0.2s, gap 0.2s;
-        }
-        .btn-ghost:hover { color: white; border-color: #71717a; gap: 16px; }
-
-        /* Capability cards */
-        .cap-card {
-          background: #0c0c0e; border: 1px solid #1c1c1f;
-          padding: 48px; display: flex; flex-direction: column; gap: 20px;
-          transition: border-color 0.3s;
-          position: relative; overflow: hidden;
-        }
-        .cap-card::before {
-          content: ''; position: absolute; inset: 0;
-          background: linear-gradient(135deg, rgba(37,99,235,0.04) 0%, transparent 60%);
-          opacity: 0; transition: opacity 0.4s;
-        }
-        .cap-card:hover { border-color: #2f2f38; }
-        .cap-card:hover::before { opacity: 1; }
-
-        .icon-box {
-          width: 40px; height: 40px; border: 1px solid #2a2a2f;
-          display: flex; align-items: center; justify-content: center;
-          transition: border-color 0.3s;
-        }
-        .cap-card:hover .icon-box { border-color: #3f3f46; }
-
-        /* Tech pills */
-        .tech-pill {
-          font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
-          text-transform: uppercase; color: #52525b;
-          padding: 6px 14px; border: 1px solid #1c1c1f;
-          transition: color 0.2s, border-color 0.2s;
-        }
-        .tech-pill:hover { color: #a1a1aa; border-color: #3f3f46; }
-
-        /* Stat items */
-        .stat-item { display: flex; flex-direction: column; gap: 4px; }
-        .stat-num {
-          font-family: var(--serif); font-size: 52px; font-weight: 300;
-          color: white; line-height: 1; letter-spacing: -0.02em;
-        }
-        .stat-label {
-          font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-          color: #52525b; font-weight: 500;
-        }
-
-        /* Marquee */
-        @keyframes marquee {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
-        }
-        .marquee-track {
-          display: flex; white-space: nowrap; width: max-content;
-          animation: marquee 18s linear infinite;
-        }
-        .marquee-track:hover { animation-play-state: paused; }
-
-        /* CTA block */
-        .cta-block {
-          background: #f4f4f5; position: relative; overflow: hidden;
-        }
-        .cta-block::before {
-          content: ''; position: absolute; top: -40%; right: -10%;
-          width: 500px; height: 500px;
-          background: radial-gradient(circle, rgba(37,99,235,0.08) 0%, transparent 65%);
-          pointer-events: none;
-        }
-        .cta-btn {
-          display: inline-flex; align-items: center; gap: 10px;
-          background: #09090b; color: white;
-          font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
-          text-transform: uppercase; padding: 18px 40px;
-          border-radius: 100px; transition: transform 0.2s, gap 0.2s;
-        }
-        .cta-btn:hover { transform: scale(1.03); gap: 16px; }
-
-        .divider { border: none; border-top: 1px solid #18181b; margin: 0; }
-      `}</style>
-
+    <>
       {/* ─── HERO ─── */}
-      <section className="relative min-h-screen flex flex-col justify-center px-6 md:px-16 lg:px-24">
-        {/* Decorative vertical line */}
+      <section className="relative flex min-h-[calc(100svh-4rem)] flex-col justify-center overflow-hidden">
         <div
-          className="absolute left-6 md:left-16 lg:left-24 top-0 bottom-0 w-px"
-          style={{ background: 'linear-gradient(to bottom, transparent 0%, #27272a 30%, #27272a 70%, transparent 100%)' }}
+          aria-hidden="true"
+          className="pointer-events-none absolute top-0 right-0 h-150 w-150 translate-x-1/3 -translate-y-1/4 rounded-full bg-[radial-gradient(circle,rgba(37,99,235,0.10)_0%,transparent_65%)]"
         />
 
-        <div className="max-w-5xl ml-auto mr-0 w-full pl-8 md:pl-16 py-32">
-          <div className="flex items-center gap-4 mb-10 fade-1">
-            <span className="h-px w-8 bg-blue-700" />
-            <p style={{ fontSize: '10px', letterSpacing: '0.28em', textTransform: 'uppercase', color: '#52525b', fontWeight: 600 }}>
-              Ingeniería de Excelencia — San José, CR
-            </p>
+        <Container className="relative py-24">
+          <div
+            aria-hidden="true"
+            className="absolute top-0 bottom-0 left-6 w-px bg-[linear-gradient(to_bottom,transparent_0%,#27272a_25%,#27272a_75%,transparent_100%)] md:left-10 lg:left-16"
+          />
+
+          <div className="pl-6 md:pl-12">
+            <HeroReveal>
+              <Eyebrow>Ingeniería de Excelencia — San José, CR</Eyebrow>
+            </HeroReveal>
+
+            <HeroReveal delay={0.12}>
+              <h1 className="display text-fg mt-8 text-[clamp(3rem,9vw,7rem)] leading-[1.05]">
+                Construimos software
+                <br />
+                <span className="text-faint italic">que escala.</span>
+              </h1>
+            </HeroReveal>
+
+            <HeroReveal delay={0.24}>
+              <p className="text-muted mt-8 max-w-md text-[15px] leading-[1.75]">
+                Soluciones digitales de alta precisión con arquitectura diseñada para el
+                rendimiento corporativo y la escalabilidad global.
+              </p>
+            </HeroReveal>
+
+            <HeroReveal delay={0.36}>
+              <div className="mt-12 flex flex-wrap gap-4">
+                <ButtonLink href="/contact">Iniciar proyecto</ButtonLink>
+                <ButtonLink href="/portafolio" variant="ghost">
+                  Ver portafolio
+                </ButtonLink>
+              </div>
+            </HeroReveal>
           </div>
-
-          <h1
-            className="display fade-2 text-white"
-            style={{ fontSize: 'clamp(3.5rem, 9vw, 7rem)', fontWeight: 300, lineHeight: 1.05, letterSpacing: '-0.01em', marginBottom: '32px' }}
-          >
-            Construimos software<br />
-            <em style={{ color: '#71717a', fontWeight: 300 }}>que escala.</em>
-          </h1>
-
-          <p
-            className="fade-3"
-            style={{ maxWidth: '480px', fontSize: '15px', color: '#71717a', lineHeight: 1.75, marginBottom: '48px' }}
-          >
-            Soluciones digitales de alta precisión con arquitectura diseñada para
-            el rendimiento corporativo y la escalabilidad global.
-          </p>
-
-          <div className="flex flex-wrap gap-4 fade-4">
-            <Link href="/contact" className="btn-primary">
-              Iniciar proyecto <span>→</span>
-            </Link>
-            <Link href="/services" className="btn-ghost">
-              Ver portafolio <span>→</span>
-            </Link>
-          </div>
-
-        </div>
+        </Container>
       </section>
 
-      <hr className="divider" />
+      {/* ─── BARRA DE CIFRAS ─── */}
+      <section className="border-line border-t" aria-label="Cifras de Savegre Soft">
+        <Container>
+          <Stagger className="grid grid-cols-2 gap-px lg:grid-cols-4">
+            {[
+              { valor: '2', etiqueta: 'Productos propios en producción' },
+              { valor: '790+', etiqueta: 'Pruebas automatizadas' },
+              { valor: '48 h', etiqueta: 'Para una propuesta' },
+              { valor: 'CR', etiqueta: 'Base en San José' },
+            ].map((s) => (
+              <StaggerItem key={s.etiqueta}>
+                <div className="py-10">
+                  <p className="display text-fg text-[clamp(2.25rem,5vw,3.25rem)] leading-none">
+                    {s.valor}
+                  </p>
+                  <p className="text-faint mt-3 text-[10px] font-semibold tracking-[0.15em] uppercase">
+                    {s.etiqueta}
+                  </p>
+                </div>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </Container>
+      </section>
 
       {/* ─── CAPACIDADES ─── */}
-      <section className="py-28 px-6 md:px-16 lg:px-24 max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
-          <div>
-            <p style={{ fontSize: '10px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#52525b', fontWeight: 600, marginBottom: '16px' }}>
-              Capacidades
-            </p>
-            <h2
-              className="display text-white"
-              style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 300, lineHeight: 1.15 }}
-            >
-              Soluciones de<br /><em>ingeniería</em>
-            </h2>
-          </div>
-          <p style={{ maxWidth: '320px', fontSize: '13px', color: '#52525b', lineHeight: 1.7 }}>
-            Sistemas construidos sobre pilares de seguridad,
-            rendimiento y observabilidad desde el día uno.
-          </p>
-        </div>
+      <section className="border-line border-t py-24 md:py-28">
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Capacidades"
+              title="Soluciones de"
+              accent="ingeniería"
+              aside="Sistemas construidos sobre pilares de seguridad, rendimiento y observabilidad desde el día uno."
+            />
+          </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: '#18181b' }}>
-          {[
-            {
-              icon: '</>',
-              title: 'Desarrollo Web',
-              desc: 'Arquitecturas modernas con Next.js y React. Velocidad de carga óptima, SEO técnico y experiencias de usuario sin fricción para equipos de cualquier escala.',
-              tags: ['React & Next.js', 'Grado empresarial', 'TypeScript'],
-            },
-            {
-              icon: 'Σ',
-              title: 'Analítica Digital',
-              desc: 'No solo desplegamos código, medimos resultados. Datalayers, tracking de eventos y dashboards en Looker Studio para decisiones basadas en datos reales.',
-              tags: ['Data Layers', 'Dashboards', 'Asesoría'],
-            },
-          ].map(({ icon, title, desc, tags }) => (
-            <div key={title} className="cap-card">
-              <div className="icon-box">
-                <span style={{ fontSize: '13px', color: '#52525b', fontFamily: 'monospace' }}>{icon}</span>
-              </div>
-              <h3
-                className="display text-white"
-                style={{ fontSize: '2rem', fontWeight: 300, lineHeight: 1.2 }}
-              >
-                {title}
-              </h3>
-              <p style={{ fontSize: '14px', color: '#71717a', lineHeight: 1.75 }}>{desc}</p>
-              <div className="flex flex-wrap gap-2 mt-2">
-                {tags.map(t => (
-                  <span key={t} style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#3f3f46', padding: '4px 10px', border: '1px solid #27272a' }}>
-                    {t}
-                  </span>
-                ))}
-              </div>
+          <Stagger className="grid grid-cols-1 gap-px md:grid-cols-2 lg:grid-cols-3">
+            {capacidades.map(({ Icon, title, desc, tags }) => (
+              <StaggerItem key={title} className="h-full">
+                <Lift className="h-full">
+                  <Card className="flex h-full flex-col gap-5 p-8">
+                    <IconBox>
+                      <Icon size={20} />
+                    </IconBox>
+                    <h3 className="display text-fg text-2xl">{title}</h3>
+                    <p className="text-muted flex-1 text-sm leading-[1.75]">{desc}</p>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {tags.map((t) => (
+                        <Tag key={t}>{t}</Tag>
+                      ))}
+                    </div>
+                  </Card>
+                </Lift>
+              </StaggerItem>
+            ))}
+          </Stagger>
+
+          <Reveal delay={0.1}>
+            <div className="mt-10">
+              <ButtonLink href="/services" variant="ghost">
+                Ver todos los servicios
+              </ButtonLink>
             </div>
-          ))}
-        </div>
+          </Reveal>
+        </Container>
       </section>
 
-      {/* ─── TECH MARQUEE ─── */}
-      <section style={{ borderTop: '1px solid #18181b', borderBottom: '1px solid #18181b', padding: '20px 0', overflow: 'hidden' }}>
-        <div className="marquee-track">
-          {['Next.js', 'React', 'Supabase', 'TypeScript', 'Tailwind CSS', '.NET', 'Vite', 'Looker Studio', 'Vercel', 'Next.js', 'React', 'Supabase', 'TypeScript', 'Tailwind CSS', '.NET', 'Vite', 'Looker Studio', 'Vercel'].map((t, i) => (
+      {/* ─── PRODUCTOS PROPIOS ─── */}
+      <section className="border-line bg-surface border-t py-24 md:py-28">
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Productos propios"
+              title="No solo hacemos"
+              accent="proyectos"
+              aside="Mantenemos nuestro propio software en producción. Lo que aprendemos construyéndolo se lo llevamos a su proyecto."
+            />
+          </Reveal>
+
+          <Stagger className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            {productos.map((p) => {
+              const Icon = iconosProducto[p.iconKey]
+              return (
+                <StaggerItem key={p.slug} className="h-full">
+                  <Lift className="h-full">
+                    <Card className="flex h-full flex-col p-8 md:p-10">
+                      <div className="flex items-start justify-between gap-4">
+                        <IconBox>
+                          <Icon size={22} />
+                        </IconBox>
+                        <span className="border-brand/40 text-brand shrink-0 border px-2.5 py-1 text-[10px] font-semibold tracking-widest uppercase">
+                          {p.estado}
+                        </span>
+                      </div>
+
+                      <h3 className="display text-fg mt-6 text-3xl">{p.nombre}</h3>
+                      <p className="text-brand mt-2 text-sm">{p.claim}</p>
+                      <p className="text-muted mt-5 flex-1 text-sm leading-relaxed">
+                        {p.resumen}
+                      </p>
+
+                      <ul className="mt-6 flex flex-col gap-2.5">
+                        {p.capacidades.slice(0, 3).map((c) => (
+                          <li key={c.title} className="flex items-center gap-3">
+                            <span className="text-brand shrink-0">
+                              <CheckIcon size={14} />
+                            </span>
+                            <span className="text-muted text-[13px]">{c.title}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div className="border-line mt-8 flex items-center justify-between border-t pt-6">
+                        <Link
+                          href={`/productos/${p.slug}`}
+                          className="text-brand hover:text-fg inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.18em] uppercase transition-colors"
+                        >
+                          Más info
+                          <ArrowRightIcon size={14} />
+                        </Link>
+                        <div className="flex gap-2">
+                          {p.stack.slice(0, 2).map((s) => (
+                            <Tag key={s}>{s}</Tag>
+                          ))}
+                        </div>
+                      </div>
+                    </Card>
+                  </Lift>
+                </StaggerItem>
+              )
+            })}
+          </Stagger>
+        </Container>
+      </section>
+
+      {/* ─── PROCESO ─── */}
+      <section className="border-line border-t py-24 md:py-28">
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Cómo trabajamos"
+              title="Cuatro pasos,"
+              accent="sin sorpresas"
+              aside="El mismo método en un sitio web y en una plataforma multi-tenant. Cambia la escala, no el rigor."
+            />
+          </Reveal>
+
+          <Stagger className="grid grid-cols-1 gap-px md:grid-cols-2 lg:grid-cols-4">
+            {proceso.map((p) => (
+              <StaggerItem key={p.paso} className="h-full">
+                <div className="border-line h-full border-t pt-7">
+                  <span className="text-brand text-xs font-semibold tracking-widest">
+                    {p.paso}
+                  </span>
+                  <h3 className="display text-fg mt-4 text-2xl">{p.title}</h3>
+                  <p className="text-muted mt-4 text-[13px] leading-relaxed">{p.desc}</p>
+                </div>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </Container>
+      </section>
+
+      {/* ─── STACK ─── */}
+      <section
+        className="border-line overflow-hidden border-y py-6"
+        aria-label="Tecnologías que utilizamos"
+      >
+        <div className="marquee-track" aria-hidden="true">
+          {/* Duplicado: el keyframe desplaza el 50% del ancho, así que la
+              segunda copia entra justo cuando la primera sale. */}
+          {[...stack, ...stack].map((t, i) => (
             <span
               key={i}
-              style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#3f3f46', padding: '0 32px' }}
+              className="text-faint px-8 text-[11px] font-semibold tracking-[0.2em] uppercase"
             >
               {t}
-              <span style={{ marginLeft: '32px', color: '#27272a' }}>·</span>
+              <span className="text-line-strong ml-8">·</span>
             </span>
           ))}
         </div>
       </section>
 
-      {/* ─── CTA ─── */}
-      <section className="py-28 px-6 md:px-16 lg:px-24 max-w-6xl mx-auto">
-        <div className="cta-block rounded-2xl px-12 py-24 md:px-24 flex flex-col items-center text-center gap-10">
-          <p style={{ fontSize: '10px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#71717a', fontWeight: 600 }}>
-            Siguiente paso
-          </p>
-          <h2
-            className="display"
-            style={{ fontSize: 'clamp(2.2rem, 5vw, 4rem)', fontWeight: 300, color: '#09090b', lineHeight: 1.1, maxWidth: '640px' }}
-          >
-            ¿Tienes una idea en la que quieras <em>trabajar</em>?
-          </h2>
-          <Link href="/contact" className="cta-btn">
-            Realiza tu consulta <span>↗</span>
-          </Link>
-        </div>
+      {/* ─── POR QUÉ NOSOTROS ─── */}
+      <section className="py-24 md:py-28">
+        <Container>
+          <div className="grid grid-cols-1 gap-14 lg:grid-cols-[1fr_1.3fr]">
+            <Reveal>
+              <Eyebrow>Por qué Savegre</Eyebrow>
+              <h2 className="display text-fg mt-5 text-[clamp(1.9rem,4vw,3rem)] leading-[1.15]">
+                Criterio de ingeniería,
+                <br />
+                <span className="text-faint italic">no de plantilla</span>
+              </h2>
+              <p className="text-muted mt-6 max-w-sm text-sm leading-[1.8]">
+                Trabajamos igual con un sitio corporativo que con una plataforma multi-tenant:
+                entendiendo el problema antes de elegir la herramienta.
+              </p>
+              <div className="mt-8">
+                <ButtonLink href="/about" variant="ghost">
+                  Conocer al equipo
+                </ButtonLink>
+              </div>
+            </Reveal>
+
+            <Stagger className="grid grid-cols-1 gap-px sm:grid-cols-2">
+              {pilares.map((p) => (
+                <StaggerItem key={p.title} className="h-full">
+                  <Card className="h-full p-7">
+                    <h3 className="text-fg text-sm font-semibold">{p.title}</h3>
+                    <p className="text-muted mt-3 text-[13px] leading-relaxed">{p.desc}</p>
+                  </Card>
+                </StaggerItem>
+              ))}
+            </Stagger>
+          </div>
+        </Container>
       </section>
 
-      {/* ─── FOOTER ─── */}
-      <footer style={{ borderTop: '1px solid #18181b', padding: '40px 0' }}>
-        <div className="max-w-6xl mx-auto px-6 md:px-16 lg:px-24 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p
-            className="display"
-            style={{ fontSize: '1.5rem', fontWeight: 300, fontStyle: 'italic', color: 'white' }}
-          >
-            Savegre.
-          </p>
-          <p style={{ fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#3f3f46', fontWeight: 500 }}>
-            © 2026 Desarrollo de Software & Análisis de Datos
-          </p>
-        </div>
-      </footer>
-    </div>
-  );
+      {/* ─── CASO DESTACADO ─── */}
+      <section className="border-line border-t py-24 md:py-28">
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Caso destacado"
+              title="Wapi + Factu,"
+              accent="trabajando juntos"
+              aside="Nuestros dos productos resuelven cosas distintas, pero encajan en una sola operación."
+            />
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <Card className="p-8 md:p-12">
+              <p className="text-muted max-w-3xl text-[15px] leading-[1.8]">
+                Se emite una factura electrónica, Hacienda la acepta y el cliente recibe su
+                comprobante por WhatsApp en lugar de en una bandeja de spam. Si responde, la
+                conversación entra en la cola de atención con todo el historial a la vista.
+              </p>
+
+              <ol className="mt-10 grid grid-cols-1 gap-px md:grid-cols-4">
+                {[
+                  { paso: '01', title: 'Emisión', desc: 'Consecutivo, clave, XML v4.4 y firma XAdES con Factu.' },
+                  { paso: '02', title: 'Hacienda', desc: 'Se consulta el estado hasta obtener el veredicto.' },
+                  { paso: '03', title: 'Entrega', desc: 'Wapi envía el comprobante por WhatsApp al cliente.' },
+                  { paso: '04', title: 'Atención', desc: 'La respuesta entra al flujo y a la cola del equipo.' },
+                ].map((s) => (
+                  <li key={s.paso} className="bg-raised p-6">
+                    <span className="text-brand text-xs font-semibold tracking-widest">
+                      {s.paso}
+                    </span>
+                    <h3 className="text-fg mt-3 text-sm font-medium">{s.title}</h3>
+                    <p className="text-muted mt-2 text-[13px] leading-relaxed">{s.desc}</p>
+                  </li>
+                ))}
+              </ol>
+
+              <div className="mt-10 flex flex-wrap gap-4">
+                <ButtonLink href="/productos/wapi" variant="ghost">
+                  Documentación de Wapi
+                </ButtonLink>
+                <ButtonLink href="/productos/factu" variant="ghost">
+                  Documentación de Factu
+                </ButtonLink>
+              </div>
+            </Card>
+          </Reveal>
+        </Container>
+      </section>
+
+      {/* ─── CTA ─── */}
+      <section className="py-24 md:py-28">
+        <Container>
+          <Reveal>
+            <div className="relative flex flex-col items-center gap-8 overflow-hidden rounded-2xl bg-zinc-100 px-8 py-20 text-center md:px-24">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -top-2/5 -right-[10%] h-125 w-125 rounded-full bg-[radial-gradient(circle,rgba(37,99,235,0.10)_0%,transparent_65%)]"
+              />
+              <p className="eyebrow relative text-zinc-500!">Siguiente paso</p>
+              <h2 className="display text-ink relative max-w-2xl text-[clamp(2rem,5vw,3.75rem)] leading-[1.1]">
+                ¿Tienes una idea en la que quieras <em>trabajar</em>?
+              </h2>
+              <p className="relative max-w-md text-sm leading-relaxed text-zinc-600">
+                Cuéntanos qué necesitas y preparamos una propuesta en menos de 48 horas.
+              </p>
+              <div className="relative flex flex-wrap justify-center gap-4">
+                <ButtonLink
+                  href="/contact"
+                  variant="light"
+                  icon={<ArrowUpRightIcon size={14} />}
+                >
+                  Realiza tu consulta
+                </ButtonLink>
+                {whatsappEnabled && (
+                  <ButtonLink href={whatsappUrl()} variant="whatsapp" external>
+                    Escríbenos por WhatsApp
+                  </ButtonLink>
+                )}
+              </div>
+            </div>
+          </Reveal>
+        </Container>
+      </section>
+    </>
+  )
 }

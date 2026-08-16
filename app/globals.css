@@ -1,26 +1,129 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ─────────────────────────────────────────────────────────────
+   Sistema de diseño — un solo lugar para color, tipografía y ritmo.
+   Los grises van de fondo a texto; los azules distinguen el que se
+   puede leer sobre fondo oscuro (`brand`) del que solo sirve como
+   relleno con texto blanco encima (`brand-fill`).
+   Todos los colores de texto cumplen WCAG AA sobre `--color-ink`.
+   ───────────────────────────────────────────────────────────── */
+@theme {
+  /* Superficies */
+  --color-ink: #09090b;
+  --color-surface: #0c0c0e;
+  --color-raised: #131316;
+  --color-line: #1c1c1f;
+  --color-line-strong: #2f2f38;
+
+  /* Texto */
+  --color-fg: #fafafa;
+  --color-muted: #a1a1aa; /* 7.8:1 — cuerpo de texto */
+  --color-faint: #71717a; /* 4.1:1 — solo decorativo o texto grande */
+
+  /* Marca */
+  --color-brand: #3b82f6; /* 5.4:1 — azul legible sobre oscuro */
+  --color-brand-fill: #2563eb; /* relleno; texto blanco encima = 5.1:1 */
+  --color-brand-dim: #1d4ed8; /* hover del relleno */
+  --color-whatsapp: #25d366; /* siempre con texto oscuro encima */
+
+  /* Tipografía — las variables las inyecta next/font en <html> */
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-cormorant), ui-serif, Georgia, serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* ─── Base ─── */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  /* Compensa el navbar sticky al saltar a un ancla */
+  scroll-padding-top: 5rem;
+  background-color: var(--color-ink);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-ink);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Un único indicador de foco, visible sobre fondo oscuro, para todo el sitio */
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ─── Utilidades de composición ─── */
+
+/* Titular serif: el gesto de marca, usado en todos los encabezados */
+.display {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+}
+
+/* Etiqueta de sección en versalitas — antes se repetía a mano en 6 sitios */
+.eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* ─── Animaciones ─── */
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fade-up 0.9s ease both;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  animation: marquee 32s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Respeta a quien pide menos movimiento: sin marquee, sin fade, sin scroll suave */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .marquee-track {
+    animation: none;
+  }
 }

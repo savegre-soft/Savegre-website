@@ -1,102 +1,391 @@
-import React from 'react';
+import type { Metadata } from 'next'
+import Link from 'next/link'
+import { Reveal, Stagger, StaggerItem, Lift } from '../components/Shared/Motion'
+import {
+  ButtonLink,
+  Card,
+  Container,
+  Eyebrow,
+  IconBox,
+  PageHeader,
+  SectionHeading,
+  Tag,
+} from '../components/Shared/ui'
+import {
+  ArrowUpRightIcon,
+  ChartIcon,
+  ChatIcon,
+  CheckIcon,
+  CodeIcon,
+  CompassIcon,
+  LayersIcon,
+  LifeBuoyIcon,
+  PlugIcon,
+  ReceiptIcon,
+  ShieldIcon,
+} from '../components/Shared/icons'
+import { whatsappEnabled, whatsappUrl } from '../lib/site'
+import { productos, type IconKey, type Producto } from '../lib/productos'
 
-const services = [
-  { num: "01", title: "Desarrollo Web", desc: "Sitios y aplicaciones web rápidas, accesibles y elegantes que convierten visitantes en clientes y destacan en cualquier mercado.", tags: ["UI/UX", "React", "Next.js"] },
-  { num: "02", title: "Arquitectura de Software", desc: "Diseñamos sistemas robustos y escalables desde la base — microservicios, APIs, bases de datos y más, pensados para crecer.", tags: ["Microservicios", "API REST", "Cloud"] },
-  { num: "03", title: "Consultoría Técnica", desc: "Analizamos su infraestructura actual e identificamos oportunidades de mejora en rendimiento, seguridad y escalabilidad.", tags: ["Auditoría", "Optimización", "Seguridad"] },
-  { num: "04", title: "Estrategia de Producto", desc: "Desde el descubrimiento hasta el roadmap, ayudamos a los equipos a priorizar con criterio y entregar funcionalidades que los usuarios realmente necesitan.", tags: ["Roadmap", "OKRs", "Sprints"] },
-  { num: "05", title: "Integración de Sistemas", desc: "Conectamos plataformas, servicios y datos para que su ecosistema digital funcione como una sola unidad coherente.", tags: ["APIs", "Webhooks", "ETL"] },
-  { num: "06", title: "Soporte Continuo", desc: "Un equipo dedicado para empresas que necesitan soporte técnico estratégico y constante mes a mes.", tags: ["Mensual", "Flexible", "Prioritario"] },
-];
+export const metadata: Metadata = {
+  title: 'Servicios y Productos',
+  description:
+    'Desarrollo web, arquitectura de software, consultoría e integración de sistemas. Conoce Wapi, nuestro middleware para la WhatsApp Cloud API, y Factu, nuestra API de facturación electrónica v4.4 para Hacienda Costa Rica.',
+  alternates: { canonical: '/services' },
+}
 
-const stats = [
-  { num: "100%", label: "Satisfacción del cliente" },
-];
+const iconosProducto: Record<IconKey, typeof ChatIcon> = {
+  chat: ChatIcon,
+  receipt: ReceiptIcon,
+}
 
-const ServicesPage = () => {
+const servicios = [
+  {
+    num: '01',
+    Icon: CodeIcon,
+    title: 'Desarrollo Web',
+    desc: 'Sitios y aplicaciones web rápidas, accesibles y elegantes que convierten visitantes en clientes y destacan en cualquier mercado.',
+    tags: ['UI/UX', 'React', 'Next.js'],
+  },
+  {
+    num: '02',
+    Icon: LayersIcon,
+    title: 'Arquitectura de Software',
+    desc: 'Diseñamos sistemas robustos y escalables desde la base — microservicios, APIs, bases de datos y más, pensados para crecer.',
+    tags: ['Microservicios', 'API REST', 'Cloud'],
+  },
+  {
+    num: '03',
+    Icon: CompassIcon,
+    title: 'Consultoría Técnica',
+    desc: 'Analizamos su infraestructura actual e identificamos oportunidades de mejora en rendimiento, seguridad y escalabilidad.',
+    tags: ['Auditoría', 'Optimización', 'Seguridad'],
+  },
+  {
+    num: '04',
+    Icon: ChartIcon,
+    title: 'Estrategia de Producto',
+    desc: 'Desde el descubrimiento hasta el roadmap, ayudamos a los equipos a priorizar con criterio y entregar funcionalidades que los usuarios realmente necesitan.',
+    tags: ['Roadmap', 'OKRs', 'Sprints'],
+  },
+  {
+    num: '05',
+    Icon: PlugIcon,
+    title: 'Integración de Sistemas',
+    desc: 'Conectamos plataformas, servicios y datos para que su ecosistema digital funcione como una sola unidad coherente.',
+    tags: ['APIs', 'Webhooks', 'ETL'],
+  },
+  {
+    num: '06',
+    Icon: LifeBuoyIcon,
+    title: 'Soporte Continuo',
+    desc: 'Un equipo dedicado para empresas que necesitan soporte técnico estratégico y constante mes a mes.',
+    tags: ['Mensual', 'Flexible', 'Prioritario'],
+  },
+]
+
+/** Resumen de un producto. La ficha completa vive en /productos/[slug]. */
+function ProductoSection({ producto, invertido }: { producto: Producto; invertido: boolean }) {
+  const Icon = iconosProducto[producto.iconKey]
+
   return (
-    <div className="bg-neutral-950 text-neutral-100 min-h-screen font-sans px-6 py-12 md:px-10">
+    <section
+      id={producto.slug}
+      className={`border-line scroll-mt-24 border-t py-24 md:py-28 ${
+        invertido ? 'bg-surface' : ''
+      }`}
+      aria-labelledby={`${producto.slug}-titulo`}
+    >
+      <Container>
+        <Reveal>
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
+            <div className="max-w-2xl">
+              <Eyebrow>Producto propio</Eyebrow>
+              <div className="mt-6 flex items-center gap-4">
+                <IconBox>
+                  <Icon size={22} />
+                </IconBox>
+                <h2
+                  id={`${producto.slug}-titulo`}
+                  className="display text-fg text-[clamp(2.5rem,6vw,4rem)]"
+                >
+                  {producto.nombre}
+                </h2>
+              </div>
+              <p className="text-brand mt-5 text-lg leading-snug">{producto.claim}</p>
+              <p className="text-muted mt-6 text-[15px] leading-[1.8]">{producto.descripcion}</p>
+              <div className="mt-7 flex flex-wrap gap-2">
+                {producto.stack.map((s) => (
+                  <Tag key={s}>{s}</Tag>
+                ))}
+              </div>
+            </div>
 
-      {/* Header */}
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] items-end mb-12 pb-6 border-b border-neutral-800">
-        <div>
-          <p className="text-xs tracking-[0.25em] uppercase text-blue-700 font-medium mb-3">
-            Savegre Soft — Servicios
-          </p>
-          <h1 className="text-4xl md:text-5xl font-extralight tracking-tight leading-tight">
-            Soluciones construidas<br />
-            <span className="text-neutral-400">para resultados reales.</span>
-          </h1>
-        </div>
-        <p className="text-sm text-neutral-400 max-w-[240px] leading-relaxed mt-4 md:mt-0 md:text-right font-light">
-          De la estrategia a la ejecución, trabajamos junto a usted en cada etapa.
-        </p>
-      </div>
-
-      {/* Services grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-neutral-800 border border-neutral-800 overflow-hidden">
-        {services.map((s) => (
-          <div key={s.num} className="bg-neutral-900 p-7 flex flex-col gap-4 hover:bg-neutral-900/50 hover:border-blue-900 transition-colors group">
-            <p className="text-xs tracking-widest text-blue-800 group-hover:text-blue-700 transition-colors font-medium">{s.num}</p>
-            <h3 className="text-xl font-extralight tracking-tight">{s.title}</h3>
-            <p className="text-xs leading-relaxed text-neutral-400 flex-1 font-light">{s.desc}</p>
-            <div className="flex flex-wrap gap-2">
-              {s.tags.map((t) => (
-                <span key={t} className="text-[9px] px-2 py-1 bg-blue-950/30 text-blue-700 border border-blue-950">
-                  {t}
-                </span>
+            <div className="border-line flex shrink-0 gap-8 border-t pt-6 lg:flex-col lg:gap-6 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10">
+              {producto.metricas.map((m) => (
+                <div key={m.etiqueta}>
+                  <p className="display text-fg text-4xl">{m.valor}</p>
+                  <p className="text-faint mt-1 text-[10px] font-semibold tracking-[0.15em] uppercase">
+                    {m.etiqueta}
+                  </p>
+                </div>
               ))}
             </div>
           </div>
-        ))}
-      </div>
+        </Reveal>
 
-      {/* Bottom row */}
-      <div className="grid my-2 grid-cols-1 lg:grid-cols-[2fr_1fr] gap-px bg-neutral-800 border border-neutral-800 overflow-hidden mt-px">
-
-        {/* CTA Block */}
-        <div className="bg-neutral-100 p-8 md:p-10 text-neutral-950">
-          <p className="text-xs tracking-[0.25em] uppercase text-blue-700 font-medium">¿Listo para comenzar?</p>
-          <h2 className="text-3xl font-extralight tracking-tight my-4">
-            Construyamos algo<br />
-            <span className="text-neutral-500">que valga la pena.</span>
-          </h2>
-          <p className="text-sm text-neutral-600 leading-relaxed max-w-sm font-light">
-            Cuéntenos sobre su proyecto y prepararemos una propuesta personalizada en menos de 48 horas.
-          </p>
-          <button className="mt-8 px-6 py-3 bg-blue-900 text-blue-100 text-xs tracking-[0.2em] uppercase font-medium hover:bg-blue-800 transition-colors">
-            Contáctenos ↗
-          </button>
+        {/* Capacidades */}
+        <div className="mt-16">
+          <h3 className="eyebrow mb-6">Qué hace</h3>
+          <Stagger className="grid grid-cols-1 gap-px md:grid-cols-2 lg:grid-cols-3">
+            {producto.capacidades.map((c) => (
+              <StaggerItem key={c.title} className="h-full">
+                <Card className="h-full p-6">
+                  <h4 className="text-fg text-sm font-semibold">{c.title}</h4>
+                  <p className="text-muted mt-3 text-[13px] leading-relaxed">{c.desc}</p>
+                </Card>
+              </StaggerItem>
+            ))}
+          </Stagger>
         </div>
 
-        {/* Stats Block */}
-        <div className="bg-neutral-900 p-8 md:p-10 flex flex-col justify-between gap-8 md:gap-0">
-          {stats.map((s, i) => (
-            <div key={s.label}>
-              <p className="text-4xl font-extralight tracking-tight text-white">{s.num}</p>
-              <p className="text-xs uppercase tracking-widest text-blue-700 mt-1 font-medium">{s.label}</p>
-              {i < stats.length - 1 && <div className="h-px bg-neutral-800 my-4 lg:my-6" />}
+        {/* Casos de uso */}
+        <div className="mt-16">
+          <h3 className="eyebrow mb-6">Casos de uso</h3>
+          <Stagger className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {producto.casos.map((c, i) => (
+              <StaggerItem key={c.title}>
+                <Lift>
+                  <Card className="flex h-full gap-5 p-7">
+                    <span className="text-brand text-xs font-semibold">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <div>
+                      <h4 className="text-fg text-base font-medium">{c.title}</h4>
+                      <p className="text-muted mt-2.5 text-[13px] leading-relaxed">{c.desc}</p>
+                    </div>
+                  </Card>
+                </Lift>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </div>
+
+        {/* Integración */}
+        <Reveal>
+          <div className="border-line mt-16 border-t pt-10">
+            <h3 className="eyebrow mb-6">Cómo se integra en su entorno</h3>
+            <ul className="grid grid-cols-1 gap-x-10 gap-y-4 md:grid-cols-2">
+              {producto.integracion.map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <span className="text-brand mt-0.5 shrink-0">
+                    <CheckIcon size={16} />
+                  </span>
+                  <span className="text-muted text-sm leading-relaxed">{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-10 flex flex-wrap gap-4">
+              <ButtonLink href={`/productos/${producto.slug}`}>
+                Documentación de {producto.nombre}
+              </ButtonLink>
+              {whatsappEnabled && (
+                <ButtonLink
+                  href={whatsappUrl(`Hola, me interesa ${producto.nombre}. ¿Podemos conversar?`)}
+                  variant="whatsapp"
+                  external
+                >
+                  Consultar por WhatsApp
+                </ButtonLink>
+              )}
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
+        </Reveal>
+      </Container>
+    </section>
+  )
+}
 
-      {/* Footer */}
-      <div className="mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p className="text-xs text-neutral-600">
-          © {new Date().getFullYear()} Savegre Soft. Ingeniería de software.
-        </p>
-        <div className="flex gap-6">
-          {["LinkedIn", "GitHub", "Instagram"].map((social) => (
-            <a key={social} href="#" className="text-xs text-blue-800 hover:text-blue-500 transition-colors uppercase tracking-widest">
-              {social}
-            </a>
-          ))}
-        </div>
-      </div>
+export default function ServicesPage() {
+  return (
+    <>
+      <section className="pt-16 pb-20">
+        <Container>
+          <PageHeader
+            eyebrow="Savegre Soft — Servicios"
+            title="Soluciones construidas"
+            accent="para resultados reales."
+            lead="De la estrategia a la ejecución, trabajamos junto a usted en cada etapa — con servicios a la medida y con productos propios ya probados en producción."
+          />
 
-    </div>
-  );
-};
+          <Reveal>
+            <div className="mt-10 flex flex-wrap gap-4">
+              {productos.map((p) => (
+                <ButtonLink key={p.slug} href={`#${p.slug}`} variant="ghost">
+                  Conocer {p.nombre}
+                </ButtonLink>
+              ))}
+            </div>
+          </Reveal>
+        </Container>
+      </section>
 
-export default ServicesPage;
+      {/* ─── Servicios ─── */}
+      <section className="border-line border-t py-24 md:py-28">
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Servicios"
+              title="Lo que hacemos"
+              accent="por su equipo"
+              aside="Cada proyecto arranca por entender la operación real antes de escribir una línea de código."
+            />
+          </Reveal>
+
+          <Stagger className="grid grid-cols-1 gap-px md:grid-cols-2 lg:grid-cols-3">
+            {servicios.map(({ num, Icon, title, desc, tags }) => (
+              <StaggerItem key={num} className="h-full">
+                <Lift className="h-full">
+                  <Card className="flex h-full flex-col gap-4 p-7">
+                    <div className="flex items-center justify-between">
+                      <IconBox>
+                        <Icon size={18} />
+                      </IconBox>
+                      <span className="text-faint text-xs font-semibold tracking-widest">
+                        {num}
+                      </span>
+                    </div>
+                    <h3 className="display text-fg text-xl">{title}</h3>
+                    <p className="text-muted flex-1 text-[13px] leading-relaxed">{desc}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {tags.map((t) => (
+                        <Tag key={t}>{t}</Tag>
+                      ))}
+                    </div>
+                  </Card>
+                </Lift>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </Container>
+      </section>
+
+      {/* ─── Productos propios ─── */}
+      <section className="border-line border-t py-20">
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Productos propios"
+              title="Software nuestro,"
+              accent="en producción"
+              aside="No son demos. Son productos que mantenemos, con pruebas automatizadas y despliegue documentado."
+            />
+          </Reveal>
+        </Container>
+      </section>
+
+      {productos.map((p, i) => (
+        <ProductoSection key={p.slug} producto={p} invertido={i % 2 === 0} />
+      ))}
+
+      {/* ─── Los dos juntos ─── */}
+      <section className="border-line border-t py-24 md:py-28">
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Wapi + Factu"
+              title="Los dos productos,"
+              accent="una sola operación"
+              aside="Están diseñados para hablarse entre sí, pero cada uno funciona por separado."
+            />
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <Card className="p-8 md:p-12">
+              <p className="text-muted max-w-3xl text-[15px] leading-[1.8]">
+                Factu emite eventos de negocio cuando algo ocurre con un comprobante, y uno de
+                sus canales de notificación es WhatsApp. Conectado a Wapi, ese evento deja de ser
+                un correo que nadie abre y se convierte en una conversación real:
+              </p>
+
+              <ol className="mt-10 grid grid-cols-1 gap-px md:grid-cols-4">
+                {[
+                  {
+                    paso: '01',
+                    title: 'Se emite el comprobante',
+                    desc: 'Su sistema llama a Factu. Consecutivo, clave, XML v4.4 y firma XAdES.',
+                  },
+                  {
+                    paso: '02',
+                    title: 'Hacienda responde',
+                    desc: 'Factu consulta el estado y dispara el evento comprobante.aceptado.',
+                  },
+                  {
+                    paso: '03',
+                    title: 'Wapi lo entrega',
+                    desc: 'El cliente recibe su factura por WhatsApp, no en una bandeja de spam.',
+                  },
+                  {
+                    paso: '04',
+                    title: 'La respuesta se atiende',
+                    desc: 'Si el cliente contesta, entra al flujo y a la cola de atención, con todo el historial en el CRM.',
+                  },
+                ].map((s) => (
+                  <li key={s.paso} className="bg-raised p-6">
+                    <span className="text-brand text-xs font-semibold tracking-widest">
+                      {s.paso}
+                    </span>
+                    <h3 className="text-fg mt-3 text-sm font-medium">{s.title}</h3>
+                    <p className="text-muted mt-2 text-[13px] leading-relaxed">{s.desc}</p>
+                  </li>
+                ))}
+              </ol>
+
+              <div className="border-line text-brand mt-10 flex flex-wrap items-center gap-3 border-t pt-8">
+                <ShieldIcon size={18} />
+                <p className="text-muted text-[13px]">
+                  Un solo número de WhatsApp, un solo historial por cliente y los secretos de
+                  ambos sistemas cifrados en reposo.
+                </p>
+              </div>
+            </Card>
+          </Reveal>
+        </Container>
+      </section>
+
+      {/* ─── CTA ─── */}
+      <section className="pb-24">
+        <Container>
+          <Reveal>
+            <div className="relative flex flex-col items-start gap-8 overflow-hidden rounded-2xl bg-zinc-100 px-8 py-16 md:px-16">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -top-1/3 -right-[5%] h-105 w-105 rounded-full bg-[radial-gradient(circle,rgba(37,99,235,0.12)_0%,transparent_65%)]"
+              />
+              <p className="eyebrow relative text-zinc-500!">¿Listo para comenzar?</p>
+              <h2 className="display text-ink relative max-w-xl text-[clamp(2rem,4vw,3rem)] leading-[1.1]">
+                Construyamos algo <em className="text-zinc-500">que valga la pena.</em>
+              </h2>
+              <p className="relative max-w-md text-sm leading-relaxed text-zinc-600">
+                Cuéntenos sobre su proyecto y prepararemos una propuesta personalizada en menos
+                de 48 horas.
+              </p>
+              <div className="relative flex flex-wrap gap-4">
+                <ButtonLink href="/contact" variant="light" icon={<ArrowUpRightIcon size={14} />}>
+                  Contáctenos
+                </ButtonLink>
+                <Link
+                  href="/portafolio"
+                  className="text-ink inline-flex items-center gap-2 self-center border-b border-zinc-400 pb-1 text-[11px] font-semibold tracking-[0.18em] uppercase transition-colors hover:border-zinc-900"
+                >
+                  Ver portafolio
+                </Link>
+              </div>
+            </div>
+          </Reveal>
+        </Container>
+      </section>
+    </>
+  )
+}
