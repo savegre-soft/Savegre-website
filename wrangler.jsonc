@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "savegre-website",
+  "compatibility_date": "2026-08-16",
+
+  // Worker de solo assets: no hay campo "main" porque no existe código de
+  // servidor. Todo el sitio es el export estático que deja `next build`.
+  "assets": {
+    "directory": "./out",
+
+    // Sirve out/404.html (la página not-found.tsx del proyecto) cuando la ruta
+    // no existe. Sin esto Cloudflare devolvería un 404 genérico suyo.
+    "not_found_handling": "404-page",
+
+    // El export genera "services.html" y también "services/". Con
+    // auto-trailing-slash, /services y /services/ resuelven al mismo HTML sin
+    // redirecciones extra.
+    "html_handling": "auto-trailing-slash"
+  },
+
+  "observability": {
+    "enabled": true
+  }
+}

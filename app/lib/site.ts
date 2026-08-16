@@ -6,7 +6,13 @@
 
 export const site = {
   name: 'Savegre Soft',
-  url: 'https://savegresoft.com',
+  /**
+   * Dominio público del despliegue. De aquí salen los canonical de cada
+   * página, las URLs del sitemap, el robots.txt y los datos estructurados,
+   * así que tiene que coincidir exactamente con el dominio servido — si no,
+   * los buscadores indexan un dominio y el canonical les señala otro.
+   */
+  url: 'https://savegre.stevengazo.co.cr',
   founded: '2025',
   location: 'San José, Costa Rica',
   timezone: 'CST (UTC−6)',

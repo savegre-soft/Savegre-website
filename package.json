@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node scripts/flatten-rsc-payloads.mjs",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "preview": "npm run build && wrangler dev",
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
     "motion": "^13.1.0",
@@ -24,6 +26,7 @@
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.123.0"
   }
 }
