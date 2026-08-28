@@ -30,8 +30,11 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# env files
+# `.env` sí se versiona: solo lleva la URL y la clave *publishable* de
+# Supabase, que de todos modos viajan en el bundle del navegador y están
+# protegidas por RLS. Los secretos reales van en `.env*.local` (ignorados).
+.env*.local
 
 # vercel
 .vercel
