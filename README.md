@@ -3,7 +3,7 @@
 Sitio corporativo de Savegre Soft. Next.js 16 (App Router) exportado como sitio
 estático y servido desde Cloudflare Workers.
 
-- **Producción:** https://savegre.stevengazo.co.cr
+- **Producción:** https://savegresoft.com
 - **Stack:** Next.js 16 · React 19 · Tailwind CSS v4 · Motion
 
 ## Desarrollo
@@ -78,7 +78,7 @@ npm run preview      # http://localhost:8787
 ### Dominio
 
 En el panel de Cloudflare → Workers & Pages → `savegre-website` → Settings →
-Domains & Routes, añade `savegre.stevengazo.co.cr` como *Custom Domain*.
+Domains & Routes, añade `savegresoft.com` como *Custom Domain*.
 Cloudflare crea el registro DNS y el certificado.
 
 > **Importante:** el dominio debe coincidir con `site.url` en
@@ -102,8 +102,8 @@ ampliar la CSP en ese archivo o el navegador lo bloqueará.
 
 ## Después de publicar
 
-1. **Google Search Console** — dar de alta `savegre.stevengazo.co.cr` y enviar
-   `https://savegre.stevengazo.co.cr/sitemap.xml`.
+1. **Google Search Console** — dar de alta `savegresoft.com` y enviar
+   `https://savegresoft.com/sitemap.xml`.
 2. **Rich Results Test** — validar `/productos/wapi` y `/productos/factu`; la
    página declara `SoftwareApplication`, `FAQPage` y `BreadcrumbList`.
 3. **Vista previa social** — comprobar un enlace en WhatsApp o LinkedIn.

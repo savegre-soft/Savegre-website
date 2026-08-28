@@ -12,7 +12,7 @@ export const site = {
    * así que tiene que coincidir exactamente con el dominio servido — si no,
    * los buscadores indexan un dominio y el canonical les señala otro.
    */
-  url: 'https://savegre.stevengazo.co.cr',
+  url: 'https://savegresoft.com',
   founded: '2025',
   location: 'San José, Costa Rica',
   timezone: 'CST (UTC−6)',
@@ -50,15 +50,15 @@ export const fundadores = [
  * un enlace roto.
  */
 export const whatsapp = {
-  number: '50600000000',
-  display: '+506 0000-0000',
+  number: '50688089479',
+  display: '+506 8808-9479',
   greeting: 'Hola, me gustaría conversar sobre un proyecto con Savegre Soft.',
 } as const
 
 const PLACEHOLDER_NUMBER = '50600000000'
 
 /** `false` mientras el número siga siendo el de ejemplo. */
-export const whatsappEnabled: boolean = whatsapp.number !== PLACEHOLDER_NUMBER
+export const whatsappEnabled: boolean = (whatsapp.number as string) !== PLACEHOLDER_NUMBER
 
 /**
  * Construye el enlace wa.me. `message` permite un saludo distinto según el
