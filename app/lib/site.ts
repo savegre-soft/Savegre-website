@@ -15,6 +15,14 @@ export const site = {
   url: 'https://savegresoft.com',
   founded: '2025',
   location: 'San José, Costa Rica',
+  /**
+   * Contenedor de Google Tag Manager. De aquí cuelga la analítica (GA4) y
+   * cualquier otra etiqueta, que se configuran en el panel de GTM sin tocar
+   * el código. Cadena vacía = desactivado (no se inyecta nada).
+   * El dominio `googletagmanager.com` está permitido en la CSP de
+   * `public/_headers`; si se quita esto, conviene cerrar también la CSP.
+   */
+  gtmId: 'GTM-WFXTHXTW',
   timezone: 'CST (UTC−6)',
   email: 'contacto@savegresoft.com',
   schedule: {

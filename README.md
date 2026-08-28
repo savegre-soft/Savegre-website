@@ -94,11 +94,15 @@ Cloudflare crea el registro DNS y el certificado.
   `application/octet-stream` y WhatsApp, LinkedIn y X descartan la vista previa.
 - **`/_next/static/*`** — caché inmutable de un año (los nombres llevan hash).
 - **Cabeceras de seguridad** — HSTS, `nosniff`, `X-Frame-Options`,
-  `Referrer-Policy`, `Permissions-Policy` y una CSP cerrada a `'self'`, posible
-  porque el sitio no carga nada de terceros (las fuentes son auto-alojadas).
+  `Referrer-Policy`, `Permissions-Policy` y una CSP casi cerrada a `'self'`. El
+  único tercero permitido es Google Tag Manager (`googletagmanager.com`) y los
+  beacons de GA4; el resto de orígenes están bloqueados.
 
-Si más adelante se añade analítica o cualquier script externo, hay que
-ampliar la CSP en ese archivo o el navegador lo bloqueará.
+El contenedor de GTM se configura con `site.gtmId` en
+[`app/lib/site.ts`](app/lib/site.ts). Si se añade una etiqueta que llame a
+otro dominio (p. ej. Google Ads, Hotjar), hay que ampliar la CSP en
+`public/_headers` o el navegador la bloqueará. Si se vacía `site.gtmId`, la
+CSP puede volver a cerrarse por completo a `'self'`.
 
 ## Después de publicar
 

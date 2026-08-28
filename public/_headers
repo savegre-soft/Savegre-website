@@ -29,14 +29,20 @@
   Cache-Control: public, max-age=3600
 
 # ─── Seguridad, para todo el sitio ───
-# El sitio no carga nada de terceros: las fuentes son propias y no hay
-# analítica ni CDNs. Eso permite una CSP cerrada a 'self'.
-# 'unsafe-inline' sigue siendo necesario en script-src y style-src porque Next
-# inyecta su script de arranque y sus estilos en línea.
+# El único tercero es Google Tag Manager (y, a través de él, GA4). Las fuentes
+# son propias y no hay más CDNs. 'unsafe-inline' sigue siendo necesario en
+# script-src y style-src porque Next —y el bootstrap de GTM— inyectan código
+# en línea.
+#
+# Hosts de Google permitidos:
+#   - googletagmanager.com  → gtm.js, gtag/js y el iframe noscript
+#   - *.google-analytics.com / *.analytics.google.com → beacons de GA4
+#   - *.g.doubleclick.net    → señales de Google Ads si se activan en GTM
+# Si se elimina GTM (site.gtmId = ''), esta CSP puede volver a cerrarse a 'self'.
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: DENY
   Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; font-src 'self'; connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.g.doubleclick.net; frame-src https://www.googletagmanager.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
