@@ -17,13 +17,37 @@ import {
   LayersIcon,
   ShieldIcon,
 } from '../components/Shared/icons'
-import { fundadores, site } from '../lib/site'
+import { fundadores, openGraphBase, site } from '../lib/site'
+import { breadcrumbJsonLd, jsonLdScript } from '../lib/seo'
+
+const DESCRIPCION =
+  'Savegre Soft es una startup costarricense fundada en 2025 por Steven Gazo y Daniel Hidalgo. Servicios de primera, automatización de procesos y decisiones basadas en datos, desde San José, Costa Rica.'
 
 export const metadata: Metadata = {
   title: 'Nosotros',
-  description:
-    'Savegre Soft es una startup costarricense fundada en 2025 por Steven Gazo y Daniel Hidalgo. Servicios de primera, automatización de procesos y decisiones basadas en datos, desde San José, Costa Rica.',
+  description: DESCRIPCION,
   alternates: { canonical: '/about' },
+  openGraph: {
+    ...openGraphBase,
+    url: '/about',
+    title: 'Nosotros | Savegre Soft',
+    description: DESCRIPCION,
+  },
+}
+
+/**
+ * `AboutPage` enlazada a la organización, más `BreadcrumbList`. Deja claro a
+ * Google que esta URL es la página institucional de la entidad ya declarada
+ * en la portada, no una entidad nueva.
+ */
+const aboutJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'Nosotros — Savegre Soft',
+  url: `${site.url}/about`,
+  description: DESCRIPCION,
+  primaryImageOfPage: `${site.url}/opengraph-image`,
+  mainEntity: { '@id': `${site.url}/#organization` },
 }
 
 const enfoques = [
@@ -76,6 +100,9 @@ const practica = [
 export default function AboutPage() {
   return (
     <>
+      <script {...jsonLdScript(aboutJsonLd)} />
+      <script {...jsonLdScript(breadcrumbJsonLd([{ name: 'Nosotros', path: '/about' }]))} />
+
       <section className="pt-16 pb-20">
         <Container>
           <PageHeader

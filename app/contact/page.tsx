@@ -1,19 +1,52 @@
 import type { Metadata } from 'next'
 import { Reveal } from '../components/Shared/Motion'
 import { Container, PageHeader } from '../components/Shared/ui'
+import { openGraphBase, site } from '../lib/site'
+import { breadcrumbJsonLd, jsonLdScript } from '../lib/seo'
 import ContactForm from './ContactForm'
 import ContactChannels from './ContactChannels'
 
+const DESCRIPCION =
+  'Hablemos de su proyecto. Escríbanos por WhatsApp o correo — respondemos en 24 a 48 horas hábiles desde San José, Costa Rica.'
+
 export const metadata: Metadata = {
   title: 'Contacto',
-  description:
-    'Hablemos de su proyecto. Escríbanos por WhatsApp o correo — respondemos en 24 a 48 horas hábiles desde San José, Costa Rica.',
+  description: DESCRIPCION,
   alternates: { canonical: '/contact' },
+  openGraph: {
+    ...openGraphBase,
+    url: '/contact',
+    title: 'Contacto | Savegre Soft',
+    description: DESCRIPCION,
+  },
+}
+
+const contactJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Contacto — Savegre Soft',
+  url: `${site.url}/contact`,
+  description: DESCRIPCION,
+  mainEntity: {
+    '@id': `${site.url}/#organization`,
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'sales',
+      email: site.email,
+      availableLanguage: ['es', 'en'],
+      areaServed: 'CR',
+    },
+  },
 }
 
 export default function ContactPage() {
   return (
     <section className="pt-16 pb-24">
+      <script {...jsonLdScript(contactJsonLd)} />
+      <script
+        {...jsonLdScript(breadcrumbJsonLd([{ name: 'Contacto', path: '/contact' }]))}
+      />
+
       <Container>
         <PageHeader
           eyebrow="Ingeniería de Software — Contacto"

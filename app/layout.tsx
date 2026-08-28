@@ -1,12 +1,12 @@
 import './globals.css'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import { Cormorant_Garamond, Instrument_Sans } from 'next/font/google'
 import Navbar from './components/Shared/Navbar'
 import Footer from './components/Shared/Footer'
 import WhatsAppFab from './components/Shared/WhatsAppFab'
 import { MotionProvider } from './components/Shared/Motion'
-import { fundadores, site } from './lib/site'
+import { fundadores, keywords, openGraphBase, site } from './lib/site'
 
 /**
  * Tipografía única del sitio: una sans para interfaz y texto, una serif para
@@ -29,43 +29,42 @@ const cormorant = Cormorant_Garamond({
   variable: '--font-cormorant',
 })
 
+const TITLE_DEFAULT = 'Savegre Soft | Desarrollo de Software en Costa Rica'
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
 
   title: {
-    default: 'Savegre Soft | Desarrollo de Software en Costa Rica',
+    default: TITLE_DEFAULT,
     template: '%s | Savegre Soft',
   },
 
-  description:
-    'Savegre Soft es una startup costarricense especializada en desarrollo de software, aplicaciones web, sistemas empresariales, soluciones cloud y tecnología a la medida.',
+  description: site.description,
+  keywords: [...keywords],
 
-  keywords: [
-    'desarrollo de software',
-    'software en Costa Rica',
-    'startup tecnológica',
-    'desarrollo web',
-    'facturación electrónica Costa Rica',
-    'WhatsApp Cloud API',
-    'Next.js',
-    'React',
-    '.NET',
-    'aplicaciones empresariales',
-    'software a la medida',
-    'Costa Rica',
-    'Savegre Soft',
-  ],
-
-  authors: [{ name: site.name }],
+  authors: fundadores.map((f) => ({ name: f.nombre, url: f.linkedin })),
   creator: site.name,
   publisher: site.name,
   applicationName: site.name,
+  generator: 'Next.js',
   category: 'technology',
+
+  // Cómo se referencian los enlaces que salen del sitio.
+  referrer: 'origin-when-cross-origin',
+
+  // El sitio es solo en español; iOS y algunos navegadores autoenlazan
+  // números y direcciones dentro del texto y rompen la maquetación.
+  formatDetection: { telephone: false, address: false, email: false },
 
   // El canonical de cada página se define en su propio `metadata`. Aquí solo
   // queda el de la portada: antes este valor absoluto se heredaba en todas las
   // rutas y le decía a Google que /services y /portafolio eran duplicados.
-  alternates: { canonical: '/' },
+  // `languages` con `x-default` le dice a Google que no hay más idiomas y que
+  // esta es la versión a servir en cualquier región.
+  alternates: {
+    canonical: '/',
+    languages: { 'es-CR': '/', 'x-default': '/' },
+  },
 
   robots: {
     index: true,
@@ -81,24 +80,43 @@ export const metadata: Metadata = {
     },
   },
 
+  // Solo se emite si hay código configurado en `site.ts`; `undefined` no
+  // genera etiqueta. Sin esto Next sacaba un `google-site-verification` vacío.
+  verification: site.googleSiteVerification
+    ? { google: site.googleSiteVerification }
+    : undefined,
+
+  appleWebApp: { capable: true, title: site.name, statusBarStyle: 'black-translucent' },
+
   // Sin `images`: el archivo `app/opengraph-image.tsx` genera la imagen en el
   // build y Next inyecta `og:image` y `twitter:image` solo. Antes esto
   // apuntaba a /og-image.jpg, que no existía.
   openGraph: {
-    type: 'website',
-    locale: 'es_CR',
-    url: site.url,
-    siteName: site.name,
-    title: 'Savegre Soft | Desarrollo de Software en Costa Rica',
+    ...openGraphBase,
+    url: '/',
+    title: TITLE_DEFAULT,
     description:
       'Startup costarricense especializada en desarrollo de software, soluciones empresariales, aplicaciones web y tecnología cloud.',
+    countryName: 'Costa Rica',
   },
 
   twitter: {
     card: 'summary_large_image',
-    title: site.name,
-    description: 'Desarrollo de software y soluciones tecnológicas en Costa Rica.',
+    title: TITLE_DEFAULT,
+    description:
+      'Startup costarricense especializada en desarrollo de software, soluciones empresariales, aplicaciones web y tecnología cloud.',
   },
+}
+
+/**
+ * `viewport` es un export aparte desde Next 14 (antes vivía dentro de
+ * `metadata`). De aquí salen `theme-color` —el color de la barra del
+ * navegador en móvil— y `color-scheme`, que le dice al navegador que pinte
+ * los controles nativos en oscuro y evita el flash blanco al cargar.
+ */
+export const viewport: Viewport = {
+  themeColor: '#09090b',
+  colorScheme: 'dark',
 }
 
 /**
@@ -115,6 +133,8 @@ const organizationJsonLd = {
   alternateName: 'Savegre',
   url: site.url,
   email: site.email,
+  image: `${site.url}/opengraph-image`,
+  logo: `${site.url}/opengraph-image`,
   foundingDate: site.founded,
   description:
     'Startup costarricense de desarrollo de software, automatización de procesos, integración de sistemas y análisis de datos.',
@@ -132,11 +152,31 @@ const organizationJsonLd = {
     addressRegion: 'San José',
     addressCountry: 'CR',
   },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer service',
+    email: site.email,
+    availableLanguage: ['es', 'en'],
+    areaServed: 'CR',
+  },
   areaServed: [
     { '@type': 'Country', name: 'Costa Rica' },
     { '@type': 'Place', name: 'América Latina' },
   ],
   knowsLanguage: ['es', 'en'],
+  knowsAbout: [
+    'Desarrollo de software',
+    'Desarrollo web',
+    'Arquitectura de software',
+    'Integración de sistemas',
+    'Automatización de procesos',
+    'Análisis de datos',
+    'Facturación electrónica de Costa Rica',
+    'WhatsApp Cloud API',
+    'Next.js',
+    'React',
+    '.NET',
+  ],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Servicios de Savegre Soft',
@@ -163,6 +203,7 @@ const websiteJsonLd = {
   '@id': `${site.url}/#website`,
   url: site.url,
   name: site.name,
+  description: site.description,
   inLanguage: 'es-CR',
   publisher: { '@id': `${site.url}/#organization` },
 }

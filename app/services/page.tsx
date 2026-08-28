@@ -24,14 +24,44 @@ import {
   ReceiptIcon,
   ShieldIcon,
 } from '../components/Shared/icons'
-import { whatsappEnabled, whatsappUrl } from '../lib/site'
+import { openGraphBase, site, whatsappEnabled, whatsappUrl } from '../lib/site'
 import { productos, type IconKey, type Producto } from '../lib/productos'
+import { breadcrumbJsonLd, jsonLdScript } from '../lib/seo'
+
+const DESCRIPCION =
+  'Desarrollo web, arquitectura de software, consultoría e integración de sistemas. Conoce Wapi, nuestro middleware para la WhatsApp Cloud API, y Factu, nuestra API de facturación electrónica v4.4 para Hacienda Costa Rica.'
 
 export const metadata: Metadata = {
   title: 'Servicios y Productos',
-  description:
-    'Desarrollo web, arquitectura de software, consultoría e integración de sistemas. Conoce Wapi, nuestro middleware para la WhatsApp Cloud API, y Factu, nuestra API de facturación electrónica v4.4 para Hacienda Costa Rica.',
+  description: DESCRIPCION,
   alternates: { canonical: '/services' },
+  openGraph: {
+    ...openGraphBase,
+    url: '/services',
+    title: 'Servicios y Productos | Savegre Soft',
+    description: DESCRIPCION,
+  },
+}
+
+const serviciosJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'OfferCatalog',
+  name: 'Servicios de Savegre Soft',
+  url: `${site.url}/services`,
+  provider: { '@id': `${site.url}/#organization` },
+  itemListElement: [
+    'Desarrollo web con Next.js y React',
+    'Arquitectura de software escalable',
+    'Consultoría técnica y auditoría',
+    'Estrategia de producto',
+    'Integración de sistemas',
+    'Soporte técnico continuo',
+    'Wapi — middleware para la WhatsApp Cloud API',
+    'Factu — facturación electrónica v4.4 para Hacienda Costa Rica',
+  ].map((nombre) => ({
+    '@type': 'Offer',
+    itemOffered: { '@type': 'Service', name: nombre },
+  })),
 }
 
 const iconosProducto: Record<IconKey, typeof ChatIcon> = {
@@ -210,6 +240,11 @@ function ProductoSection({ producto, invertido }: { producto: Producto; invertid
 export default function ServicesPage() {
   return (
     <>
+      <script {...jsonLdScript(serviciosJsonLd)} />
+      <script
+        {...jsonLdScript(breadcrumbJsonLd([{ name: 'Servicios', path: '/services' }]))}
+      />
+
       <section className="pt-16 pb-20">
         <Container>
           <PageHeader

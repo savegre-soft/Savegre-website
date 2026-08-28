@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { getProducto, productos, type IconKey, type Producto } from '../../lib/productos'
-import { site, whatsappEnabled, whatsappUrl } from '../../lib/site'
+import { openGraphBase, site, whatsappEnabled, whatsappUrl } from '../../lib/site'
 import { Reveal, Stagger, StaggerItem, Lift } from '../../components/Shared/Motion'
 import {
   ButtonLink,
@@ -40,11 +40,18 @@ export async function generateMetadata({
   const producto = getProducto(slug)
   if (!producto) return {}
 
+  const descripcion = producto.descripcion.slice(0, 300)
+
   return {
     title: `${producto.nombre} — ${producto.claim}`,
-    description: producto.descripcion.slice(0, 300),
+    description: descripcion,
+    // Palabras clave por producto, además de las globales del sitio.
+    keywords: [producto.nombre, producto.claim, ...producto.stack, 'Savegre Soft'],
     alternates: { canonical: `/productos/${producto.slug}` },
+    // Al declarar `openGraph` aquí se reemplaza por completo el del layout, así
+    // que hay que reponer `siteName`, `locale` y `type` vía `openGraphBase`.
     openGraph: {
+      ...openGraphBase,
       title: `${producto.nombre} | Savegre Soft`,
       description: producto.claim,
       url: `/productos/${producto.slug}`,
@@ -71,9 +78,12 @@ function jsonLdProducto(producto: Producto) {
       operatingSystem: 'Web, Docker',
       description: producto.descripcion,
       inLanguage: 'es',
+      image: `${site.url}/opengraph-image`,
       author: { '@id': `${site.url}/#organization` },
       publisher: { '@id': `${site.url}/#organization` },
+      provider: { '@id': `${site.url}/#organization` },
       featureList: producto.capacidades.map((c) => c.title),
+      keywords: producto.stack.join(', '),
     },
     {
       '@context': 'https://schema.org',

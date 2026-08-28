@@ -1,9 +1,15 @@
+import type { Metadata } from 'next'
 import { ButtonLink, Container, Eyebrow } from './components/Shared/ui'
 
 /**
  * 404 propio. Antes salía el de Next por defecto, en blanco, rompiendo la
  * marca justo en el momento en que el usuario ya está perdido.
  */
+export const metadata: Metadata = {
+  title: 'Página no encontrada',
+  robots: { index: false, follow: true },
+}
+
 export default function NotFound() {
   return (
     <section className="flex min-h-[70vh] items-center py-24">

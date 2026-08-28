@@ -18,12 +18,22 @@ import {
   ReceiptIcon,
 } from '../components/Shared/icons'
 import { productos, type IconKey } from '../lib/productos'
+import { openGraphBase } from '../lib/site'
+import { breadcrumbJsonLd, jsonLdScript } from '../lib/seo'
+
+const DESCRIPCION =
+  'Casos de éxito y productos propios de Savegre Soft: Wapi, middleware para la WhatsApp Cloud API, y Factu, API de facturación electrónica v4.4 para Hacienda Costa Rica.'
 
 export const metadata: Metadata = {
   title: 'Portafolio',
-  description:
-    'Casos de éxito y productos propios de Savegre Soft: Wapi, middleware para la WhatsApp Cloud API, y Factu, API de facturación electrónica v4.4 para Hacienda Costa Rica.',
+  description: DESCRIPCION,
   alternates: { canonical: '/portafolio' },
+  openGraph: {
+    ...openGraphBase,
+    url: '/portafolio',
+    title: 'Portafolio | Savegre Soft',
+    description: DESCRIPCION,
+  },
 }
 
 const iconosProducto: Record<IconKey, typeof ChatIcon> = {
@@ -58,6 +68,10 @@ const enDesarrollo = [
 export default function PortafolioPage() {
   return (
     <>
+      <script
+        {...jsonLdScript(breadcrumbJsonLd([{ name: 'Portafolio', path: '/portafolio' }]))}
+      />
+
       <section className="pt-16 pb-20">
         <Container>
           <PageHeader

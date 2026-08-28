@@ -29,6 +29,68 @@ export const site = {
     weekdays: 'Lun – Vie · 8:00 am – 6:00 pm',
     weekend: 'Fines de semana: cerrado',
   },
+  /**
+   * Locale en formato Open Graph (`idioma_PAÍS`). El `<html lang>` usa el
+   * formato BCP-47 (`es`); Open Graph quiere guion bajo.
+   */
+  ogLocale: 'es_CR',
+  /**
+   * Descripción canónica del negocio, en una sola frase. Se reutiliza como
+   * `description` por defecto, en Open Graph y en los datos estructurados,
+   * para que las tres digan exactamente lo mismo.
+   */
+  description:
+    'Savegre Soft es una startup costarricense de desarrollo de software: aplicaciones web, arquitectura de sistemas, integración, facturación electrónica y WhatsApp Cloud API.',
+  /**
+   * Código de Google Search Console (`content` de la etiqueta
+   * `google-site-verification`). Vacío = no se emite la etiqueta. Se obtiene
+   * en Search Console › Configuración › Verificación de la propiedad ›
+   * Etiqueta HTML.
+   */
+  googleSiteVerification: '',
+} as const
+
+/**
+ * Palabras clave del sitio. Google ya no usa `<meta keywords>` para
+ * posicionar, pero otros buscadores (Bing) y agregadores sí lo leen, así que
+ * se mantiene. Vive aquí para no repetirlo en cada `metadata`.
+ */
+export const keywords = [
+  'desarrollo de software',
+  'software en Costa Rica',
+  'desarrollo de software Costa Rica',
+  'startup tecnológica Costa Rica',
+  'desarrollo web',
+  'aplicaciones web a la medida',
+  'arquitectura de software',
+  'integración de sistemas',
+  'automatización de procesos',
+  'análisis de datos',
+  'facturación electrónica Costa Rica',
+  'facturación electrónica v4.4',
+  'Hacienda Costa Rica',
+  'WhatsApp Cloud API',
+  'middleware WhatsApp',
+  'Next.js',
+  'React',
+  '.NET',
+  'software empresarial',
+  'Savegre Soft',
+] as const
+
+/**
+ * Campos de Open Graph comunes a todo el sitio. Cada página los expande con
+ * `...openGraphBase` y añade su propio `title`, `description` y `url`.
+ *
+ * Hace falta repetirlos porque Next fusiona `openGraph` de forma superficial:
+ * en cuanto una página declara su objeto `openGraph`, **reemplaza** el del
+ * layout entero — sin esto, las fichas de producto perdían `siteName`,
+ * `locale` y `type`.
+ */
+export const openGraphBase = {
+  type: 'website',
+  siteName: site.name,
+  locale: site.ogLocale,
 } as const
 
 /** Fundadores. Se usan en /about y en los datos estructurados de la portada. */
