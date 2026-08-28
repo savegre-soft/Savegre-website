@@ -2,22 +2,17 @@
 
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
-import { site } from '../lib/site'
 import { CheckIcon } from '../components/Shared/icons'
+import { supabase } from '../lib/supabase'
 
 /**
  * Formulario de consulta.
  *
- * ⚠️ El sitio se publica como export estático (`output: 'export'` en
- * next.config.ts), así que no hay servidor donde recibir el envío. Antes esto
- * se resolvía marcando "mensaje enviado" sin mandar nada — cada consulta se
- * perdía. Aquí, en su lugar, se compone un correo con los datos y se abre el
- * cliente de correo del usuario, que sí entrega.
- *
- * Para recibir los envíos directamente en el servidor hay dos caminos:
- *   1. Un servicio de formularios (Formspree, Web3Forms): cambiar `enviar` por
- *      un `fetch` POST a su endpoint. Sigue funcionando con export estático.
- *   2. Quitar `output: 'export'` y usar una Server Action con Resend.
+ * El sitio se publica como export estático (`output: 'export'`), así que no hay
+ * servidor: el envío se guarda directamente en Supabase (schema `website`,
+ * tabla `contacts`) desde el navegador. Una política RLS permite el INSERT
+ * anónimo pero solo como registro nuevo; leer y gestionar las consultas
+ * requiere iniciar sesión en /crm.
  */
 
 type Campos = {
@@ -58,6 +53,8 @@ export default function ContactForm() {
   const [form, setForm] = useState<Campos>(VACIO)
   const [errores, setErrores] = useState<Partial<Record<keyof Campos, string>>>({})
   const [enviado, setEnviado] = useState(false)
+  const [enviando, setEnviando] = useState(false)
+  const [fallo, setFallo] = useState(false)
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -68,7 +65,7 @@ export default function ContactForm() {
     if (errores[id]) setErrores((prev) => ({ ...prev, [id]: undefined }))
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     const nuevos = validar(form)
@@ -80,18 +77,24 @@ export default function ContactForm() {
       return
     }
 
-    const cuerpo = [
-      `Nombre: ${form.fullName}`,
-      `Correo: ${form.email}`,
-      '',
-      form.detail,
-    ].join('\n')
+    setEnviando(true)
+    setFallo(false)
 
-    window.location.href =
-      `mailto:${site.email}` +
-      `?subject=${encodeURIComponent(form.subject)}` +
-      `&body=${encodeURIComponent(cuerpo)}`
+    const { error } = await supabase.from('contacts').insert({
+      full_name: form.fullName.trim(),
+      email: form.email.trim(),
+      subject: form.subject.trim(),
+      detail: form.detail.trim(),
+    })
 
+    setEnviando(false)
+
+    if (error) {
+      setFallo(true)
+      return
+    }
+
+    setForm(VACIO)
     setEnviado(true)
   }
 
@@ -142,23 +145,37 @@ export default function ContactForm() {
         <div>
           <button
             type="submit"
-            className="bg-brand-fill hover:bg-brand-dim active:scale-[0.98] px-8 py-3.5 text-[11px] font-semibold tracking-[0.15em] text-white uppercase transition-all"
+            disabled={enviando || enviado}
+            className="bg-brand-fill hover:bg-brand-dim active:scale-[0.98] px-8 py-3.5 text-[11px] font-semibold tracking-[0.15em] text-white uppercase transition-all disabled:cursor-not-allowed disabled:opacity-60"
           >
-            Enviar consulta →
+            {enviando ? 'Enviando…' : 'Enviar consulta →'}
           </button>
 
           {/* `aria-live` hace que un lector de pantalla anuncie la confirmación */}
           <div aria-live="polite">
-            <AnimatePresence>
+            <AnimatePresence mode="wait">
               {enviado && (
                 <motion.p
+                  key="ok"
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
                   className="mt-4 inline-flex items-center gap-2 border border-green-900 bg-green-950 px-4 py-2.5 text-[13px] text-green-300"
                 >
                   <CheckIcon size={15} />
-                  Abrimos tu cliente de correo — envía el mensaje para completar.
+                  Gracias — recibimos tu consulta y te responderemos pronto.
+                </motion.p>
+              )}
+              {fallo && (
+                <motion.p
+                  key="err"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  className="mt-4 inline-flex items-center gap-2 border border-red-900 bg-red-950 px-4 py-2.5 text-[13px] text-red-300"
+                >
+                  No pudimos enviar tu consulta. Inténtalo de nuevo o escríbenos
+                  a contacto@savegresoft.com.
                 </motion.p>
               )}
             </AnimatePresence>

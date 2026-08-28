@@ -28,6 +28,15 @@
 /robots.txt
   Cache-Control: public, max-age=3600
 
+# ─── Área interna: fuera de los buscadores ───
+# El mini-CRM y su login no deben indexarse. Además del `robots: noindex` en
+# la metadata de cada página y del Disallow en robots.txt, esta cabecera lo
+# refuerza para los rastreadores que la respetan.
+/login
+  X-Robots-Tag: noindex, nofollow
+/crm
+  X-Robots-Tag: noindex, nofollow
+
 # ─── Seguridad, para todo el sitio ───
 # El único tercero es Google Tag Manager (y, a través de él, GA4). Las fuentes
 # son propias y no hay más CDNs. 'unsafe-inline' sigue siendo necesario en
@@ -39,10 +48,14 @@
 #   - *.google-analytics.com / *.analytics.google.com → beacons de GA4
 #   - *.g.doubleclick.net    → señales de Google Ads si se activan en GTM
 # Si se elimina GTM (site.gtmId = ''), esta CSP puede volver a cerrarse a 'self'.
+#
+# Supabase (connect-src): el formulario de contacto y el mini-CRM (/crm)
+# hablan por REST/Auth con el proyecto. `wss:` cubre el canal realtime del
+# SDK aunque hoy no se use.
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: DENY
   Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; font-src 'self'; connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.g.doubleclick.net; frame-src https://www.googletagmanager.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; font-src 'self'; connect-src 'self' https://wlyaeqnhbvndimkoqklu.supabase.co wss://wlyaeqnhbvndimkoqklu.supabase.co https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.g.doubleclick.net; frame-src https://www.googletagmanager.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests

@@ -14,6 +14,9 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
+        // Área interna (mini-CRM). También lleva `robots: noindex` en su
+        // metadata y cabecera `X-Robots-Tag` en public/_headers.
+        disallow: ['/login', '/crm'],
       },
     ],
     sitemap: `${site.url}/sitemap.xml`,
