@@ -22,7 +22,7 @@ import { openGraphBase } from '../lib/site'
 import { breadcrumbJsonLd, jsonLdScript } from '../lib/seo'
 
 const DESCRIPCION =
-  'Casos de éxito y productos propios de Savegre Soft: Wapi, middleware para la WhatsApp Cloud API, y Factu, API de facturación electrónica v4.4 para Hacienda Costa Rica.'
+  'Casos de éxito y productos propios de Savegre Soft: Wapi, middleware para la WhatsApp Cloud API, y Factico, API de facturación electrónica v4.4 para Hacienda Costa Rica.'
 
 export const metadata: Metadata = {
   title: 'Portafolio',

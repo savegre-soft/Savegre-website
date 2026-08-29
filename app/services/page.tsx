@@ -29,7 +29,7 @@ import { productos, type IconKey, type Producto } from '../lib/productos'
 import { breadcrumbJsonLd, jsonLdScript } from '../lib/seo'
 
 const DESCRIPCION =
-  'Desarrollo web, arquitectura de software, consultoría e integración de sistemas. Conoce Wapi, nuestro middleware para la WhatsApp Cloud API, y Factu, nuestra API de facturación electrónica v4.4 para Hacienda Costa Rica.'
+  'Desarrollo web, arquitectura de software, consultoría e integración de sistemas. Conoce Wapi, nuestro middleware para la WhatsApp Cloud API, y Factico, nuestra API de facturación electrónica v4.4 para Hacienda Costa Rica.'
 
 export const metadata: Metadata = {
   title: 'Servicios y Productos',
@@ -57,7 +57,7 @@ const serviciosJsonLd = {
     'Integración de sistemas',
     'Soporte técnico continuo',
     'Wapi — middleware para la WhatsApp Cloud API',
-    'Factu — facturación electrónica v4.4 para Hacienda Costa Rica',
+    'Factico — facturación electrónica v4.4 para Hacienda Costa Rica',
   ].map((nombre) => ({
     '@type': 'Offer',
     itemOffered: { '@type': 'Service', name: nombre },
@@ -339,7 +339,7 @@ export default function ServicesPage() {
         <Container>
           <Reveal>
             <SectionHeading
-              eyebrow="Wapi + Factu"
+              eyebrow="Wapi + Factico"
               title="Los dos productos,"
               accent="una sola operación"
               aside="Están diseñados para hablarse entre sí, pero cada uno funciona por separado."
@@ -349,7 +349,7 @@ export default function ServicesPage() {
           <Reveal delay={0.1}>
             <Card className="p-8 md:p-12">
               <p className="text-muted max-w-3xl text-[15px] leading-[1.8]">
-                Factu emite eventos de negocio cuando algo ocurre con un comprobante, y uno de
+                Factico emite eventos de negocio cuando algo ocurre con un comprobante, y uno de
                 sus canales de notificación es WhatsApp. Conectado a Wapi, ese evento deja de ser
                 un correo que nadie abre y se convierte en una conversación real:
               </p>
@@ -359,12 +359,12 @@ export default function ServicesPage() {
                   {
                     paso: '01',
                     title: 'Se emite el comprobante',
-                    desc: 'Su sistema llama a Factu. Consecutivo, clave, XML v4.4 y firma XAdES.',
+                    desc: 'Su sistema llama a Factico. Consecutivo, clave, XML v4.4 y firma XAdES.',
                   },
                   {
                     paso: '02',
                     title: 'Hacienda responde',
-                    desc: 'Factu consulta el estado y dispara el evento comprobante.aceptado.',
+                    desc: 'Factico consulta el estado y dispara el evento comprobante.aceptado.',
                   },
                   {
                     paso: '03',

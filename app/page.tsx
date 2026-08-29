@@ -413,7 +413,7 @@ export default function HomePage() {
           <Reveal>
             <SectionHeading
               eyebrow="Caso destacado"
-              title="Wapi + Factu,"
+              title="Wapi + Factico,"
               accent="trabajando juntos"
               aside="Nuestros dos productos resuelven cosas distintas, pero encajan en una sola operación."
             />
@@ -429,7 +429,7 @@ export default function HomePage() {
 
               <ol className="mt-10 grid grid-cols-1 gap-px md:grid-cols-4">
                 {[
-                  { paso: '01', title: 'Emisión', desc: 'Consecutivo, clave, XML v4.4 y firma XAdES con Factu.' },
+                  { paso: '01', title: 'Emisión', desc: 'Consecutivo, clave, XML v4.4 y firma XAdES con Factico.' },
                   { paso: '02', title: 'Hacienda', desc: 'Se consulta el estado hasta obtener el veredicto.' },
                   { paso: '03', title: 'Entrega', desc: 'Wapi envía el comprobante por WhatsApp al cliente.' },
                   { paso: '04', title: 'Atención', desc: 'La respuesta entra al flujo y a la cola del equipo.' },
@@ -448,8 +448,8 @@ export default function HomePage() {
                 <ButtonLink href="/productos/wapi" variant="ghost">
                   Documentación de Wapi
                 </ButtonLink>
-                <ButtonLink href="/productos/factu" variant="ghost">
-                  Documentación de Factu
+                <ButtonLink href="/productos/factico" variant="ghost">
+                  Documentación de Factico
                 </ButtonLink>
               </div>
             </Card>

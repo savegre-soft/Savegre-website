@@ -254,17 +254,18 @@ export const productos: Producto[] = [
     ],
   },
 
-  /* ─────────────────────────── FACTU ─────────────────────────── */
+  /* ─────────────────────────── FACTICO ─────────────────────────── */
   {
-    slug: 'factu',
-    nombre: 'Factu',
+    slug: 'factico',
+    nombre: 'Factico',
     iconKey: 'receipt',
     claim: 'Facturación electrónica v4.4 para el Ministerio de Hacienda',
     resumen:
       'API de facturación electrónica de Costa Rica: clave, consecutivo, XML v4.4, firma XAdES, envío a Hacienda y entrega al cliente.',
     descripcion:
-      'Factu emite comprobantes electrónicos de punta a punta: reserva el consecutivo, genera la clave numérica de 50 dígitos, arma el XML v4.4, lo firma con XAdES usando el certificado del emisor y lo envía a Hacienda — para después consultar el estado y entregar el comprobante al cliente final. Todo detrás de una API REST que su sistema puede llamar.',
+      'Factico emite comprobantes electrónicos de punta a punta: reserva el consecutivo, genera la clave numérica de 50 dígitos, arma el XML v4.4, lo firma con XAdES usando el certificado del emisor y lo envía a Hacienda — para después consultar el estado y entregar el comprobante al cliente final. Todo detrás de una API REST que su sistema puede llamar.',
     estado: 'En producción',
+    sitio: 'https://factico.savegresoft.com/',
     stack: ['TypeScript', 'Fastify 5', 'Prisma', 'PostgreSQL', 'Docker'],
     metricas: [
       { valor: '209', etiqueta: 'Pruebas automatizadas' },
@@ -375,8 +376,8 @@ export const productos: Producto[] = [
     ],
     casos: [
       {
-        title: 'Su sistema factura, Factu cumple',
-        desc: 'El ERP o el punto de venta sigue siendo el dueño de la venta; Factu se encarga de clave, consecutivo, firma, envío y estado. No hay que construir criptografía en casa.',
+        title: 'Su sistema factura, Factico cumple',
+        desc: 'El ERP o el punto de venta sigue siendo el dueño de la venta; Factico se encarga de clave, consecutivo, firma, envío y estado. No hay que construir criptografía en casa.',
       },
       {
         title: 'Validación antes de Hacienda',
@@ -427,7 +428,7 @@ export const productos: Producto[] = [
     faq: [
       {
         q: '¿Necesito mi propio certificado de Hacienda?',
-        a: 'Sí. Factu firma con el certificado .p12 del emisor, que es personal e intransferible. Se sube una vez y queda cifrado en reposo.',
+        a: 'Sí. Factico firma con el certificado .p12 del emisor, que es personal e intransferible. Se sube una vez y queda cifrado en reposo.',
       },
       {
         q: '¿Qué pasa si Hacienda no responde?',
@@ -439,7 +440,7 @@ export const productos: Producto[] = [
       },
       {
         q: '¿Puedo facturar desde mi propio sistema?',
-        a: 'Es el uso previsto. Su ERP o punto de venta llama a la API con los datos de la venta y Factu devuelve el comprobante emitido y su estado.',
+        a: 'Es el uso previsto. Su ERP o punto de venta llama a la API con los datos de la venta y Factico devuelve el comprobante emitido y su estado.',
       },
       {
         q: '¿Puedo manejar varias empresas?',

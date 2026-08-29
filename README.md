@@ -19,7 +19,7 @@ npm run lint
 ```
 app/
 ├─ lib/site.ts          → dominio, contacto, WhatsApp y fundadores
-├─ lib/productos.ts     → catálogo de Wapi y Factu (alimenta 3 páginas)
+├─ lib/productos.ts     → catálogo de Wapi y Factico (alimenta 3 páginas)
 ├─ components/Shared/   → Navbar, Footer, primitivas de UI, iconos, Motion
 ├─ productos/[slug]/    → ficha completa de cada producto
 ├─ sitemap.ts           → sitemap.xml
@@ -108,7 +108,7 @@ CSP puede volver a cerrarse por completo a `'self'`.
 
 1. **Google Search Console** — dar de alta `savegresoft.com` y enviar
    `https://savegresoft.com/sitemap.xml`.
-2. **Rich Results Test** — validar `/productos/wapi` y `/productos/factu`; la
+2. **Rich Results Test** — validar `/productos/wapi` y `/productos/factico`; la
    página declara `SoftwareApplication`, `FAQPage` y `BreadcrumbList`.
 3. **Vista previa social** — comprobar un enlace en WhatsApp o LinkedIn.
 
