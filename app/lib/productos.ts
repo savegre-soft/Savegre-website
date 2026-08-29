@@ -22,6 +22,20 @@ export type Producto = {
   /** Párrafo de presentación para /services y la ficha. */
   descripcion: string
   estado: string
+  /**
+   * URL pública del producto en vivo, si la tiene. Cuando está presente, la
+   * ficha, /services, /portafolio y la portada muestran un botón que
+   * redirige ahí. `undefined` = producto sin sitio propio todavía.
+   */
+  sitio?: string
+  /**
+   * Textos alternativos de las capturas de pantalla, en el orden en que deben
+   * aparecer. Los archivos viven en `public/productos/<slug>/` y la ficha los
+   * lee del disco en el build: al añadir una imagen más aquí y su archivo, la
+   * galería crece sola. El primer alt corresponde al primer archivo por orden
+   * alfabético, el segundo al segundo, etc.
+   */
+  capturas?: string[]
   stack: string[]
   metricas: { valor: string; etiqueta: string }[]
   /** El dolor que justifica el producto. */
@@ -48,6 +62,14 @@ export const productos: Producto[] = [
     descripcion:
       'Wapi es la capa de integración y orquestación que se coloca sobre la Cloud API oficial de Meta. Sus aplicaciones envían y reciben conversaciones de WhatsApp sin lidiar con webhooks, reintentos, límites de ritmo ni el ciclo de vida de las plantillas — con un motor de flujos, bots de IA y colas de atención humana encima.',
     estado: 'En producción',
+    sitio: 'https://wapi.savegresoft.com',
+    capturas: [
+      'Panel de Wapi: bandeja de conversaciones de WhatsApp en tiempo real',
+      'Editor visual de flujos conversacionales de Wapi',
+      'Cola de atención humana con agentes y SLA en Wapi',
+      'Campañas de WhatsApp segmentadas por etiquetas del CRM en Wapi',
+      'Ficha 360° del contacto y métricas de atención en Wapi',
+    ],
     stack: ['.NET 10', 'EF Core', 'PostgreSQL / SQLite', 'Docker', 'Azure'],
     metricas: [
       { valor: '582', etiqueta: 'Pruebas automatizadas' },

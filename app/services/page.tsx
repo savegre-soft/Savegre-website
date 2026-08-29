@@ -220,6 +220,16 @@ function ProductoSection({ producto, invertido }: { producto: Producto; invertid
               <ButtonLink href={`/productos/${producto.slug}`}>
                 Documentación de {producto.nombre}
               </ButtonLink>
+              {producto.sitio && (
+                <ButtonLink
+                  href={producto.sitio}
+                  variant="ghost"
+                  external
+                  icon={<ArrowUpRightIcon size={14} />}
+                >
+                  Abrir {producto.nombre}
+                </ButtonLink>
+              )}
               {whatsappEnabled && (
                 <ButtonLink
                   href={whatsappUrl(`Hola, me interesa ${producto.nombre}. ¿Podemos conversar?`)}

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { navLinks, site, socials, whatsapp, whatsappEnabled, whatsappUrl } from '../../lib/site'
-import { MailIcon, MapPinIcon, WhatsAppIcon } from './icons'
+import { productos } from '../../lib/productos'
+import { ArrowUpRightIcon, MailIcon, MapPinIcon, WhatsAppIcon } from './icons'
 
 /**
  * Footer único del sitio. Antes existían dos versiones distintas (una en la
@@ -12,7 +13,7 @@ export default function Footer() {
   return (
     <footer className="border-line mt-24 border-t">
       <div className="mx-auto w-full max-w-6xl px-6 py-16 md:px-10 lg:px-16">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.5fr_1fr_1fr]">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
           {/* Marca */}
           <div>
             <p className="display text-fg text-2xl italic">Savegre.</p>
@@ -42,6 +43,34 @@ export default function Footer() {
               ))}
             </ul>
           </nav>
+
+          {/* Productos */}
+          <div>
+            <p className="eyebrow">Productos</p>
+            <ul className="mt-5 flex flex-col gap-3">
+              {productos.map((p) => (
+                <li key={p.slug} className="flex flex-col gap-1">
+                  <Link
+                    href={`/productos/${p.slug}`}
+                    className="text-muted hover:text-fg text-sm transition-colors"
+                  >
+                    {p.nombre}
+                  </Link>
+                  {p.sitio && (
+                    <a
+                      href={p.sitio}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-faint hover:text-fg inline-flex items-center gap-1 text-xs transition-colors"
+                    >
+                      {new URL(p.sitio).host}
+                      <ArrowUpRightIcon size={12} />
+                    </a>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
 
           {/* Contacto */}
           <div>

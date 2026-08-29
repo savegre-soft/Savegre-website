@@ -1,3 +1,5 @@
+import { readdirSync } from 'node:fs'
+import { join } from 'node:path'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
@@ -24,6 +26,30 @@ import {
 const iconos: Record<IconKey, typeof ChatIcon> = {
   chat: ChatIcon,
   receipt: ReceiptIcon,
+}
+
+const RE_IMAGEN = /\.(png|jpe?g|webp|avif)$/i
+
+/**
+ * Capturas de pantalla del producto. Se leen del disco en el build desde
+ * `public/productos/<slug>/`, por orden alfabético de nombre de archivo, y se
+ * emparejan con los textos alternativos de `producto.capturas`. Añadir una
+ * imagen es dejar el archivo en esa carpeta — no hay que tocar este componente.
+ */
+function leerCapturas(producto: Producto): { src: string; alt: string }[] {
+  let archivos: string[] = []
+  try {
+    archivos = readdirSync(join(process.cwd(), 'public', 'productos', producto.slug))
+      .filter((f) => RE_IMAGEN.test(f))
+      .sort()
+  } catch {
+    return []
+  }
+
+  return archivos.map((archivo, i) => ({
+    src: `/productos/${producto.slug}/${archivo}`,
+    alt: producto.capturas?.[i] ?? `Captura de pantalla de ${producto.nombre}`,
+  }))
 }
 
 /** Con `output: 'export'` esto es lo que decide qué HTML se genera. */
@@ -65,7 +91,7 @@ export async function generateMetadata({
  * de preguntas en los resultados de Google, y `BreadcrumbList` muestra la ruta
  * "Portafolio › Wapi" en lugar de la URL cruda.
  */
-function jsonLdProducto(producto: Producto) {
+function jsonLdProducto(producto: Producto, capturas: { src: string; alt: string }[]) {
   const url = `${site.url}/productos/${producto.slug}`
 
   return [
@@ -74,11 +100,15 @@ function jsonLdProducto(producto: Producto) {
       '@type': 'SoftwareApplication',
       name: producto.nombre,
       url,
+      ...(producto.sitio && { sameAs: producto.sitio, installUrl: producto.sitio }),
       applicationCategory: 'BusinessApplication',
       operatingSystem: 'Web, Docker',
       description: producto.descripcion,
       inLanguage: 'es',
       image: `${site.url}/opengraph-image`,
+      ...(capturas.length && {
+        screenshot: capturas.map((c) => `${site.url}${c.src}`),
+      }),
       author: { '@id': `${site.url}/#organization` },
       publisher: { '@id': `${site.url}/#organization` },
       provider: { '@id': `${site.url}/#organization` },
@@ -122,10 +152,11 @@ export default async function ProductoPage({
 
   const Icon = iconos[producto.iconKey]
   const otro = productos.find((p) => p.slug !== producto.slug)
+  const capturas = leerCapturas(producto)
 
   return (
     <>
-      {jsonLdProducto(producto).map((bloque, i) => (
+      {jsonLdProducto(producto, capturas).map((bloque, i) => (
         <script
           key={i}
           type="application/ld+json"
@@ -171,7 +202,18 @@ export default async function ProductoPage({
               </div>
 
               <div className="mt-10 flex flex-wrap gap-4">
-                <ButtonLink href="/contact">Solicitar una demo</ButtonLink>
+                {producto.sitio ? (
+                  <ButtonLink href={producto.sitio} external icon={<ArrowUpRightIcon size={14} />}>
+                    Abrir la plataforma
+                  </ButtonLink>
+                ) : (
+                  <ButtonLink href="/contact">Solicitar una demo</ButtonLink>
+                )}
+                {producto.sitio && (
+                  <ButtonLink href="/contact" variant="ghost">
+                    Solicitar una demo
+                  </ButtonLink>
+                )}
                 {whatsappEnabled && (
                   <ButtonLink
                     href={whatsappUrl(
@@ -184,6 +226,11 @@ export default async function ProductoPage({
                   </ButtonLink>
                 )}
               </div>
+              {producto.sitio && (
+                <p className="text-faint mt-4 text-xs">
+                  {new URL(producto.sitio).host} · se abre en una pestaña nueva
+                </p>
+              )}
             </div>
 
             <div className="border-line flex shrink-0 gap-8 border-t pt-6 lg:flex-col lg:gap-7 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10">
@@ -199,6 +246,62 @@ export default async function ProductoPage({
           </div>
         </Container>
       </section>
+
+      {/* ─── Capturas de la plataforma ─── */}
+      {capturas.length > 0 && (
+        <section
+          className="border-line border-t py-20 md:py-24"
+          aria-labelledby="capturas-titulo"
+        >
+          <Container>
+            <Reveal>
+              <Eyebrow>La plataforma</Eyebrow>
+              <div className="mt-5 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+                <h2
+                  id="capturas-titulo"
+                  className="display text-fg text-[clamp(1.9rem,4vw,2.75rem)]"
+                >
+                  {producto.nombre} <span className="text-faint italic">por dentro</span>
+                </h2>
+                {producto.sitio && (
+                  <ButtonLink
+                    href={producto.sitio}
+                    variant="ghost"
+                    external
+                    icon={<ArrowUpRightIcon size={14} />}
+                  >
+                    Verlo en vivo
+                  </ButtonLink>
+                )}
+              </div>
+            </Reveal>
+
+            <Stagger className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
+              {capturas.map((c, i) => (
+                <StaggerItem
+                  key={c.src}
+                  className={i === 0 ? 'md:col-span-2' : undefined}
+                >
+                  <figure className="border-line bg-surface overflow-hidden border">
+                    {/* `<img>` en vez de next/image: el sitio es export estático
+                        y estas capturas ya van optimizadas en el repo. */}
+                    <img
+                      src={c.src}
+                      alt={c.alt}
+                      loading={i === 0 ? 'eager' : 'lazy'}
+                      decoding="async"
+                      className="block w-full"
+                    />
+                    <figcaption className="text-muted border-line border-t px-5 py-3 text-[13px]">
+                      {c.alt}
+                    </figcaption>
+                  </figure>
+                </StaggerItem>
+              ))}
+            </Stagger>
+          </Container>
+        </section>
+      )}
 
       {/* ─── El problema ─── */}
       <section className="border-line bg-surface border-t py-20">

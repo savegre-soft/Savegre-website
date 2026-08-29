@@ -288,13 +288,26 @@ export default function HomePage() {
                       </ul>
 
                       <div className="border-line mt-8 flex items-center justify-between border-t pt-6">
-                        <Link
-                          href={`/productos/${p.slug}`}
-                          className="text-brand hover:text-fg inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.18em] uppercase transition-colors"
-                        >
-                          Más info
-                          <ArrowRightIcon size={14} />
-                        </Link>
+                        <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+                          <Link
+                            href={`/productos/${p.slug}`}
+                            className="text-brand hover:text-fg inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.18em] uppercase transition-colors"
+                          >
+                            Más info
+                            <ArrowRightIcon size={14} />
+                          </Link>
+                          {p.sitio && (
+                            <a
+                              href={p.sitio}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-faint hover:text-fg inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.18em] uppercase transition-colors"
+                            >
+                              Plataforma
+                              <ArrowUpRightIcon size={14} />
+                            </a>
+                          )}
+                        </div>
                         <div className="flex gap-2">
                           {p.stack.slice(0, 2).map((s) => (
                             <Tag key={s}>{s}</Tag>

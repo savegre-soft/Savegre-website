@@ -135,7 +135,7 @@ export default function PortafolioPage() {
                         ))}
                       </div>
 
-                      <div className="mt-8">
+                      <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
                         <Link
                           href={`/productos/${p.slug}`}
                           className="text-brand hover:text-fg inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.18em] uppercase transition-colors"
@@ -143,6 +143,17 @@ export default function PortafolioPage() {
                           Más info
                           <ArrowRightIcon size={14} />
                         </Link>
+                        {p.sitio && (
+                          <a
+                            href={p.sitio}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-faint hover:text-fg inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.18em] uppercase transition-colors"
+                          >
+                            Ver plataforma
+                            <ArrowUpRightIcon size={14} />
+                          </a>
+                        )}
                       </div>
                     </Card>
                   </Lift>
