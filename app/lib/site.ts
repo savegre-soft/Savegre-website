@@ -23,6 +23,15 @@ export const site = {
    * `public/_headers`; si se quita esto, conviene cerrar también la CSP.
    */
   gtmId: 'GTM-WFXTHXTW',
+  /**
+   * Meta Pixel (antes Facebook Pixel). Rastrea `PageView` en cada carga y
+   * permite medir campañas y construir públicos en Meta Ads. Cadena vacía =
+   * desactivado (no se inyecta nada).
+   * Los dominios `connect.facebook.net` y `www.facebook.com` están permitidos
+   * en la CSP de `public/_headers`; si se quita esto, conviene cerrarlos.
+   * Alternativa sin código: añadirlo como etiqueta dentro de GTM.
+   */
+  metaPixelId: '1713782843033243',
   timezone: 'CST (UTC−6)',
   email: 'contacto@savegresoft.com',
   schedule: {

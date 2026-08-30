@@ -38,16 +38,21 @@
   X-Robots-Tag: noindex, nofollow
 
 # ─── Seguridad, para todo el sitio ───
-# El único tercero es Google Tag Manager (y, a través de él, GA4). Las fuentes
-# son propias y no hay más CDNs. 'unsafe-inline' sigue siendo necesario en
-# script-src y style-src porque Next —y el bootstrap de GTM— inyectan código
-# en línea.
+# Terceros: Google Tag Manager (y, a través de él, GA4) y el Meta Pixel. Las
+# fuentes son propias y no hay más CDNs. 'unsafe-inline' sigue siendo necesario
+# en script-src y style-src porque Next —y los bootstraps de GTM y del Pixel—
+# inyectan código en línea.
 #
 # Hosts de Google permitidos:
 #   - googletagmanager.com  → gtm.js, gtag/js y el iframe noscript
 #   - *.google-analytics.com / *.analytics.google.com → beacons de GA4
 #   - *.g.doubleclick.net    → señales de Google Ads si se activan en GTM
 # Si se elimina GTM (site.gtmId = ''), esta CSP puede volver a cerrarse a 'self'.
+#
+# Hosts de Meta permitidos:
+#   - connect.facebook.net  → fbevents.js (el loader del Pixel)
+#   - www.facebook.com      → el beacon /tr del Pixel (img y fetch) y el noscript
+# Si se elimina el Pixel (site.metaPixelId = ''), quitar estos tres hosts.
 #
 # Supabase (connect-src): el formulario de contacto y el mini-CRM (/crm)
 # hablan por REST/Auth con el proyecto. `wss:` cubre el canal realtime del
@@ -58,4 +63,4 @@
   X-Frame-Options: DENY
   Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; font-src 'self'; connect-src 'self' https://wlyaeqnhbvndimkoqklu.supabase.co wss://wlyaeqnhbvndimkoqklu.supabase.co https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.g.doubleclick.net; frame-src https://www.googletagmanager.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.googletagmanager.com https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://www.facebook.com; font-src 'self'; connect-src 'self' https://wlyaeqnhbvndimkoqklu.supabase.co wss://wlyaeqnhbvndimkoqklu.supabase.co https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.g.doubleclick.net https://connect.facebook.net https://www.facebook.com; frame-src https://www.googletagmanager.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
