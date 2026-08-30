@@ -15,7 +15,11 @@ export const dynamic = 'force-static'
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date()
 
-  const rutas: { path: string; priority: number; changeFrequency: 'weekly' | 'monthly' }[] = [
+  const rutas: {
+    path: string
+    priority: number
+    changeFrequency: 'weekly' | 'monthly' | 'yearly'
+  }[] = [
     { path: '', priority: 1, changeFrequency: 'weekly' },
     { path: '/services', priority: 0.9, changeFrequency: 'monthly' },
     { path: '/portafolio', priority: 0.8, changeFrequency: 'monthly' },
@@ -26,6 +30,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
       changeFrequency: 'monthly' as const,
     })),
+    { path: '/privacidad', priority: 0.3, changeFrequency: 'yearly' },
+    { path: '/cookies', priority: 0.3, changeFrequency: 'yearly' },
   ]
 
   return rutas.map(({ path, priority, changeFrequency }) => ({

@@ -6,7 +6,9 @@ import Navbar from './components/Shared/Navbar'
 import Footer from './components/Shared/Footer'
 import WhatsAppFab from './components/Shared/WhatsAppFab'
 import { MotionProvider } from './components/Shared/Motion'
+import CookieConsent from './components/Shared/CookieConsent'
 import { fundadores, keywords, openGraphBase, site } from './lib/site'
+import { CONSENT_KEY } from './lib/consent'
 
 /**
  * Tipografía única del sitio: una sans para interfaz y texto, una serif para
@@ -211,6 +213,17 @@ const websiteJsonLd = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className={`${instrument.variable} ${cormorant.variable}`}>
+      {/* Consent Mode v2: por defecto TODO denegado. GTM —y, a través suyo,
+          GA4— respeta estas señales y funciona sin cookies hasta que el banner
+          (CookieConsent) las sube a `granted`; el Meta Pixel ni se descarga
+          hasta entonces. `beforeInteractive` garantiza que corre antes que GTM. */}
+      {(site.gtmId || site.metaPixelId) && (
+        <Script id="consent-default" strategy="beforeInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});
+try{if(localStorage.getItem('${CONSENT_KEY}')==='granted'){gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'})}}catch(e){}`}
+        </Script>
+      )}
       {/* Google Tag Manager: el bootstrap se inyecta tras la hidratación
           (`afterInteractive`); de ahí GTM carga GA4 y el resto de etiquetas.
           El `id` es obligatorio para que Next optimice el script inline. */}
@@ -223,22 +236,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','${site.gtmId}');`}
         </Script>
       )}
-      {/* Meta Pixel: mismo patrón que GTM — el loader se inyecta tras la
-          hidratación y registra un `PageView` por carga. `noscript` abajo. */}
-      {site.metaPixelId && (
-        <Script id="meta-pixel" strategy="afterInteractive">
-          {`!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '${site.metaPixelId}');
-fbq('track', 'PageView');`}
-        </Script>
-      )}
       <body className="flex min-h-screen flex-col">
         {/* Google Tag Manager (noscript): fallback para navegadores sin JS. */}
         {site.gtmId && (
@@ -248,18 +245,6 @@ fbq('track', 'PageView');`}
               height="0"
               width="0"
               style={{ display: 'none', visibility: 'hidden' }}
-            />
-          </noscript>
-        )}
-        {/* Meta Pixel (noscript): fallback para navegadores sin JS. */}
-        {site.metaPixelId && (
-          <noscript>
-            <img
-              height="1"
-              width="1"
-              style={{ display: 'none' }}
-              alt=""
-              src={`https://www.facebook.com/tr?id=${site.metaPixelId}&ev=PageView&noscript=1`}
             />
           </noscript>
         )}
@@ -287,6 +272,7 @@ fbq('track', 'PageView');`}
           </main>
           <Footer />
           <WhatsAppFab />
+          <CookieConsent />
         </MotionProvider>
       </body>
     </html>

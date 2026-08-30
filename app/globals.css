@@ -72,6 +72,91 @@ body {
   color: var(--color-muted);
 }
 
+/* ─── Páginas legales ─── */
+
+/* Tipografía de cuerpo largo para privacidad y cookies. Se define aquí y no
+   con clases sueltas en cada `<p>` porque el texto lo escribe una persona,
+   no un `.map()`, y así el marcado queda legible. */
+.legal-prose {
+  color: var(--color-muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.legal-prose h2 {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  color: var(--color-fg);
+  font-size: clamp(1.5rem, 3vw, 1.9rem);
+  margin-top: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.legal-prose h3 {
+  color: var(--color-fg);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.legal-prose p {
+  margin-bottom: 1rem;
+  max-width: 46rem;
+}
+
+.legal-prose ul {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+  list-style: disc;
+  max-width: 46rem;
+}
+
+.legal-prose li {
+  margin-bottom: 0.4rem;
+}
+
+.legal-prose a {
+  color: var(--color-brand);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.legal-prose strong {
+  color: var(--color-fg);
+  font-weight: 600;
+}
+
+.legal-prose code {
+  background-color: var(--color-raised);
+  border: 1px solid var(--color-line);
+  border-radius: 3px;
+  padding: 0.1em 0.35em;
+  font-size: 0.9em;
+}
+
+.legal-prose table {
+  width: 100%;
+  min-width: 34rem;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+  font-size: 13px;
+}
+
+.legal-prose th,
+.legal-prose td {
+  border: 1px solid var(--color-line);
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.legal-prose th {
+  color: var(--color-fg);
+  font-weight: 600;
+}
+
 /* ─── Animaciones ─── */
 
 @keyframes fade-up {

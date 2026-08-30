@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { navLinks, site, socials, whatsapp, whatsappEnabled, whatsappUrl } from '../../lib/site'
 import { productos } from '../../lib/productos'
 import { ArrowUpRightIcon, MailIcon, MapPinIcon, WhatsAppIcon } from './icons'
+import CookiePreferencesButton from './CookiePreferencesButton'
 
 /**
  * Footer único del sitio. Antes existían dos versiones distintas (una en la
@@ -114,9 +115,26 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-line text-faint mt-14 flex flex-col items-center justify-between gap-4 border-t pt-8 text-[11px] tracking-[0.15em] uppercase md:flex-row">
-          <p>© {year} {site.name}</p>
-          <p>Desarrollo de Software &amp; Análisis de Datos</p>
+        <div className="border-line mt-14 border-t pt-8">
+          <div className="text-faint flex flex-col items-center justify-between gap-4 text-[11px] tracking-[0.15em] uppercase md:flex-row">
+            <p>© {year} {site.name}</p>
+            <p>Desarrollo de Software &amp; Análisis de Datos</p>
+          </div>
+
+          <nav
+            aria-label="Enlaces legales"
+            className="text-faint mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[11px] tracking-[0.15em] uppercase"
+          >
+            <Link href="/privacidad" className="hover:text-fg transition-colors">
+              Política de Privacidad
+            </Link>
+            <span aria-hidden="true">·</span>
+            <Link href="/cookies" className="hover:text-fg transition-colors">
+              Política de Cookies
+            </Link>
+            <span aria-hidden="true">·</span>
+            <CookiePreferencesButton className="cursor-pointer tracking-[0.15em] uppercase transition-colors hover:text-fg" />
+          </nav>
         </div>
       </div>
     </footer>
