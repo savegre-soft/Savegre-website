@@ -148,10 +148,10 @@ const organizationJsonLd = {
     jobTitle: f.rol,
     sameAs: f.linkedin,
   })),
-  // Perfiles oficiales de la organización (Facebook) más los de los
-  // fundadores: Google los usa para vincular la entidad con sus redes.
+  // Perfiles oficiales de la organización más los de los fundadores: Google
+  // los usa para vincular la entidad con sus redes.
   sameAs: [
-    ...socials.filter((s) => s.name === 'Facebook').map((s) => s.href),
+    ...socials.filter((s) => s.org).map((s) => s.href),
     ...fundadores.map((f) => f.linkedin),
   ],
   address: {

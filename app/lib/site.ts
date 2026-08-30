@@ -150,10 +150,16 @@ export function whatsappUrl(message: string = whatsapp.greeting): string {
   return `https://wa.me/${whatsapp.number}?text=${encodeURIComponent(message)}`
 }
 
+/**
+ * Redes. `org: true` son los perfiles oficiales de Savegre Soft (van al
+ * `sameAs` de los datos estructurados de la organización); `org: false` son
+ * los personales de los fundadores.
+ */
 export const socials = [
-  { name: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61588349762906' },
-  { name: 'LinkedIn · Steven Gazo', href: 'https://www.linkedin.com/in/stevengazo/' },
-  { name: 'LinkedIn · Daniel Hidalgo', href: 'https://www.linkedin.com/in/daniehidalgomora/' },
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/company/savegre-soft/', org: true },
+  { name: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61588349762906', org: true },
+  { name: 'LinkedIn · Steven Gazo', href: 'https://www.linkedin.com/in/stevengazo/', org: false },
+  { name: 'LinkedIn · Daniel Hidalgo', href: 'https://www.linkedin.com/in/daniehidalgomora/', org: false },
 ] as const
 
 export const navLinks = [
