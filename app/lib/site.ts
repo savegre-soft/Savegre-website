@@ -151,6 +151,7 @@ export function whatsappUrl(message: string = whatsapp.greeting): string {
 }
 
 export const socials = [
+  { name: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61588349762906' },
   { name: 'LinkedIn · Steven Gazo', href: 'https://www.linkedin.com/in/stevengazo/' },
   { name: 'LinkedIn · Daniel Hidalgo', href: 'https://www.linkedin.com/in/daniehidalgomora/' },
 ] as const

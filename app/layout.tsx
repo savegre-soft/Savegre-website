@@ -7,7 +7,8 @@ import Footer from './components/Shared/Footer'
 import WhatsAppFab from './components/Shared/WhatsAppFab'
 import { MotionProvider } from './components/Shared/Motion'
 import CookieConsent from './components/Shared/CookieConsent'
-import { fundadores, keywords, openGraphBase, site } from './lib/site'
+import PixelPageViews from './components/Shared/PixelPageViews'
+import { fundadores, keywords, openGraphBase, site, socials } from './lib/site'
 import { CONSENT_KEY } from './lib/consent'
 
 /**
@@ -147,7 +148,12 @@ const organizationJsonLd = {
     jobTitle: f.rol,
     sameAs: f.linkedin,
   })),
-  sameAs: fundadores.map((f) => f.linkedin),
+  // Perfiles oficiales de la organización (Facebook) más los de los
+  // fundadores: Google los usa para vincular la entidad con sus redes.
+  sameAs: [
+    ...socials.filter((s) => s.name === 'Facebook').map((s) => s.href),
+    ...fundadores.map((f) => f.linkedin),
+  ],
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'San José',
@@ -273,6 +279,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <Footer />
           <WhatsAppFab />
           <CookieConsent />
+          <PixelPageViews />
         </MotionProvider>
       </body>
     </html>
