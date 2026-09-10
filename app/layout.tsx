@@ -181,6 +181,7 @@ const organizationJsonLd = {
     'Análisis de datos',
     'Facturación electrónica de Costa Rica',
     'WhatsApp Cloud API',
+    'Software de punto de venta para restaurantes',
     'Next.js',
     'React',
     '.NET',
@@ -197,6 +198,7 @@ const organizationJsonLd = {
       'Análisis de datos y dashboards',
       'Facturación electrónica Costa Rica',
       'Integración con WhatsApp Cloud API',
+      'Plataforma de punto de venta para restaurantes',
     ].map((servicio) => ({
       '@type': 'Offer',
       itemOffered: { '@type': 'Service', name: servicio },

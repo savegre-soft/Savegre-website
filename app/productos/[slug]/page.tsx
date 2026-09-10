@@ -21,11 +21,13 @@ import {
   PlugIcon,
   ReceiptIcon,
   ShieldIcon,
+  UtensilsIcon,
 } from '../../components/Shared/icons'
 
 const iconos: Record<IconKey, typeof ChatIcon> = {
   chat: ChatIcon,
   receipt: ReceiptIcon,
+  utensils: UtensilsIcon,
 }
 
 const RE_IMAGEN = /\.(png|jpe?g|webp|avif)$/i
@@ -212,6 +214,11 @@ export default async function ProductoPage({
                 {producto.sitio && (
                   <ButtonLink href="/contact" variant="ghost">
                     Solicitar una demo
+                  </ButtonLink>
+                )}
+                {producto.recorrido && (
+                  <ButtonLink href={producto.recorrido} variant="ghost">
+                    Ver el sistema por dentro
                   </ButtonLink>
                 )}
                 {whatsappEnabled && (

@@ -21,6 +21,7 @@ import {
   PlugIcon,
   ReceiptIcon,
   ShieldIcon,
+  UtensilsIcon,
 } from './components/Shared/icons'
 import { productos, type IconKey } from './lib/productos'
 import { whatsappEnabled, whatsappUrl } from './lib/site'
@@ -28,6 +29,7 @@ import { whatsappEnabled, whatsappUrl } from './lib/site'
 const iconosProducto: Record<IconKey, typeof ChatIcon> = {
   chat: ChatIcon,
   receipt: ReceiptIcon,
+  utensils: UtensilsIcon,
 }
 
 const capacidades = [

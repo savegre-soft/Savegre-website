@@ -9,7 +9,7 @@
  * es `.ts` y no puede contener JSX; el mapeo vive en los componentes.
  */
 
-export type IconKey = 'chat' | 'receipt'
+export type IconKey = 'chat' | 'receipt' | 'utensils'
 
 export type Producto = {
   slug: string
@@ -28,6 +28,12 @@ export type Producto = {
    * redirige ahí. `undefined` = producto sin sitio propio todavía.
    */
   sitio?: string
+  /**
+   * Ruta interna a una página de recorrido del producto en lenguaje de negocio,
+   * si la tiene. La ficha muestra un enlace a ella. `undefined` = no hay página
+   * de recorrido aparte de la propia ficha.
+   */
+  recorrido?: string
   /**
    * Textos alternativos de las capturas de pantalla, en el orden en que deben
    * aparecer. Los archivos viven en `public/productos/<slug>/` y la ficha los
@@ -445,6 +451,216 @@ export const productos: Producto[] = [
       {
         q: '¿Puedo manejar varias empresas?',
         a: 'Sí. Es multi-tenant: cada organización tiene sus usuarios, emisores y comprobantes aislados, y el contador de consecutivos es independiente por emisor, sucursal y terminal.',
+      },
+    ],
+  },
+
+  /* ─────────────────────────── RESTAUCLOUD ─────────────────────────── */
+  {
+    slug: 'restaucloud',
+    nombre: 'RestauCloud',
+    iconKey: 'utensils',
+    claim: 'Plataforma de gestión y punto de venta para restaurantes',
+    resumen:
+      'El sistema con el que un restaurante opera el día a día: punto de venta, cocina, inventario, reservaciones, fidelización, finanzas y planillas, para un local o para una cadena.',
+    descripcion:
+      'RestauCloud cubre la operación completa de un restaurante: tomar pedidos en el salón o para llevar, enviarlos a cocina, cobrar, controlar el inventario y las compras, gestionar reservaciones y clientes frecuentes, cerrar la caja y calcular la planilla. Funciona igual para un solo local que para una cadena de varias sucursales, y cada cadena activa únicamente los módulos que necesita. La facturación electrónica ante Hacienda se resuelve conectándolo con Factico.',
+    estado: 'En producción',
+    recorrido: '/restaucloud',
+    stack: ['TypeScript', 'Express 5', 'Prisma 6', 'PostgreSQL', 'Docker'],
+    metricas: [
+      { valor: '61', etiqueta: 'Requerimientos entregados' },
+      { valor: '47+', etiqueta: 'Modelos de datos' },
+      { valor: '7', etiqueta: 'Módulos del sistema' },
+    ],
+    problema: [
+      {
+        title: 'Cinco herramientas que no se hablan',
+        desc: 'Un punto de venta por un lado, una hoja de cálculo para el inventario, un cuaderno para las reservas y otro para la planilla. Al cierre del día nada cuadra.',
+      },
+      {
+        title: 'El software de restaurante rara vez es local',
+        desc: 'La mayoría no entiende el impuesto de servicio, el cobro en dólares al tipo de cambio del Banco Central ni la factura electrónica v4.4 de Hacienda.',
+      },
+      {
+        title: 'Crecer de un local a una cadena obliga a cambiar de sistema',
+        desc: 'Lo que sirve para un local no aísla los datos por sucursal ni consolida los reportes de toda la cadena.',
+      },
+    ],
+    capacidades: [
+      {
+        title: 'Punto de venta completo',
+        desc: 'Pedidos en mesa, para llevar y delivery, con modificadores, descuentos, división de cuenta, cobro en colones o dólares y comprobante consecutivo por sucursal.',
+      },
+      {
+        title: 'Cocina en tiempo real',
+        desc: 'Cada pedido enviado aparece en la pantalla de cocina en segundos, con el tiempo de espera y alertas por color.',
+      },
+      {
+        title: 'Inventario que se descuenta solo',
+        desc: 'La receta de cada plato baja el stock al enviar el pedido a cocina, con alertas de mínimo y órdenes de compra a proveedores.',
+      },
+      {
+        title: 'Reservaciones y salón',
+        desc: 'Plano de mesas por área, reservaciones que bloquean solo su franja horaria y lista de espera para quienes llegan sin reservar.',
+      },
+      {
+        title: 'Finanzas y planilla',
+        desc: 'Turnos de caja con arqueo automático, cuentas por cobrar y por pagar, tipo de cambio del BCCR y cálculo de planilla, aguinaldo y vacaciones.',
+      },
+      {
+        title: 'Una cadena, varias sucursales',
+        desc: 'Cada sucursal tiene sus datos aislados; la administración de la cadena ve el consolidado y decide qué módulos activa cada una.',
+      },
+    ],
+    modulos: [
+      {
+        title: 'Núcleo',
+        desc: 'Lo que toda cadena tiene, sin importar el plan.',
+        bullets: [
+          'Usuarios, roles y permisos configurables desde una matriz rol × acción',
+          'PIN de acceso rápido para cambiar de usuario en terminales compartidas',
+          'Restaurantes, cadenas, áreas y plano de mesas interactivo',
+          'Menú con familias, categorías, modificadores con precio y etiquetas',
+          'Punto de venta, clientes y direcciones de entrega',
+          'Auditoría automática de cada creación, edición y eliminación',
+        ],
+      },
+      {
+        title: 'Cocina (KDS)',
+        desc: 'La pantalla de cocina y el seguimiento del estado de cada pedido.',
+        bullets: [
+          'Tablero en tres columnas: Confirmado, En preparación y Listo',
+          'Se actualiza solo cada pocos segundos, sin recargar la página',
+          'Alerta por color según el tiempo de espera de cada ticket',
+          'Un botón avanza el pedido y otro lo devuelve un paso si hubo un error',
+        ],
+      },
+      {
+        title: 'CRM y Fidelización',
+        desc: 'El programa de clientes frecuentes de cada sucursal.',
+        bullets: [
+          'Reglas por cantidad de visitas, racha, compra de un producto o monto acumulado',
+          'Inscripción y avance automáticos al terminar de pagar un pedido',
+          'Recompensas: producto gratis, descuento, envío gratis, con vencimiento opcional',
+          'Canje de la recompensa desde el mismo punto de venta',
+        ],
+      },
+      {
+        title: 'Inventario y Compras',
+        desc: 'El control de insumos, proveedores y órdenes de compra.',
+        bullets: [
+          'Ingredientes con unidad, stock mínimo y costo; cada movimiento queda trazado',
+          'Consumo automático del inventario según la receta al enviar a cocina',
+          'Alertas cuando un ingrediente cruza su mínimo',
+          'Órdenes de compra con recepción parcial y actualización del costo real',
+          'Devoluciones a proveedor y cuentas por pagar con abonos',
+        ],
+      },
+      {
+        title: 'Finanzas avanzadas',
+        desc: 'La caja, el crédito a clientes y los ajustes a facturas.',
+        bullets: [
+          'Turnos de caja: el faltante o sobrante se calcula solo contra los cobros reales',
+          'Cuentas por cobrar con límite de crédito y ventas a crédito desde el punto de venta',
+          'Notas de crédito y exoneración de facturas, totales o parciales',
+          'Tipo de cambio del día importado del Banco Central de Costa Rica',
+        ],
+      },
+      {
+        title: 'Reportes y Analítica',
+        desc: 'Los números para dirigir el negocio, todos sobre datos reales.',
+        bullets: [
+          'Ventas por período, por platillo y por cada persona que atendió',
+          'Valor del inventario, faltantes y movimientos por motivo',
+          'Ingresos, egresos, utilidad y margen día por día',
+          'Rentabilidad por plato: estrella, caballo de batalla, rompecabezas o perro',
+          'Exportación de cada pantalla a Excel y PDF',
+        ],
+      },
+      {
+        title: 'Personal y Turnos de Trabajo',
+        desc: 'La programación del personal, la asistencia y la planilla.',
+        bullets: [
+          'Turnos con repetición por días de la semana y vista de calendario',
+          'Cada empleado marca su propia entrada y salida',
+          'Organigrama de la cadena por sucursal y puesto',
+          'Planilla con deducción de CCSS y horas extra calculadas solas',
+          'Aguinaldo, vacaciones y comprobante de pago en PDF',
+        ],
+      },
+    ],
+    casos: [
+      {
+        title: 'Un solo local que quiere ordenarse',
+        desc: 'El Núcleo y Cocina bastan para tomar pedidos, cobrar y mandar a cocina sin papel. El resto de módulos se activa cuando el negocio los pide.',
+      },
+      {
+        title: 'Ghost kitchen de solo delivery',
+        desc: 'Pedido sin mesa, con la dirección de entrega del cliente y cobro directo, sin un plano de mesas de por medio.',
+      },
+      {
+        title: 'Cadena con varias marcas',
+        desc: 'Cada sucursal opera aislada y la administración ve el consolidado; los proveedores y las cuentas de crédito se comparten a nivel de cadena.',
+      },
+      {
+        title: 'Restaurante que factura electrónicamente',
+        desc: 'Al cerrar el pago, RestauCloud le pide a Factico la clave, el consecutivo, el XML v4.4 y la firma, y el estado de Hacienda vuelve como una notificación.',
+      },
+    ],
+    integracion: [
+      'API REST con documentación OpenAPI (Scalar) y autenticación por token',
+      'Aislamiento por cadena: cada consulta queda acotada a la cadena o sucursal del usuario',
+      'Facturación electrónica de Costa Rica conectando con Factico, una cuenta por cadena',
+      'Tipo de cambio oficial importado del Banco Central de Costa Rica',
+      'Panel central de Savegre para administrar clientes, suscripciones y módulos',
+      'Instancia compartida o dedicada, con servidor y base de datos propios, según el cliente',
+    ],
+    seguridad: [
+      'Cada cadena solo ve sus propios datos: una consulta sin filtrar no puede devolver información de otro restaurante',
+      'Contraseñas con hash y credenciales de integración —como la API key de Factico— cifradas en reposo',
+      'Permisos por rol configurables, con PIN de un gerente para las acciones sensibles',
+      'Auditoría automática de toda creación, edición o eliminación, con filtros por fecha y tipo',
+      'Límite de intentos de inicio de sesión y acceso restringido a los dominios autorizados (CORS)',
+    ],
+    despliegue: [
+      {
+        title: 'Docker Compose',
+        desc: 'La API, el panel web y PostgreSQL se levantan juntos con un comando. La imagen oficial se publica en Docker Hub.',
+      },
+      {
+        title: 'Instancia compartida',
+        desc: 'El modelo por defecto: una sola instalación para varios clientes, con los datos de cada cadena aislados entre sí.',
+      },
+      {
+        title: 'Instancia dedicada',
+        desc: 'Servidor y base de datos propios para el cliente que lo requiere por cumplimiento o rendimiento, administrada desde el mismo panel central.',
+      },
+      {
+        title: 'PostgreSQL con Prisma',
+        desc: 'Esquema versionado con migraciones; las actualizaciones de la base se aplican solas al desplegar.',
+      },
+    ],
+    faq: [
+      {
+        q: '¿Sirve para un solo restaurante o solo para cadenas?',
+        a: 'Para ambos. Un local funciona igual de bien; si más adelante se abren más sucursales, se agregan sin cambiar de sistema ni migrar datos.',
+      },
+      {
+        q: '¿Hay que contratar todo el sistema?',
+        a: 'No. El Núcleo siempre está incluido y cada cadena activa solo los módulos que usa: Cocina, Inventario y Compras, Finanzas avanzadas, Reportes, Personal o Fidelización. Un módulo no contratado no aparece en la interfaz.',
+      },
+      {
+        q: '¿RestauCloud emite las facturas electrónicas?',
+        a: 'RestauCloud arma la venta y se la pasa a Factico, que resuelve la clave, el consecutivo, el XML v4.4, la firma y el envío a Hacienda. El estado vuelve a RestauCloud como una notificación.',
+      },
+      {
+        q: '¿El restaurante se queda con sus datos?',
+        a: 'Sí. La base de datos es PostgreSQL estándar y el despliegue está documentado; no hay formatos cerrados ni dependencia de un proveedor de nube concreto.',
+      },
+      {
+        q: '¿Funciona el cobro en dólares?',
+        a: 'Sí. El tipo de cambio se trae del Banco Central y el punto de venta calcula el cobro y el vuelto en dólares, guardando siempre el total real en colones para los reportes.',
       },
     ],
   },

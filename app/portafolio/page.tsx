@@ -16,13 +16,14 @@ import {
   ArrowUpRightIcon,
   ChatIcon,
   ReceiptIcon,
+  UtensilsIcon,
 } from '../components/Shared/icons'
 import { productos, type IconKey } from '../lib/productos'
 import { openGraphBase } from '../lib/site'
 import { breadcrumbJsonLd, jsonLdScript } from '../lib/seo'
 
 const DESCRIPCION =
-  'Casos de éxito y productos propios de Savegre Soft: Wapi, middleware para la WhatsApp Cloud API, y Factico, API de facturación electrónica v4.4 para Hacienda Costa Rica.'
+  'Casos de éxito y productos propios de Savegre Soft: Wapi, middleware para la WhatsApp Cloud API; Factico, API de facturación electrónica v4.4 para Hacienda Costa Rica; y RestauCloud, plataforma de gestión y punto de venta para restaurantes.'
 
 export const metadata: Metadata = {
   title: 'Portafolio',
@@ -39,6 +40,7 @@ export const metadata: Metadata = {
 const iconosProducto: Record<IconKey, typeof ChatIcon> = {
   chat: ChatIcon,
   receipt: ReceiptIcon,
+  utensils: UtensilsIcon,
 }
 
 const casos = [
@@ -91,7 +93,7 @@ export default function PortafolioPage() {
               eyebrow="Productos propios"
               title="Software que"
               accent="mantenemos"
-              aside="Dos productos en producción, con pruebas automatizadas y documentación completa."
+              aside="Productos en producción, con pruebas automatizadas y documentación completa."
             />
           </Reveal>
 

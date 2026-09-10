@@ -52,7 +52,7 @@ export const site = {
    * para que las tres digan exactamente lo mismo.
    */
   description:
-    'Savegre Soft es una startup costarricense de desarrollo de software: aplicaciones web, arquitectura de sistemas, integración, facturación electrónica y WhatsApp Cloud API.',
+    'Savegre Soft es una startup costarricense de desarrollo de software: aplicaciones web, arquitectura de sistemas, integración, facturación electrónica, WhatsApp Cloud API y sistemas de punto de venta para restaurantes.',
   /**
    * Código de Google Search Console (`content` de la etiqueta
    * `google-site-verification`). Vacío = no se emite la etiqueta. Se obtiene
@@ -83,6 +83,12 @@ export const keywords = [
   'Hacienda Costa Rica',
   'WhatsApp Cloud API',
   'middleware WhatsApp',
+  'software para restaurantes',
+  'punto de venta para restaurantes',
+  'sistema POS Costa Rica',
+  'gestión de restaurantes',
+  'software para cadenas de restaurantes',
+  'RestauCloud',
   'Next.js',
   'React',
   '.NET',

@@ -122,6 +122,15 @@ export function ChatIcon(props: IconProps) {
   )
 }
 
+export function UtensilsIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M6 3v7a2 2 0 0 0 4 0V3M8 10v11" />
+      <path d="M17 3c-1.7 0-3 2-3 5s1.3 4 3 4v9" />
+    </Svg>
+  )
+}
+
 export function MapPinIcon(props: IconProps) {
   return (
     <Svg {...props}>

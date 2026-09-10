@@ -30,6 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
       changeFrequency: 'monthly' as const,
     })),
+    { path: '/restaucloud', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/privacidad', priority: 0.3, changeFrequency: 'yearly' },
     { path: '/cookies', priority: 0.3, changeFrequency: 'yearly' },
   ]

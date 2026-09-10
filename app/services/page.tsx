@@ -23,13 +23,14 @@ import {
   PlugIcon,
   ReceiptIcon,
   ShieldIcon,
+  UtensilsIcon,
 } from '../components/Shared/icons'
 import { openGraphBase, site, whatsappEnabled, whatsappUrl } from '../lib/site'
 import { productos, type IconKey, type Producto } from '../lib/productos'
 import { breadcrumbJsonLd, jsonLdScript } from '../lib/seo'
 
 const DESCRIPCION =
-  'Desarrollo web, arquitectura de software, consultoría e integración de sistemas. Conoce Wapi, nuestro middleware para la WhatsApp Cloud API, y Factico, nuestra API de facturación electrónica v4.4 para Hacienda Costa Rica.'
+  'Desarrollo web, arquitectura de software, consultoría e integración de sistemas. Conoce Wapi, nuestro middleware para la WhatsApp Cloud API; Factico, nuestra API de facturación electrónica v4.4 para Hacienda Costa Rica; y RestauCloud, nuestra plataforma de gestión y punto de venta para restaurantes.'
 
 export const metadata: Metadata = {
   title: 'Servicios y Productos',
@@ -58,6 +59,7 @@ const serviciosJsonLd = {
     'Soporte técnico continuo',
     'Wapi — middleware para la WhatsApp Cloud API',
     'Factico — facturación electrónica v4.4 para Hacienda Costa Rica',
+    'RestauCloud — plataforma de gestión y punto de venta para restaurantes',
   ].map((nombre) => ({
     '@type': 'Offer',
     itemOffered: { '@type': 'Service', name: nombre },
@@ -67,6 +69,7 @@ const serviciosJsonLd = {
 const iconosProducto: Record<IconKey, typeof ChatIcon> = {
   chat: ChatIcon,
   receipt: ReceiptIcon,
+  utensils: UtensilsIcon,
 }
 
 const servicios = [
