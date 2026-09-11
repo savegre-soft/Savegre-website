@@ -85,9 +85,15 @@ export const metadata: Metadata = {
 
   // Solo se emite si hay código configurado en `site.ts`; `undefined` no
   // genera etiqueta. Sin esto Next sacaba un `google-site-verification` vacío.
-  verification: site.googleSiteVerification
-    ? { google: site.googleSiteVerification }
-    : undefined,
+  verification: {
+    ...(site.googleSiteVerification ? { google: site.googleSiteVerification } : {}),
+    // `facebook-domain-verification` no es uno de los campos con nombre
+    // propio de Next (google/yandex/yahoo/me): sale por `other`, que emite
+    // un `<meta name="..." content="...">` literal con la clave dada.
+    ...(site.facebookDomainVerification
+      ? { other: { 'facebook-domain-verification': site.facebookDomainVerification } }
+      : {}),
+  },
 
   appleWebApp: { capable: true, title: site.name, statusBarStyle: 'black-translucent' },
 

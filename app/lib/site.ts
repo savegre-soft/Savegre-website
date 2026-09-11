@@ -60,6 +60,13 @@ export const site = {
    * Etiqueta HTML.
    */
   googleSiteVerification: '',
+  /**
+   * Código de verificación de dominio de Meta/Facebook Business Manager
+   * (`content` de la etiqueta `facebook-domain-verification`). Vacío = no se
+   * emite la etiqueta. Se obtiene en Meta Business Manager › Configuración
+   * del negocio › Seguridad de la marca › Dominios.
+   */
+  facebookDomainVerification: 'vtmrt53l8vnd147ikg56hvpyo8b47b',
 } as const
 
 /**
