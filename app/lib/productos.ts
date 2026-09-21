@@ -59,7 +59,7 @@ export type Producto = {
 export const productos: Producto[] = [
   /* ─────────────────────────── CONFLUENCE ─────────────────────────── */
   {
-    slug: 'wapi',
+    slug: 'confluence',
     nombre: 'Confluence',
     iconKey: 'chat',
     claim: 'Middleware multi-tenant para la WhatsApp Cloud API',
@@ -68,7 +68,7 @@ export const productos: Producto[] = [
     descripcion:
       'Confluence es la capa de integración y orquestación que se coloca sobre la Cloud API oficial de Meta. Sus aplicaciones envían y reciben conversaciones de WhatsApp sin lidiar con webhooks, reintentos, límites de ritmo ni el ciclo de vida de las plantillas — con un motor de flujos, bots de IA y colas de atención humana encima.',
     estado: 'En producción',
-    sitio: 'https://wapi.savegresoft.com',
+    sitio: 'https://confluence.savegresoft.com',
     capturas: [
       'Panel de Confluence: bandeja de conversaciones de WhatsApp en tiempo real',
       'Editor visual de flujos conversacionales de Confluence',
@@ -262,7 +262,7 @@ export const productos: Producto[] = [
 
   /* ─────────────────────────── SENDA ─────────────────────────── */
   {
-    slug: 'factico',
+    slug: 'senda',
     nombre: 'Senda',
     iconKey: 'receipt',
     claim: 'Facturación electrónica v4.4 para el Ministerio de Hacienda',
@@ -457,7 +457,7 @@ export const productos: Producto[] = [
 
   /* ─────────────────────────── OSA ─────────────────────────── */
   {
-    slug: 'restaucloud',
+    slug: 'osa',
     nombre: 'Osa',
     iconKey: 'utensils',
     claim: 'Plataforma de gestión y punto de venta para restaurantes',
@@ -466,7 +466,7 @@ export const productos: Producto[] = [
     descripcion:
       'Osa cubre la operación completa de un restaurante: tomar pedidos en el salón o para llevar, enviarlos a cocina, cobrar, controlar el inventario y las compras, gestionar reservaciones y clientes frecuentes, cerrar la caja y calcular la planilla. Funciona igual para un solo local que para una cadena de varias sucursales, y cada cadena activa únicamente los módulos que necesita. La facturación electrónica ante Hacienda se resuelve conectándolo con Senda.',
     estado: 'En producción',
-    recorrido: '/restaucloud',
+    recorrido: '/osa',
     stack: ['TypeScript', 'Express 5', 'Prisma 6', 'PostgreSQL', 'Docker'],
     metricas: [
       { valor: '61', etiqueta: 'Requerimientos entregados' },

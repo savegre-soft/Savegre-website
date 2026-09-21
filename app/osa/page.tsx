@@ -21,7 +21,7 @@ import { breadcrumbJsonLd, jsonLdScript } from '../lib/seo'
 /**
  * Recorrido completo del sistema Osa (el panel web + punto de venta),
  * en lenguaje de negocio y sin tecnicismos. La ficha técnica del producto vive
- * en /productos/restaucloud; esta página es "el sistema por dentro" para quien
+ * en /productos/osa; esta página es "el sistema por dentro" para quien
  * evalúa si le sirve a su restaurante.
  */
 
@@ -43,10 +43,10 @@ export const metadata: Metadata = {
     'reservaciones de restaurante',
     'Savegre Soft',
   ],
-  alternates: { canonical: '/restaucloud' },
+  alternates: { canonical: '/osa' },
   openGraph: {
     ...openGraphBase,
-    url: '/restaucloud',
+    url: '/osa',
     title: 'Osa — El sistema para restaurantes | Savegre Soft',
     description: DESCRIPCION,
   },
@@ -258,8 +258,8 @@ const pendiente = [
 ]
 
 function jsonLd() {
-  const url = `${site.url}/restaucloud`
-  const producto = getProducto('restaucloud')
+  const url = `${site.url}/osa`
+  const producto = getProducto('osa')
 
   return [
     {
@@ -267,7 +267,7 @@ function jsonLd() {
       '@type': 'SoftwareApplication',
       name: 'Osa',
       url,
-      sameAs: `${site.url}/productos/restaucloud`,
+      sameAs: `${site.url}/productos/osa`,
       applicationCategory: 'BusinessApplication',
       applicationSubCategory: 'Point of Sale',
       operatingSystem: 'Web, Docker',
@@ -280,7 +280,7 @@ function jsonLd() {
       featureList: areas.map((a) => a.titulo),
       ...(producto && { keywords: producto.stack.join(', ') }),
     },
-    breadcrumbJsonLd([{ name: 'Osa', path: '/restaucloud' }]),
+    breadcrumbJsonLd([{ name: 'Osa', path: '/osa' }]),
   ]
 }
 
@@ -328,7 +328,7 @@ export default function OsaPage() {
 
           <div className="mt-10 flex flex-wrap gap-4">
             <ButtonLink href="/contact">Solicitar una demo</ButtonLink>
-            <ButtonLink href="/productos/restaucloud" variant="ghost">
+            <ButtonLink href="/productos/osa" variant="ghost">
               Ficha técnica
             </ButtonLink>
             {whatsappEnabled && (
@@ -454,7 +454,7 @@ export default function OsaPage() {
                   Agendar demo
                 </ButtonLink>
                 <Link
-                  href="/productos/restaucloud"
+                  href="/productos/osa"
                   className="text-ink inline-flex items-center gap-2 self-center border-b border-zinc-400 pb-1 text-[11px] font-semibold tracking-[0.18em] uppercase transition-colors hover:border-zinc-900"
                 >
                   Ver ficha técnica

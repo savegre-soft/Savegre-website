@@ -1,0 +1,11 @@
+# Redirecciones permanentes de los nombres anteriores de los productos
+# (Wapi → Confluence, Factico → Senda, RestauCloud → Osa), para no romper
+# enlaces ya compartidos ni lo que Google tiene indexado.
+/productos/wapi /productos/confluence 301
+/productos/wapi/ /productos/confluence 301
+/productos/factico /productos/senda 301
+/productos/factico/ /productos/senda 301
+/productos/restaucloud /productos/osa 301
+/productos/restaucloud/ /productos/osa 301
+/restaucloud /osa 301
+/restaucloud/ /osa 301

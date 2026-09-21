@@ -447,10 +447,10 @@ export default function HomePage() {
               </ol>
 
               <div className="mt-10 flex flex-wrap gap-4">
-                <ButtonLink href="/productos/wapi" variant="ghost">
+                <ButtonLink href="/productos/confluence" variant="ghost">
                   Documentación de Confluence
                 </ButtonLink>
-                <ButtonLink href="/productos/factico" variant="ghost">
+                <ButtonLink href="/productos/senda" variant="ghost">
                   Documentación de Senda
                 </ButtonLink>
               </div>
