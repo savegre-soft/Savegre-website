@@ -415,7 +415,7 @@ export default function HomePage() {
           <Reveal>
             <SectionHeading
               eyebrow="Caso destacado"
-              title="Wapi + Factico,"
+              title="Confluence + Senda,"
               accent="trabajando juntos"
               aside="Nuestros dos productos resuelven cosas distintas, pero encajan en una sola operación."
             />
@@ -431,9 +431,9 @@ export default function HomePage() {
 
               <ol className="mt-10 grid grid-cols-1 gap-px md:grid-cols-4">
                 {[
-                  { paso: '01', title: 'Emisión', desc: 'Consecutivo, clave, XML v4.4 y firma XAdES con Factico.' },
+                  { paso: '01', title: 'Emisión', desc: 'Consecutivo, clave, XML v4.4 y firma XAdES con Senda.' },
                   { paso: '02', title: 'Hacienda', desc: 'Se consulta el estado hasta obtener el veredicto.' },
-                  { paso: '03', title: 'Entrega', desc: 'Wapi envía el comprobante por WhatsApp al cliente.' },
+                  { paso: '03', title: 'Entrega', desc: 'Confluence envía el comprobante por WhatsApp al cliente.' },
                   { paso: '04', title: 'Atención', desc: 'La respuesta entra al flujo y a la cola del equipo.' },
                 ].map((s) => (
                   <li key={s.paso} className="bg-raised p-6">
@@ -448,10 +448,10 @@ export default function HomePage() {
 
               <div className="mt-10 flex flex-wrap gap-4">
                 <ButtonLink href="/productos/wapi" variant="ghost">
-                  Documentación de Wapi
+                  Documentación de Confluence
                 </ButtonLink>
                 <ButtonLink href="/productos/factico" variant="ghost">
-                  Documentación de Factico
+                  Documentación de Senda
                 </ButtonLink>
               </div>
             </Card>

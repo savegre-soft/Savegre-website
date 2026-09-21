@@ -19,7 +19,7 @@ npm run lint
 ```
 app/
 ├─ lib/site.ts          → dominio, contacto, WhatsApp y fundadores
-├─ lib/productos.ts     → catálogo de Wapi y Factico (alimenta 3 páginas)
+├─ lib/productos.ts     → catálogo de Confluence y Senda (alimenta 3 páginas)
 ├─ components/Shared/   → Navbar, Footer, primitivas de UI, iconos, Motion
 ├─ productos/[slug]/    → ficha completa de cada producto
 ├─ sitemap.ts           → sitemap.xml

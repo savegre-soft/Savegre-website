@@ -91,7 +91,7 @@ export async function generateMetadata({
  * Datos estructurados de la ficha. Tres bloques con propósitos distintos:
  * `SoftwareApplication` describe el producto, `FAQPage` habilita el desplegable
  * de preguntas en los resultados de Google, y `BreadcrumbList` muestra la ruta
- * "Portafolio › Wapi" en lugar de la URL cruda.
+ * "Portafolio › Confluence" en lugar de la URL cruda.
  */
 function jsonLdProducto(producto: Producto, capturas: { src: string; alt: string }[]) {
   const url = `${site.url}/productos/${producto.slug}`

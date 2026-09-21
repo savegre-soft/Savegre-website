@@ -30,7 +30,7 @@ import { productos, type IconKey, type Producto } from '../lib/productos'
 import { breadcrumbJsonLd, jsonLdScript } from '../lib/seo'
 
 const DESCRIPCION =
-  'Desarrollo web, arquitectura de software, consultoría e integración de sistemas. Conoce Wapi, nuestro middleware para la WhatsApp Cloud API; Factico, nuestra API de facturación electrónica v4.4 para Hacienda Costa Rica; y RestauCloud, nuestra plataforma de gestión y punto de venta para restaurantes.'
+  'Desarrollo web, arquitectura de software, consultoría e integración de sistemas. Conoce Confluence, nuestro middleware para la WhatsApp Cloud API; Senda, nuestra API de facturación electrónica v4.4 para Hacienda Costa Rica; y Osa, nuestra plataforma de gestión y punto de venta para restaurantes.'
 
 export const metadata: Metadata = {
   title: 'Servicios y Productos',
@@ -57,9 +57,9 @@ const serviciosJsonLd = {
     'Estrategia de producto',
     'Integración de sistemas',
     'Soporte técnico continuo',
-    'Wapi — middleware para la WhatsApp Cloud API',
-    'Factico — facturación electrónica v4.4 para Hacienda Costa Rica',
-    'RestauCloud — plataforma de gestión y punto de venta para restaurantes',
+    'Confluence — middleware para la WhatsApp Cloud API',
+    'Senda — facturación electrónica v4.4 para Hacienda Costa Rica',
+    'Osa — plataforma de gestión y punto de venta para restaurantes',
   ].map((nombre) => ({
     '@type': 'Offer',
     itemOffered: { '@type': 'Service', name: nombre },
@@ -342,7 +342,7 @@ export default function ServicesPage() {
         <Container>
           <Reveal>
             <SectionHeading
-              eyebrow="Wapi + Factico"
+              eyebrow="Confluence + Senda"
               title="Los dos productos,"
               accent="una sola operación"
               aside="Están diseñados para hablarse entre sí, pero cada uno funciona por separado."
@@ -352,8 +352,8 @@ export default function ServicesPage() {
           <Reveal delay={0.1}>
             <Card className="p-8 md:p-12">
               <p className="text-muted max-w-3xl text-[15px] leading-[1.8]">
-                Factico emite eventos de negocio cuando algo ocurre con un comprobante, y uno de
-                sus canales de notificación es WhatsApp. Conectado a Wapi, ese evento deja de ser
+                Senda emite eventos de negocio cuando algo ocurre con un comprobante, y uno de
+                sus canales de notificación es WhatsApp. Conectado a Confluence, ese evento deja de ser
                 un correo que nadie abre y se convierte en una conversación real:
               </p>
 
@@ -362,16 +362,16 @@ export default function ServicesPage() {
                   {
                     paso: '01',
                     title: 'Se emite el comprobante',
-                    desc: 'Su sistema llama a Factico. Consecutivo, clave, XML v4.4 y firma XAdES.',
+                    desc: 'Su sistema llama a Senda. Consecutivo, clave, XML v4.4 y firma XAdES.',
                   },
                   {
                     paso: '02',
                     title: 'Hacienda responde',
-                    desc: 'Factico consulta el estado y dispara el evento comprobante.aceptado.',
+                    desc: 'Senda consulta el estado y dispara el evento comprobante.aceptado.',
                   },
                   {
                     paso: '03',
-                    title: 'Wapi lo entrega',
+                    title: 'Confluence lo entrega',
                     desc: 'El cliente recibe su factura por WhatsApp, no en una bandeja de spam.',
                   },
                   {

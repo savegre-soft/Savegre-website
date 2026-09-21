@@ -19,20 +19,20 @@ import { getProducto } from '../lib/productos'
 import { breadcrumbJsonLd, jsonLdScript } from '../lib/seo'
 
 /**
- * Recorrido completo del sistema RestauCloud (el panel web + punto de venta),
+ * Recorrido completo del sistema Osa (el panel web + punto de venta),
  * en lenguaje de negocio y sin tecnicismos. La ficha técnica del producto vive
  * en /productos/restaucloud; esta página es "el sistema por dentro" para quien
  * evalúa si le sirve a su restaurante.
  */
 
 const DESCRIPCION =
-  'RestauCloud es el sistema de gestión y punto de venta para restaurantes de Savegre Soft: pedidos en mesa y para llevar, cocina, inventario, reservaciones, clientes frecuentes, caja, planillas y reportes, para un local o para una cadena de sucursales.'
+  'Osa es el sistema de gestión y punto de venta para restaurantes de Savegre Soft: pedidos en mesa y para llevar, cocina, inventario, reservaciones, clientes frecuentes, caja, planillas y reportes, para un local o para una cadena de sucursales.'
 
 export const metadata: Metadata = {
-  title: 'RestauCloud — El sistema para restaurantes',
+  title: 'Osa — El sistema para restaurantes',
   description: DESCRIPCION,
   keywords: [
-    'RestauCloud',
+    'Osa',
     'software para restaurantes',
     'punto de venta para restaurantes',
     'sistema POS Costa Rica',
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   openGraph: {
     ...openGraphBase,
     url: '/restaucloud',
-    title: 'RestauCloud — El sistema para restaurantes | Savegre Soft',
+    title: 'Osa — El sistema para restaurantes | Savegre Soft',
     description: DESCRIPCION,
   },
 }
@@ -221,7 +221,7 @@ const areas: { titulo: string; intro: string; puntos: string[] }[] = [
     titulo: 'Facturación electrónica',
     intro: 'El trámite ante Hacienda, resuelto por fuera.',
     puntos: [
-      'Al cerrar el pago, RestauCloud le pasa la venta a Factico, que arma la clave, el consecutivo, el XML v4.4 y la firma.',
+      'Al cerrar el pago, Osa le pasa la venta a Senda, que arma la clave, el consecutivo, el XML v4.4 y la firma.',
       'El estado de Hacienda —aceptado, rechazado o en proceso— vuelve como una notificación y como un distintivo en el historial de pedidos.',
       'Cada cadena usa su propia cuenta y su propio certificado; no se comparten entre restaurantes.',
       'El paso final para producción es el alta de credenciales reales de cada cliente ante Hacienda.',
@@ -253,7 +253,7 @@ const areas: { titulo: string; intro: string; puntos: string[] }[] = [
 /** Lo que todavía no hace. Se dice de frente, igual que en la ficha técnica. */
 const pendiente = [
   'La administración de suscripciones y módulos por cliente desde el panel central todavía se está afinando.',
-  'La facturación electrónica funciona a través de Factico; el alta de credenciales de producción de cada cliente ante Hacienda es un trámite aparte.',
+  'La facturación electrónica funciona a través de Senda; el alta de credenciales de producción de cada cliente ante Hacienda es un trámite aparte.',
   'La solicitud de vacaciones por parte del propio empleado y el cálculo de liquidación no están todavía.',
 ]
 
@@ -265,7 +265,7 @@ function jsonLd() {
     {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
-      name: 'RestauCloud',
+      name: 'Osa',
       url,
       sameAs: `${site.url}/productos/restaucloud`,
       applicationCategory: 'BusinessApplication',
@@ -280,11 +280,11 @@ function jsonLd() {
       featureList: areas.map((a) => a.titulo),
       ...(producto && { keywords: producto.stack.join(', ') }),
     },
-    breadcrumbJsonLd([{ name: 'RestauCloud', path: '/restaucloud' }]),
+    breadcrumbJsonLd([{ name: 'Osa', path: '/restaucloud' }]),
   ]
 }
 
-export default function RestauCloudPage() {
+export default function OsaPage() {
   return (
     <>
       {jsonLd().map((bloque, i) => (
@@ -303,7 +303,7 @@ export default function RestauCloudPage() {
               Portafolio
             </Link>
             <span aria-hidden="true">/</span>
-            <span className="text-muted">RestauCloud</span>
+            <span className="text-muted">Osa</span>
           </nav>
 
           <div className="flex items-center gap-5">
@@ -311,7 +311,7 @@ export default function RestauCloudPage() {
               <UtensilsIcon size={24} />
             </IconBox>
             <h1 className="display text-fg text-[clamp(2.75rem,7vw,5rem)] leading-none">
-              RestauCloud
+              Osa
             </h1>
           </div>
 
@@ -319,7 +319,7 @@ export default function RestauCloudPage() {
             Todo lo que un restaurante necesita para operar, en una sola pantalla.
           </p>
           <p className="text-muted mt-6 max-w-2xl text-[15px] leading-[1.8]">
-            RestauCloud lleva el día a día del restaurante: toma los pedidos en el salón o para
+            Osa lleva el día a día del restaurante: toma los pedidos en el salón o para
             llevar, los manda a cocina, cobra, controla el inventario y las compras, gestiona
             reservaciones y clientes frecuentes, cierra la caja y calcula la planilla. Funciona
             igual para un solo local que para una cadena de varias sucursales, y cada cadena
@@ -333,7 +333,7 @@ export default function RestauCloudPage() {
             </ButtonLink>
             {whatsappEnabled && (
               <ButtonLink
-                href={whatsappUrl('Hola, me interesa RestauCloud para mi restaurante. ¿Podemos conversar?')}
+                href={whatsappUrl('Hola, me interesa Osa para mi restaurante. ¿Podemos conversar?')}
                 variant="whatsapp"
                 external
               >

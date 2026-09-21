@@ -95,7 +95,7 @@ export const keywords = [
   'sistema POS Costa Rica',
   'gestión de restaurantes',
   'software para cadenas de restaurantes',
-  'RestauCloud',
+  'Osa',
   'Next.js',
   'React',
   '.NET',
@@ -129,6 +129,11 @@ export const fundadores = [
     nombre: 'Daniel Hidalgo',
     rol: 'Cofundador',
     linkedin: 'https://www.linkedin.com/in/daniehidalgomora/',
+  },
+  {
+    nombre: 'Kevin Campos',
+    rol: 'Cofundador',
+    linkedin: 'https://www.linkedin.com/in/kevin-campos-alfaro-34555b264/',
   },
 ] as const
 
@@ -173,6 +178,7 @@ export const socials = [
   { name: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61588349762906', org: true },
   { name: 'LinkedIn · Steven Gazo', href: 'https://www.linkedin.com/in/stevengazo/', org: false },
   { name: 'LinkedIn · Daniel Hidalgo', href: 'https://www.linkedin.com/in/daniehidalgomora/', org: false },
+  { name: 'LinkedIn · Kevin Campos', href: 'https://www.linkedin.com/in/kevin-campos-alfaro-34555b264/', org: false },
 ] as const
 
 export const navLinks = [

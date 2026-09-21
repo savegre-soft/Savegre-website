@@ -21,7 +21,7 @@ import { fundadores, openGraphBase, site } from '../lib/site'
 import { breadcrumbJsonLd, jsonLdScript } from '../lib/seo'
 
 const DESCRIPCION =
-  'Savegre Soft es una startup costarricense fundada en 2025 por Steven Gazo y Daniel Hidalgo. Servicios de primera, automatización de procesos y decisiones basadas en datos, desde San José, Costa Rica.'
+  'Savegre Soft es una startup costarricense fundada en 2025 por Steven Gazo, Daniel Hidalgo y Kevin Campos. Servicios de primera, automatización de procesos y decisiones basadas en datos, desde San José, Costa Rica.'
 
 export const metadata: Metadata = {
   title: 'Nosotros',
@@ -189,7 +189,7 @@ export default function AboutPage() {
             />
           </Reveal>
 
-          <Stagger className="grid grid-cols-1 gap-px md:grid-cols-2">
+          <Stagger className="grid grid-cols-1 gap-px md:grid-cols-3">
             {fundadores.map((f) => (
               <StaggerItem key={f.nombre} className="h-full">
                 <Lift className="h-full">

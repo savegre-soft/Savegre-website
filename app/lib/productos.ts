@@ -57,24 +57,24 @@ export type Producto = {
 }
 
 export const productos: Producto[] = [
-  /* ─────────────────────────── WAPI ─────────────────────────── */
+  /* ─────────────────────────── CONFLUENCE ─────────────────────────── */
   {
     slug: 'wapi',
-    nombre: 'Wapi',
+    nombre: 'Confluence',
     iconKey: 'chat',
     claim: 'Middleware multi-tenant para la WhatsApp Cloud API',
     resumen:
       'Plataforma de conversaciones sobre la WhatsApp Cloud API oficial: mensajería, flujos con IA, colas de atención y campañas.',
     descripcion:
-      'Wapi es la capa de integración y orquestación que se coloca sobre la Cloud API oficial de Meta. Sus aplicaciones envían y reciben conversaciones de WhatsApp sin lidiar con webhooks, reintentos, límites de ritmo ni el ciclo de vida de las plantillas — con un motor de flujos, bots de IA y colas de atención humana encima.',
+      'Confluence es la capa de integración y orquestación que se coloca sobre la Cloud API oficial de Meta. Sus aplicaciones envían y reciben conversaciones de WhatsApp sin lidiar con webhooks, reintentos, límites de ritmo ni el ciclo de vida de las plantillas — con un motor de flujos, bots de IA y colas de atención humana encima.',
     estado: 'En producción',
     sitio: 'https://wapi.savegresoft.com',
     capturas: [
-      'Panel de Wapi: bandeja de conversaciones de WhatsApp en tiempo real',
-      'Editor visual de flujos conversacionales de Wapi',
-      'Cola de atención humana con agentes y SLA en Wapi',
-      'Campañas de WhatsApp segmentadas por etiquetas del CRM en Wapi',
-      'Ficha 360° del contacto y métricas de atención en Wapi',
+      'Panel de Confluence: bandeja de conversaciones de WhatsApp en tiempo real',
+      'Editor visual de flujos conversacionales de Confluence',
+      'Cola de atención humana con agentes y SLA en Confluence',
+      'Campañas de WhatsApp segmentadas por etiquetas del CRM en Confluence',
+      'Ficha 360° del contacto y métricas de atención en Confluence',
     ],
     stack: ['.NET 10', 'EF Core', 'PostgreSQL / SQLite', 'Docker', 'Azure'],
     metricas: [
@@ -136,7 +136,7 @@ export const productos: Producto[] = [
       },
       {
         title: 'Flujos conversacionales',
-        desc: 'Motor con estado por contacto. Se define el árbol de conversación y Wapi lleva a cada persona por él.',
+        desc: 'Motor con estado por contacto. Se define el árbol de conversación y Confluence lleva a cada persona por él.',
         bullets: [
           'Menús de botones (hasta 3), listas (hasta 10) y texto numerado como alternativa',
           'Nodos de captura de datos para formularios paso a paso',
@@ -192,7 +192,7 @@ export const productos: Producto[] = [
       },
       {
         title: 'Notificaciones transaccionales',
-        desc: 'Su ERP, POS o sistema interno dispara un aviso — pedido listo, cita mañana, pago recibido — y Wapi lo entrega como plantilla aprobada, con reintentos.',
+        desc: 'Su ERP, POS o sistema interno dispara un aviso — pedido listo, cita mañana, pago recibido — y Confluence lo entrega como plantilla aprobada, con reintentos.',
       },
       {
         title: 'Campañas segmentadas',
@@ -238,8 +238,8 @@ export const productos: Producto[] = [
     ],
     faq: [
       {
-        q: '¿Wapi reemplaza a WhatsApp Business?',
-        a: 'No. Una cuenta de WhatsApp Business (WABA) real la aloja Meta. Wapi no reimplementa WhatsApp: es la capa de integración y orquestación sobre la Cloud API oficial, y necesita su propia WABA.',
+        q: '¿Confluence reemplaza a WhatsApp Business?',
+        a: 'No. Una cuenta de WhatsApp Business (WABA) real la aloja Meta. Confluence no reimplementa WhatsApp: es la capa de integración y orquestación sobre la Cloud API oficial, y necesita su propia WABA.',
       },
       {
         q: '¿Hay que migrar el número actual?',
@@ -260,16 +260,16 @@ export const productos: Producto[] = [
     ],
   },
 
-  /* ─────────────────────────── FACTICO ─────────────────────────── */
+  /* ─────────────────────────── SENDA ─────────────────────────── */
   {
     slug: 'factico',
-    nombre: 'Factico',
+    nombre: 'Senda',
     iconKey: 'receipt',
     claim: 'Facturación electrónica v4.4 para el Ministerio de Hacienda',
     resumen:
       'API de facturación electrónica de Costa Rica: clave, consecutivo, XML v4.4, firma XAdES, envío a Hacienda y entrega al cliente.',
     descripcion:
-      'Factico emite comprobantes electrónicos de punta a punta: reserva el consecutivo, genera la clave numérica de 50 dígitos, arma el XML v4.4, lo firma con XAdES usando el certificado del emisor y lo envía a Hacienda — para después consultar el estado y entregar el comprobante al cliente final. Todo detrás de una API REST que su sistema puede llamar.',
+      'Senda emite comprobantes electrónicos de punta a punta: reserva el consecutivo, genera la clave numérica de 50 dígitos, arma el XML v4.4, lo firma con XAdES usando el certificado del emisor y lo envía a Hacienda — para después consultar el estado y entregar el comprobante al cliente final. Todo detrás de una API REST que su sistema puede llamar.',
     estado: 'En producción',
     sitio: 'https://factico.savegresoft.com/',
     stack: ['TypeScript', 'Fastify 5', 'Prisma', 'PostgreSQL', 'Docker'],
@@ -382,8 +382,8 @@ export const productos: Producto[] = [
     ],
     casos: [
       {
-        title: 'Su sistema factura, Factico cumple',
-        desc: 'El ERP o el punto de venta sigue siendo el dueño de la venta; Factico se encarga de clave, consecutivo, firma, envío y estado. No hay que construir criptografía en casa.',
+        title: 'Su sistema factura, Senda cumple',
+        desc: 'El ERP o el punto de venta sigue siendo el dueño de la venta; Senda se encarga de clave, consecutivo, firma, envío y estado. No hay que construir criptografía en casa.',
       },
       {
         title: 'Validación antes de Hacienda',
@@ -434,7 +434,7 @@ export const productos: Producto[] = [
     faq: [
       {
         q: '¿Necesito mi propio certificado de Hacienda?',
-        a: 'Sí. Factico firma con el certificado .p12 del emisor, que es personal e intransferible. Se sube una vez y queda cifrado en reposo.',
+        a: 'Sí. Senda firma con el certificado .p12 del emisor, que es personal e intransferible. Se sube una vez y queda cifrado en reposo.',
       },
       {
         q: '¿Qué pasa si Hacienda no responde?',
@@ -446,7 +446,7 @@ export const productos: Producto[] = [
       },
       {
         q: '¿Puedo facturar desde mi propio sistema?',
-        a: 'Es el uso previsto. Su ERP o punto de venta llama a la API con los datos de la venta y Factico devuelve el comprobante emitido y su estado.',
+        a: 'Es el uso previsto. Su ERP o punto de venta llama a la API con los datos de la venta y Senda devuelve el comprobante emitido y su estado.',
       },
       {
         q: '¿Puedo manejar varias empresas?',
@@ -455,16 +455,16 @@ export const productos: Producto[] = [
     ],
   },
 
-  /* ─────────────────────────── RESTAUCLOUD ─────────────────────────── */
+  /* ─────────────────────────── OSA ─────────────────────────── */
   {
     slug: 'restaucloud',
-    nombre: 'RestauCloud',
+    nombre: 'Osa',
     iconKey: 'utensils',
     claim: 'Plataforma de gestión y punto de venta para restaurantes',
     resumen:
       'El sistema con el que un restaurante opera el día a día: punto de venta, cocina, inventario, reservaciones, fidelización, finanzas y planillas, para un local o para una cadena.',
     descripcion:
-      'RestauCloud cubre la operación completa de un restaurante: tomar pedidos en el salón o para llevar, enviarlos a cocina, cobrar, controlar el inventario y las compras, gestionar reservaciones y clientes frecuentes, cerrar la caja y calcular la planilla. Funciona igual para un solo local que para una cadena de varias sucursales, y cada cadena activa únicamente los módulos que necesita. La facturación electrónica ante Hacienda se resuelve conectándolo con Factico.',
+      'Osa cubre la operación completa de un restaurante: tomar pedidos en el salón o para llevar, enviarlos a cocina, cobrar, controlar el inventario y las compras, gestionar reservaciones y clientes frecuentes, cerrar la caja y calcular la planilla. Funciona igual para un solo local que para una cadena de varias sucursales, y cada cadena activa únicamente los módulos que necesita. La facturación electrónica ante Hacienda se resuelve conectándolo con Senda.',
     estado: 'En producción',
     recorrido: '/restaucloud',
     stack: ['TypeScript', 'Express 5', 'Prisma 6', 'PostgreSQL', 'Docker'],
@@ -605,20 +605,20 @@ export const productos: Producto[] = [
       },
       {
         title: 'Restaurante que factura electrónicamente',
-        desc: 'Al cerrar el pago, RestauCloud le pide a Factico la clave, el consecutivo, el XML v4.4 y la firma, y el estado de Hacienda vuelve como una notificación.',
+        desc: 'Al cerrar el pago, Osa le pide a Senda la clave, el consecutivo, el XML v4.4 y la firma, y el estado de Hacienda vuelve como una notificación.',
       },
     ],
     integracion: [
       'API REST con documentación OpenAPI (Scalar) y autenticación por token',
       'Aislamiento por cadena: cada consulta queda acotada a la cadena o sucursal del usuario',
-      'Facturación electrónica de Costa Rica conectando con Factico, una cuenta por cadena',
+      'Facturación electrónica de Costa Rica conectando con Senda, una cuenta por cadena',
       'Tipo de cambio oficial importado del Banco Central de Costa Rica',
       'Panel central de Savegre para administrar clientes, suscripciones y módulos',
       'Instancia compartida o dedicada, con servidor y base de datos propios, según el cliente',
     ],
     seguridad: [
       'Cada cadena solo ve sus propios datos: una consulta sin filtrar no puede devolver información de otro restaurante',
-      'Contraseñas con hash y credenciales de integración —como la API key de Factico— cifradas en reposo',
+      'Contraseñas con hash y credenciales de integración —como la API key de Senda— cifradas en reposo',
       'Permisos por rol configurables, con PIN de un gerente para las acciones sensibles',
       'Auditoría automática de toda creación, edición o eliminación, con filtros por fecha y tipo',
       'Límite de intentos de inicio de sesión y acceso restringido a los dominios autorizados (CORS)',
@@ -651,8 +651,8 @@ export const productos: Producto[] = [
         a: 'No. El Núcleo siempre está incluido y cada cadena activa solo los módulos que usa: Cocina, Inventario y Compras, Finanzas avanzadas, Reportes, Personal o Fidelización. Un módulo no contratado no aparece en la interfaz.',
       },
       {
-        q: '¿RestauCloud emite las facturas electrónicas?',
-        a: 'RestauCloud arma la venta y se la pasa a Factico, que resuelve la clave, el consecutivo, el XML v4.4, la firma y el envío a Hacienda. El estado vuelve a RestauCloud como una notificación.',
+        q: '¿Osa emite las facturas electrónicas?',
+        a: 'Osa arma la venta y se la pasa a Senda, que resuelve la clave, el consecutivo, el XML v4.4, la firma y el envío a Hacienda. El estado vuelve a Osa como una notificación.',
       },
       {
         q: '¿El restaurante se queda con sus datos?',
