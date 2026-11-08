@@ -97,7 +97,7 @@ function erroresDePaso(
 }
 
 const inputBase =
-  'w-full border bg-ink px-4 py-3 text-sm text-fg transition-colors placeholder:text-faint ' +
+  'w-full border bg-ink px-4 py-3 text-[16px] text-fg transition-colors placeholder:text-faint ' +
   'focus:border-brand focus-visible:outline-none'
 
 export default function ContactForm() {
@@ -224,7 +224,7 @@ export default function ContactForm() {
         <motion.p
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          className="inline-flex items-center gap-2 border border-green-900 bg-green-950 px-4 py-2.5 text-[13px] text-green-300"
+          className="inline-flex items-center gap-2 border border-green-900 bg-green-950 px-4 py-2.5 text-[15px] text-green-300"
           role="status"
         >
           <CheckIcon size={15} />
@@ -377,7 +377,7 @@ export default function ContactForm() {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className="mt-4 inline-flex items-center gap-2 border border-red-900 bg-red-950 px-4 py-2.5 text-[13px] text-red-300"
+              className="mt-4 inline-flex items-center gap-2 border border-red-900 bg-red-950 px-4 py-2.5 text-[15px] text-red-300"
             >
               No pudimos enviar tu consulta. Inténtalo de nuevo o escríbenos a
               contacto@savegresoft.com.

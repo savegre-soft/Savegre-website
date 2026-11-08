@@ -158,7 +158,7 @@ export default function HomePage() {
             </HeroReveal>
 
             <HeroReveal delay={0.24}>
-              <p className="text-muted mt-8 max-w-md text-[15px] leading-[1.75]">
+              <p className="text-muted mt-8 max-w-md text-[17px] leading-[1.75]">
                 Soluciones digitales de alta precisión con arquitectura diseñada para el
                 rendimiento corporativo y la escalabilidad global.
               </p>
@@ -222,7 +222,7 @@ export default function HomePage() {
                       <Icon size={20} />
                     </IconBox>
                     <h3 className="display text-fg text-2xl">{title}</h3>
-                    <p className="text-muted flex-1 text-sm leading-[1.75]">{desc}</p>
+                    <p className="text-muted flex-1 text-[16px] leading-[1.75]">{desc}</p>
                     <div className="mt-2 flex flex-wrap gap-2">
                       {tags.map((t) => (
                         <Tag key={t}>{t}</Tag>
@@ -273,8 +273,8 @@ export default function HomePage() {
                       </div>
 
                       <h3 className="display text-fg mt-6 text-3xl">{p.nombre}</h3>
-                      <p className="text-brand mt-2 text-sm">{p.claim}</p>
-                      <p className="text-muted mt-5 flex-1 text-sm leading-relaxed">
+                      <p className="text-brand mt-2 text-[16px]">{p.claim}</p>
+                      <p className="text-muted mt-5 flex-1 text-[16px] leading-relaxed">
                         {p.resumen}
                       </p>
 
@@ -284,7 +284,7 @@ export default function HomePage() {
                             <span className="text-brand shrink-0">
                               <CheckIcon size={14} />
                             </span>
-                            <span className="text-muted text-[13px]">{c.title}</span>
+                            <span className="text-muted text-[15px]">{c.title}</span>
                           </li>
                         ))}
                       </ul>
@@ -345,7 +345,7 @@ export default function HomePage() {
                     {p.paso}
                   </span>
                   <h3 className="display text-fg mt-4 text-2xl">{p.title}</h3>
-                  <p className="text-muted mt-4 text-[13px] leading-relaxed">{p.desc}</p>
+                  <p className="text-muted mt-4 text-[15px] leading-relaxed">{p.desc}</p>
                 </div>
               </StaggerItem>
             ))}
@@ -384,7 +384,7 @@ export default function HomePage() {
                 <br />
                 <span className="text-faint italic">no de plantilla</span>
               </h2>
-              <p className="text-muted mt-6 max-w-sm text-sm leading-[1.8]">
+              <p className="text-muted mt-6 max-w-sm text-[16px] leading-[1.8]">
                 Trabajamos igual con un sitio corporativo que con una plataforma multi-tenant:
                 entendiendo el problema antes de elegir la herramienta.
               </p>
@@ -399,8 +399,8 @@ export default function HomePage() {
               {pilares.map((p) => (
                 <StaggerItem key={p.title} className="h-full">
                   <Card className="h-full p-7">
-                    <h3 className="text-fg text-sm font-semibold">{p.title}</h3>
-                    <p className="text-muted mt-3 text-[13px] leading-relaxed">{p.desc}</p>
+                    <h3 className="text-fg text-[16px] font-semibold">{p.title}</h3>
+                    <p className="text-muted mt-3 text-[15px] leading-relaxed">{p.desc}</p>
                   </Card>
                 </StaggerItem>
               ))}
@@ -423,7 +423,7 @@ export default function HomePage() {
 
           <Reveal delay={0.1}>
             <Card className="p-8 md:p-12">
-              <p className="text-muted max-w-3xl text-[15px] leading-[1.8]">
+              <p className="text-muted max-w-3xl text-[17px] leading-[1.8]">
                 Se emite una factura electrónica, Hacienda la acepta y el cliente recibe su
                 comprobante por WhatsApp en lugar de en una bandeja de spam. Si responde, la
                 conversación entra en la cola de atención con todo el historial a la vista.
@@ -440,8 +440,8 @@ export default function HomePage() {
                     <span className="text-brand text-xs font-semibold tracking-widest">
                       {s.paso}
                     </span>
-                    <h3 className="text-fg mt-3 text-sm font-medium">{s.title}</h3>
-                    <p className="text-muted mt-2 text-[13px] leading-relaxed">{s.desc}</p>
+                    <h3 className="text-fg mt-3 text-[16px] font-medium">{s.title}</h3>
+                    <p className="text-muted mt-2 text-[15px] leading-relaxed">{s.desc}</p>
                   </li>
                 ))}
               </ol>
@@ -472,7 +472,7 @@ export default function HomePage() {
               <h2 className="display text-ink relative max-w-2xl text-[clamp(2rem,5vw,3.75rem)] leading-[1.1]">
                 ¿Tienes una idea en la que quieras <em>trabajar</em>?
               </h2>
-              <p className="relative max-w-md text-sm leading-relaxed text-zinc-600">
+              <p className="relative max-w-md text-[16px] leading-relaxed text-zinc-600">
                 Cuéntanos qué necesitas y preparamos una propuesta en menos de 48 horas.
               </p>
               <div className="relative flex flex-wrap justify-center gap-4">

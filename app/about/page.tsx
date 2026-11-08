@@ -127,7 +127,7 @@ export default function AboutPage() {
                 <br />
                 <span className="text-faint italic">Savegre</span>
               </h2>
-              <p className="text-muted mt-6 max-w-sm text-sm leading-[1.8]">
+              <p className="text-muted mt-6 max-w-sm text-[16px] leading-[1.8]">
                 El río Savegre nace en las alturas del Cerro de la Muerte, atraviesa la cordillera
                 de Talamanca y desemboca en el Pacífico costarricense. Su cuenca es Reserva de la
                 Biosfera de la UNESCO y se le reconoce como uno de los ríos más limpios de la
@@ -156,8 +156,8 @@ export default function AboutPage() {
                   },
                 ].map((n) => (
                   <Card key={n.title} className="p-7">
-                    <h3 className="text-fg text-sm font-semibold">{n.title}</h3>
-                    <p className="text-muted mt-3 text-[13px] leading-relaxed">{n.desc}</p>
+                    <h3 className="text-fg text-[16px] font-semibold">{n.title}</h3>
+                    <p className="text-muted mt-3 text-[15px] leading-relaxed">{n.desc}</p>
                   </Card>
                 ))}
               </div>
@@ -165,7 +165,7 @@ export default function AboutPage() {
           </div>
 
           <Reveal delay={0.15}>
-            <p className="border-line text-muted mt-12 border-t pt-8 text-sm leading-[1.8] md:max-w-3xl">
+            <p className="border-line text-muted mt-12 border-t pt-8 text-[16px] leading-[1.8] md:max-w-3xl">
               Llevamos ese nombre porque somos de aquí. Costa Rica es reconocida por cuidar lo que
               tiene y por hacerlo bien sin necesidad de ser el país más grande —{' '}
               <span className="text-fg">
@@ -237,7 +237,7 @@ export default function AboutPage() {
                     <Icon size={20} />
                   </IconBox>
                   <h3 className="display text-fg text-2xl">{title}</h3>
-                  <p className="text-muted text-sm leading-[1.75]">{desc}</p>
+                  <p className="text-muted text-[16px] leading-[1.75]">{desc}</p>
                 </Card>
               </StaggerItem>
             ))}
@@ -262,7 +262,7 @@ export default function AboutPage() {
               <StaggerItem key={label} className="h-full">
                 <Card className="h-full p-8 md:p-10">
                   <Eyebrow>{label}</Eyebrow>
-                  <p className="text-muted mt-6 text-[15px] leading-[1.8]">{text}</p>
+                  <p className="text-muted mt-6 text-[17px] leading-[1.8]">{text}</p>
                 </Card>
               </StaggerItem>
             ))}
@@ -291,7 +291,7 @@ export default function AboutPage() {
                       {String(i + 1).padStart(2, '0')}
                     </span>
                     <h3 className="display text-fg mt-4 text-2xl">{v.title}</h3>
-                    <p className="text-muted mt-4 text-sm leading-relaxed">{v.desc}</p>
+                    <p className="text-muted mt-4 text-[16px] leading-relaxed">{v.desc}</p>
                   </Card>
                 </Lift>
               </StaggerItem>
@@ -311,7 +311,7 @@ export default function AboutPage() {
                 <br />
                 <span className="text-faint italic">en el día a día</span>
               </h2>
-              <p className="text-muted mt-6 max-w-sm text-sm leading-[1.8]">
+              <p className="text-muted mt-6 max-w-sm text-[16px] leading-[1.8]">
                 Los principios valen poco si no cambian el trabajo diario. Esto es lo que
                 aplicamos en cada proyecto, sin importar su tamaño.
               </p>
@@ -324,7 +324,7 @@ export default function AboutPage() {
                     <span className="text-brand mt-0.5 shrink-0">
                       <CheckIcon size={16} />
                     </span>
-                    <span className="text-muted text-sm leading-relaxed">{item}</span>
+                    <span className="text-muted text-[16px] leading-relaxed">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -343,7 +343,7 @@ export default function AboutPage() {
                 <h2 className="display text-fg mt-5 text-[clamp(1.75rem,3.5vw,2.5rem)] leading-tight">
                   {site.location}
                 </h2>
-                <p className="text-muted mt-4 max-w-md text-sm leading-relaxed">
+                <p className="text-muted mt-4 max-w-md text-[16px] leading-relaxed">
                   Trabajamos en horario {site.timezone}, lo que nos deja solapados con casi toda
                   América. {site.schedule.weekdays}.
                 </p>

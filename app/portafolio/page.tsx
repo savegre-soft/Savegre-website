@@ -114,8 +114,8 @@ export default function PortafolioPage() {
                       </div>
 
                       <h3 className="display text-fg mt-6 text-3xl">{p.nombre}</h3>
-                      <p className="text-brand mt-2 text-sm">{p.claim}</p>
-                      <p className="text-muted mt-5 flex-1 text-sm leading-relaxed">
+                      <p className="text-brand mt-2 text-[16px]">{p.claim}</p>
+                      <p className="text-muted mt-5 flex-1 text-[16px] leading-relaxed">
                         {p.resumen}
                       </p>
 
@@ -189,7 +189,7 @@ export default function PortafolioPage() {
                     <p className="text-fg mt-2 text-base font-medium">{c.empresa}</p>
                   </div>
 
-                  <p className="text-muted text-sm leading-relaxed lg:col-span-3">
+                  <p className="text-muted text-[16px] leading-relaxed lg:col-span-3">
                     {c.trabajo}
                   </p>
 
@@ -236,7 +236,7 @@ export default function PortafolioPage() {
                       {p.estado}
                     </span>
                   </div>
-                  <p className="text-muted text-[13px] leading-relaxed">{p.descripcion}</p>
+                  <p className="text-muted text-[15px] leading-relaxed">{p.descripcion}</p>
                 </Card>
               </StaggerItem>
             ))}
@@ -253,7 +253,7 @@ export default function PortafolioPage() {
                 <h2 className="display text-fg text-[clamp(1.75rem,3.5vw,2.5rem)] leading-tight">
                   ¿Su proyecto es el <span className="text-faint italic">siguiente</span>?
                 </h2>
-                <p className="text-muted mt-4 max-w-md text-sm leading-relaxed">
+                <p className="text-muted mt-4 max-w-md text-[16px] leading-relaxed">
                   Cuéntenos qué necesita y le decimos con franqueza cómo lo abordaríamos.
                 </p>
               </div>

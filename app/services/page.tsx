@@ -146,7 +146,7 @@ function ProductoSection({ producto, invertido }: { producto: Producto; invertid
                 </h2>
               </div>
               <p className="text-brand mt-5 text-lg leading-snug">{producto.claim}</p>
-              <p className="text-muted mt-6 text-[15px] leading-[1.8]">{producto.descripcion}</p>
+              <p className="text-muted mt-6 text-[17px] leading-[1.8]">{producto.descripcion}</p>
               <div className="mt-7 flex flex-wrap gap-2">
                 {producto.stack.map((s) => (
                   <Tag key={s}>{s}</Tag>
@@ -174,8 +174,8 @@ function ProductoSection({ producto, invertido }: { producto: Producto; invertid
             {producto.capacidades.map((c) => (
               <StaggerItem key={c.title} className="h-full">
                 <Card className="h-full p-6">
-                  <h4 className="text-fg text-sm font-semibold">{c.title}</h4>
-                  <p className="text-muted mt-3 text-[13px] leading-relaxed">{c.desc}</p>
+                  <h4 className="text-fg text-[16px] font-semibold">{c.title}</h4>
+                  <p className="text-muted mt-3 text-[15px] leading-relaxed">{c.desc}</p>
                 </Card>
               </StaggerItem>
             ))}
@@ -195,7 +195,7 @@ function ProductoSection({ producto, invertido }: { producto: Producto; invertid
                     </span>
                     <div>
                       <h4 className="text-fg text-base font-medium">{c.title}</h4>
-                      <p className="text-muted mt-2.5 text-[13px] leading-relaxed">{c.desc}</p>
+                      <p className="text-muted mt-2.5 text-[15px] leading-relaxed">{c.desc}</p>
                     </div>
                   </Card>
                 </Lift>
@@ -214,7 +214,7 @@ function ProductoSection({ producto, invertido }: { producto: Producto; invertid
                   <span className="text-brand mt-0.5 shrink-0">
                     <CheckIcon size={16} />
                   </span>
-                  <span className="text-muted text-sm leading-relaxed">{item}</span>
+                  <span className="text-muted text-[16px] leading-relaxed">{item}</span>
                 </li>
               ))}
             </ul>
@@ -305,7 +305,7 @@ export default function ServicesPage() {
                       </span>
                     </div>
                     <h3 className="display text-fg text-xl">{title}</h3>
-                    <p className="text-muted flex-1 text-[13px] leading-relaxed">{desc}</p>
+                    <p className="text-muted flex-1 text-[15px] leading-relaxed">{desc}</p>
                     <div className="flex flex-wrap gap-2">
                       {tags.map((t) => (
                         <Tag key={t}>{t}</Tag>
@@ -351,7 +351,7 @@ export default function ServicesPage() {
 
           <Reveal delay={0.1}>
             <Card className="p-8 md:p-12">
-              <p className="text-muted max-w-3xl text-[15px] leading-[1.8]">
+              <p className="text-muted max-w-3xl text-[17px] leading-[1.8]">
                 Senda emite eventos de negocio cuando algo ocurre con un comprobante, y uno de
                 sus canales de notificación es WhatsApp. Conectado a Confluence, ese evento deja de ser
                 un correo que nadie abre y se convierte en una conversación real:
@@ -384,15 +384,15 @@ export default function ServicesPage() {
                     <span className="text-brand text-xs font-semibold tracking-widest">
                       {s.paso}
                     </span>
-                    <h3 className="text-fg mt-3 text-sm font-medium">{s.title}</h3>
-                    <p className="text-muted mt-2 text-[13px] leading-relaxed">{s.desc}</p>
+                    <h3 className="text-fg mt-3 text-[16px] font-medium">{s.title}</h3>
+                    <p className="text-muted mt-2 text-[15px] leading-relaxed">{s.desc}</p>
                   </li>
                 ))}
               </ol>
 
               <div className="border-line text-brand mt-10 flex flex-wrap items-center gap-3 border-t pt-8">
                 <ShieldIcon size={18} />
-                <p className="text-muted text-[13px]">
+                <p className="text-muted text-[15px]">
                   Un solo número de WhatsApp, un solo historial por cliente y los secretos de
                   ambos sistemas cifrados en reposo.
                 </p>
@@ -415,7 +415,7 @@ export default function ServicesPage() {
               <h2 className="display text-ink relative max-w-xl text-[clamp(2rem,4vw,3rem)] leading-[1.1]">
                 Construyamos algo <em className="text-zinc-500">que valga la pena.</em>
               </h2>
-              <p className="relative max-w-md text-sm leading-relaxed text-zinc-600">
+              <p className="relative max-w-md text-[16px] leading-relaxed text-zinc-600">
                 Cuéntenos sobre su proyecto y prepararemos una propuesta personalizada en menos
                 de 48 horas.
               </p>

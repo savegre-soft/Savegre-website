@@ -318,7 +318,7 @@ export default function OsaPage() {
           <p className="text-brand mt-6 text-xl leading-snug">
             Todo lo que un restaurante necesita para operar, en una sola pantalla.
           </p>
-          <p className="text-muted mt-6 max-w-2xl text-[15px] leading-[1.8]">
+          <p className="text-muted mt-6 max-w-2xl text-[17px] leading-[1.8]">
             Osa lleva el día a día del restaurante: toma los pedidos en el salón o para
             llevar, los manda a cocina, cobra, controla el inventario y las compras, gestiona
             reservaciones y clientes frecuentes, cierra la caja y calcula la planilla. Funciona
@@ -361,12 +361,12 @@ export default function OsaPage() {
               <StaggerItem key={p.nombre} className="h-full">
                 <Card className="h-full p-6">
                   <div className="flex items-center justify-between gap-3">
-                    <h3 className="text-fg text-sm font-semibold">{p.nombre}</h3>
+                    <h3 className="text-fg text-[16px] font-semibold">{p.nombre}</h3>
                     <span className="border-line text-faint shrink-0 border px-2 py-0.5 text-[9px] font-semibold tracking-widest uppercase">
                       {p.etiqueta}
                     </span>
                   </div>
-                  <p className="text-muted mt-3 text-[13px] leading-relaxed">{p.desc}</p>
+                  <p className="text-muted mt-3 text-[15px] leading-relaxed">{p.desc}</p>
                 </Card>
               </StaggerItem>
             ))}
@@ -393,7 +393,7 @@ export default function OsaPage() {
                       {String(i + 1).padStart(2, '0')}
                     </span>
                     <h3 className="display text-fg mt-3 text-2xl">{a.titulo}</h3>
-                    <p className="text-muted mt-4 text-sm leading-relaxed">{a.intro}</p>
+                    <p className="text-muted mt-4 text-[16px] leading-relaxed">{a.intro}</p>
                   </div>
                   <ul className="flex flex-col gap-3">
                     {a.puntos.map((punto) => (
@@ -401,7 +401,7 @@ export default function OsaPage() {
                         <span className="text-brand mt-0.5 shrink-0">
                           <CheckIcon size={15} />
                         </span>
-                        <span className="text-muted text-[13px] leading-relaxed">{punto}</span>
+                        <span className="text-muted text-[15px] leading-relaxed">{punto}</span>
                       </li>
                     ))}
                   </ul>
@@ -424,7 +424,7 @@ export default function OsaPage() {
 
           <ul className="mt-10 flex max-w-2xl flex-col gap-4">
             {pendiente.map((item) => (
-              <li key={item} className="text-muted border-line border-t pt-4 text-sm leading-relaxed">
+              <li key={item} className="text-muted border-line border-t pt-4 text-[16px] leading-relaxed">
                 {item}
               </li>
             ))}
@@ -445,7 +445,7 @@ export default function OsaPage() {
               <h2 className="display text-ink relative max-w-xl text-[clamp(2rem,4vw,3rem)] leading-[1.1]">
                 ¿Quiere verlo con <em className="text-zinc-500">su carta y su operación?</em>
               </h2>
-              <p className="relative max-w-md text-sm leading-relaxed text-zinc-600">
+              <p className="relative max-w-md text-[16px] leading-relaxed text-zinc-600">
                 Preparamos una demo sobre su caso concreto —un local o una cadena— y le decimos
                 con franqueza si encaja.
               </p>

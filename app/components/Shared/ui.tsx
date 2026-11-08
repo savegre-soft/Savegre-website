@@ -68,7 +68,7 @@ export function PageHeader({
         )}
       </h1>
       {lead && (
-        <p className="text-muted mt-6 max-w-xl text-[15px] leading-relaxed">{lead}</p>
+        <p className="text-muted mt-6 max-w-xl text-[17px] leading-relaxed">{lead}</p>
       )}
     </header>
   )
@@ -106,7 +106,7 @@ export function SectionHeading({
         </h2>
       </div>
       {aside && (
-        <p className="text-muted max-w-xs text-[13px] leading-relaxed">{aside}</p>
+        <p className="text-muted max-w-xs text-[15px] leading-relaxed">{aside}</p>
       )}
     </div>
   )

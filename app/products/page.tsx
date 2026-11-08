@@ -85,7 +85,7 @@ export default async function ProductsPage() {
         />
 
         {productos.length === 0 ? (
-          <div className="border-line text-muted mt-16 border border-dashed px-8 py-16 text-center text-sm">
+          <div className="border-line text-muted mt-16 border border-dashed px-8 py-16 text-center text-[16px]">
             <p>Estamos actualizando el catálogo. Vuelva pronto.</p>
             <div className="mt-8 flex justify-center">
               <ButtonLink href="/contact" variant="ghost">
@@ -112,7 +112,7 @@ export default async function ProductsPage() {
                     <h2 className="text-fg text-base font-medium">{p.name}</h2>
 
                     {p.description && (
-                      <p className="text-muted mt-3 line-clamp-5 text-[13px] leading-relaxed whitespace-pre-line">
+                      <p className="text-muted mt-3 line-clamp-5 text-[15px] leading-relaxed whitespace-pre-line">
                         {p.description.trim()}
                       </p>
                     )}
@@ -120,7 +120,7 @@ export default async function ProductsPage() {
                     {/* Precio — empujado al fondo de la tarjeta */}
                     <div className="border-line mt-auto flex items-end justify-between gap-3 border-t pt-5">
                       {p.quoteOnly ? (
-                        <span className="text-fg text-sm font-medium">
+                        <span className="text-fg text-[16px] font-medium">
                           A cotizar
                         </span>
                       ) : (
@@ -153,7 +153,7 @@ export default async function ProductsPage() {
 
             {/* CTA general (sigue siendo una página de solo lectura) */}
             <Reveal className="border-line mt-16 flex flex-col items-start justify-between gap-6 border-t pt-10 sm:flex-row sm:items-center">
-              <p className="text-muted max-w-md text-sm leading-relaxed">
+              <p className="text-muted max-w-md text-[16px] leading-relaxed">
                 ¿No ve exactamente lo que necesita? Armamos propuestas a la
                 medida de cada proyecto.
               </p>

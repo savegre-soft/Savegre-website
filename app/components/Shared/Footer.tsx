@@ -18,7 +18,7 @@ export default function Footer() {
           {/* Marca */}
           <div>
             <p className="display text-fg text-2xl italic">Savegre.</p>
-            <p className="text-muted mt-4 max-w-xs text-sm leading-relaxed">
+            <p className="text-muted mt-4 max-w-xs text-[16px] leading-relaxed">
               Desarrollo de software y análisis de datos. Sistemas construidos para
               durar, desde {site.location}.
             </p>
@@ -36,7 +36,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-muted hover:text-fg text-sm transition-colors"
+                    className="text-muted hover:text-fg text-[16px] transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -53,7 +53,7 @@ export default function Footer() {
                 <li key={p.slug} className="flex flex-col gap-1">
                   <Link
                     href={`/productos/${p.slug}`}
-                    className="text-muted hover:text-fg text-sm transition-colors"
+                    className="text-muted hover:text-fg text-[16px] transition-colors"
                   >
                     {p.nombre}
                   </Link>
@@ -80,7 +80,7 @@ export default function Footer() {
               <li>
                 <a
                   href={`mailto:${site.email}`}
-                  className="text-muted hover:text-brand flex items-center gap-2 text-sm transition-colors"
+                  className="text-muted hover:text-brand flex items-center gap-2 text-[16px] transition-colors"
                 >
                   <MailIcon size={15} />
                   {site.email}
@@ -92,7 +92,7 @@ export default function Footer() {
                     href={whatsappUrl()}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-muted hover:text-whatsapp flex items-center gap-2 text-sm transition-colors"
+                    className="text-muted hover:text-whatsapp flex items-center gap-2 text-[16px] transition-colors"
                   >
                     <WhatsAppIcon size={15} />
                     {whatsapp.display}
@@ -105,7 +105,7 @@ export default function Footer() {
                     href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-muted hover:text-fg text-sm transition-colors"
+                    className="text-muted hover:text-fg text-[16px] transition-colors"
                   >
                     {s.name}
                   </a>

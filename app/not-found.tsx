@@ -20,7 +20,7 @@ export default function NotFound() {
           <br />
           <span className="text-faint italic">encontrada</span>
         </h1>
-        <p className="text-muted mt-8 max-w-md text-[15px] leading-relaxed">
+        <p className="text-muted mt-8 max-w-md text-[17px] leading-relaxed">
           La dirección que buscas no existe o cambió de sitio. Desde aquí puedes volver al
           inicio o escribirnos si esperabas encontrar algo concreto.
         </p>

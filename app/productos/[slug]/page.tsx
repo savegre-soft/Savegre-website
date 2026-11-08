@@ -195,7 +195,7 @@ export default async function ProductoPage({
               </div>
 
               <p className="text-brand mt-6 text-xl leading-snug">{producto.claim}</p>
-              <p className="text-muted mt-6 text-[15px] leading-[1.8]">{producto.descripcion}</p>
+              <p className="text-muted mt-6 text-[17px] leading-[1.8]">{producto.descripcion}</p>
 
               <div className="mt-8 flex flex-wrap gap-2">
                 {producto.stack.map((s) => (
@@ -299,7 +299,7 @@ export default async function ProductoPage({
                       decoding="async"
                       className="block w-full"
                     />
-                    <figcaption className="text-muted border-line border-t px-5 py-3 text-[13px]">
+                    <figcaption className="text-muted border-line border-t px-5 py-3 text-[15px]">
                       {c.alt}
                     </figcaption>
                   </figure>
@@ -324,7 +324,7 @@ export default async function ProductoPage({
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   <h3 className="text-fg mt-3 text-base font-medium">{p.title}</h3>
-                  <p className="text-muted mt-3 text-[13px] leading-relaxed">{p.desc}</p>
+                  <p className="text-muted mt-3 text-[15px] leading-relaxed">{p.desc}</p>
                 </div>
               </StaggerItem>
             ))}
@@ -345,8 +345,8 @@ export default async function ProductoPage({
             {producto.capacidades.map((c) => (
               <StaggerItem key={c.title} className="h-full">
                 <Card className="h-full p-6">
-                  <h3 className="text-fg text-sm font-semibold">{c.title}</h3>
-                  <p className="text-muted mt-3 text-[13px] leading-relaxed">{c.desc}</p>
+                  <h3 className="text-fg text-[16px] font-semibold">{c.title}</h3>
+                  <p className="text-muted mt-3 text-[15px] leading-relaxed">{c.desc}</p>
                 </Card>
               </StaggerItem>
             ))}
@@ -373,7 +373,7 @@ export default async function ProductoPage({
                       {String(i + 1).padStart(2, '0')}
                     </span>
                     <h3 className="display text-fg mt-3 text-2xl">{m.title}</h3>
-                    <p className="text-muted mt-4 text-sm leading-relaxed">{m.desc}</p>
+                    <p className="text-muted mt-4 text-[16px] leading-relaxed">{m.desc}</p>
                   </div>
                   <ul className="flex flex-col gap-3">
                     {m.bullets.map((b) => (
@@ -381,7 +381,7 @@ export default async function ProductoPage({
                         <span className="text-brand mt-0.5 shrink-0">
                           <CheckIcon size={15} />
                         </span>
-                        <span className="text-muted text-[13px] leading-relaxed">{b}</span>
+                        <span className="text-muted text-[15px] leading-relaxed">{b}</span>
                       </li>
                     ))}
                   </ul>
@@ -412,7 +412,7 @@ export default async function ProductoPage({
                     </span>
                     <div>
                       <h3 className="text-fg text-base font-medium">{c.title}</h3>
-                      <p className="text-muted mt-2.5 text-[13px] leading-relaxed">{c.desc}</p>
+                      <p className="text-muted mt-2.5 text-[15px] leading-relaxed">{c.desc}</p>
                     </div>
                   </Card>
                 </Lift>
@@ -437,7 +437,7 @@ export default async function ProductoPage({
                     <span className="text-brand mt-0.5 shrink-0">
                       <CheckIcon size={15} />
                     </span>
-                    <span className="text-muted text-sm leading-relaxed">{item}</span>
+                    <span className="text-muted text-[16px] leading-relaxed">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -454,7 +454,7 @@ export default async function ProductoPage({
                     <span className="text-brand mt-0.5 shrink-0">
                       <CheckIcon size={15} />
                     </span>
-                    <span className="text-muted text-sm leading-relaxed">{item}</span>
+                    <span className="text-muted text-[16px] leading-relaxed">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -477,8 +477,8 @@ export default async function ProductoPage({
             {producto.despliegue.map((d) => (
               <StaggerItem key={d.title} className="h-full">
                 <Card className="h-full p-6">
-                  <h3 className="text-fg text-sm font-semibold">{d.title}</h3>
-                  <p className="text-muted mt-3 text-[13px] leading-relaxed">{d.desc}</p>
+                  <h3 className="text-fg text-[16px] font-semibold">{d.title}</h3>
+                  <p className="text-muted mt-3 text-[15px] leading-relaxed">{d.desc}</p>
                 </Card>
               </StaggerItem>
             ))}
@@ -502,7 +502,7 @@ export default async function ProductoPage({
                 {/* `<details>` es plegable de forma nativa: sin JavaScript y
                     accesible con teclado por defecto. */}
                 <details className="border-line group border-b">
-                  <summary className="text-fg hover:text-brand flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-[15px] font-medium transition-colors">
+                  <summary className="text-fg hover:text-brand flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-[17px] font-medium transition-colors">
                     {f.q}
                     <span
                       aria-hidden="true"
@@ -511,7 +511,7 @@ export default async function ProductoPage({
                       +
                     </span>
                   </summary>
-                  <p className="text-muted pb-6 text-sm leading-relaxed">{f.a}</p>
+                  <p className="text-muted pb-6 text-[16px] leading-relaxed">{f.a}</p>
                 </details>
               </Reveal>
             ))}
@@ -533,7 +533,7 @@ export default async function ProductoPage({
                 ¿Quieres ver {producto.nombre}{' '}
                 <em className="text-zinc-500">funcionando?</em>
               </h2>
-              <p className="relative max-w-md text-sm leading-relaxed text-zinc-600">
+              <p className="relative max-w-md text-[16px] leading-relaxed text-zinc-600">
                 Agendamos una demo sobre su caso concreto y le decimos con franqueza si encaja
                 o no.
               </p>
@@ -556,7 +556,7 @@ export default async function ProductoPage({
                   <p className="display text-fg group-hover:text-brand mt-3 text-2xl transition-colors">
                     {otro.nombre}
                   </p>
-                  <p className="text-muted mt-2 max-w-md text-[13px] leading-relaxed">
+                  <p className="text-muted mt-2 max-w-md text-[15px] leading-relaxed">
                     {otro.resumen}
                   </p>
                 </div>
