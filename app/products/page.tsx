@@ -85,7 +85,7 @@ export default async function ProductsPage() {
         />
 
         {productos.length === 0 ? (
-          <div className="border-line text-muted mt-16 border border-dashed px-8 py-16 text-center text-[16px]">
+          <div className="border-line text-muted mt-16 border border-dashed px-8 py-16 text-center text-[18px]">
             <p>Estamos actualizando el catálogo. Vuelva pronto.</p>
             <div className="mt-8 flex justify-center">
               <ButtonLink href="/contact" variant="ghost">
@@ -103,7 +103,7 @@ export default async function ProductsPage() {
                     <div className="mb-5 flex items-center justify-between gap-3">
                       {p.category ? <Tag>{p.category}</Tag> : <span />}
                       {p.sku && (
-                        <span className="text-faint font-mono text-[11px]">
+                        <span className="text-faint font-mono text-[12px]">
                           #{p.sku}
                         </span>
                       )}
@@ -112,7 +112,7 @@ export default async function ProductsPage() {
                     <h2 className="text-fg text-base font-medium">{p.name}</h2>
 
                     {p.description && (
-                      <p className="text-muted mt-3 line-clamp-5 text-[15px] leading-relaxed whitespace-pre-line">
+                      <p className="text-muted mt-3 line-clamp-5 text-[16px] leading-relaxed whitespace-pre-line">
                         {p.description.trim()}
                       </p>
                     )}
@@ -120,7 +120,7 @@ export default async function ProductsPage() {
                     {/* Precio — empujado al fondo de la tarjeta */}
                     <div className="border-line mt-auto flex items-end justify-between gap-3 border-t pt-5">
                       {p.quoteOnly ? (
-                        <span className="text-fg text-[16px] font-medium">
+                        <span className="text-fg text-[18px] font-medium">
                           A cotizar
                         </span>
                       ) : (
@@ -128,21 +128,21 @@ export default async function ProductsPage() {
                           <span className="text-fg text-lg font-medium">
                             {formatPrecio(p.price, p.currency)}
                           </span>
-                          <span className="text-faint ml-1 text-[11px] tracking-wide uppercase">
+                          <span className="text-faint ml-1 text-[12px] tracking-wide uppercase">
                             + IVA {p.taxRate}%
                           </span>
                         </div>
                       )}
 
                       {etiquetaCobro(p.billingModel) && !p.quoteOnly && (
-                        <span className="text-faint text-[11px] tracking-wide uppercase">
+                        <span className="text-faint text-[12px] tracking-wide uppercase">
                           {etiquetaCobro(p.billingModel)}
                         </span>
                       )}
                     </div>
 
                     {p.setupFee > 0 && !p.quoteOnly && (
-                      <p className="text-faint mt-2 text-[11px]">
+                      <p className="text-faint mt-2 text-[12px]">
                         + {formatPrecio(p.setupFee, p.currency)} de instalación
                       </p>
                     )}
@@ -153,7 +153,7 @@ export default async function ProductsPage() {
 
             {/* CTA general (sigue siendo una página de solo lectura) */}
             <Reveal className="border-line mt-16 flex flex-col items-start justify-between gap-6 border-t pt-10 sm:flex-row sm:items-center">
-              <p className="text-muted max-w-md text-[16px] leading-relaxed">
+              <p className="text-muted max-w-md text-[18px] leading-relaxed">
                 ¿No ve exactamente lo que necesita? Armamos propuestas a la
                 medida de cada proyecto.
               </p>

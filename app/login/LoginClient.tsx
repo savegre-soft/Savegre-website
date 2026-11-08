@@ -191,7 +191,7 @@ export default function LoginClient() {
       <h1 className="display text-fg mt-6 text-[clamp(2rem,5vw,3rem)] leading-[1.1]">
         {titulos[modo]}
       </h1>
-      <p className="text-muted mt-4 text-[14px] leading-relaxed">
+      <p className="text-muted mt-4 text-[15px] leading-relaxed">
         Área privada. Solo para correos autorizados del equipo de Savegre Soft.
       </p>
 
@@ -237,18 +237,18 @@ export default function LoginClient() {
               onChange={(e) => setPassword(e.target.value)}
             />
             {(modo === 'signup' || modo === 'reset') && (
-              <p className="text-faint text-[11px]">Mínimo 8 caracteres.</p>
+              <p className="text-faint text-[12px]">Mínimo 8 caracteres.</p>
             )}
           </div>
         )}
 
         {error && (
-          <p className="border border-red-900 bg-red-950 px-4 py-2.5 text-[13px] text-red-300">
+          <p className="border border-red-900 bg-red-950 px-4 py-2.5 text-[14px] text-red-300">
             {error}
           </p>
         )}
         {aviso && (
-          <p className="border border-green-900 bg-green-950 px-4 py-2.5 text-[13px] text-green-300">
+          <p className="border border-green-900 bg-green-950 px-4 py-2.5 text-[14px] text-green-300">
             {aviso}
           </p>
         )}
@@ -256,14 +256,14 @@ export default function LoginClient() {
         <button
           type="submit"
           disabled={cargando}
-          className="bg-brand-fill hover:bg-brand-dim active:scale-[0.98] mt-2 px-8 py-3.5 text-[11px] font-semibold tracking-[0.15em] text-white uppercase transition-all disabled:cursor-not-allowed disabled:opacity-60"
+          className="bg-brand-fill hover:bg-brand-dim active:scale-[0.98] mt-2 px-8 py-3.5 text-[12px] font-semibold tracking-[0.15em] text-white uppercase transition-all disabled:cursor-not-allowed disabled:opacity-60"
         >
           {cargando ? 'Un momento…' : botones[modo]}
         </button>
       </form>
 
       {/* Cambios de modo */}
-      <div className="text-faint mt-6 flex flex-col gap-2 text-[13px]">
+      <div className="text-faint mt-6 flex flex-col gap-2 text-[14px]">
         {modo === 'signin' && (
           <>
             <button

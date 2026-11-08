@@ -108,14 +108,14 @@ export default function PortafolioPage() {
                         <IconBox>
                           <Icon size={22} />
                         </IconBox>
-                        <span className="border-brand/40 text-brand shrink-0 border px-2.5 py-1 text-[10px] font-semibold tracking-widest uppercase">
+                        <span className="border-brand/40 text-brand shrink-0 border px-2.5 py-1 text-[11px] font-semibold tracking-widest uppercase">
                           {p.estado}
                         </span>
                       </div>
 
                       <h3 className="display text-fg mt-6 text-3xl">{p.nombre}</h3>
-                      <p className="text-brand mt-2 text-[16px]">{p.claim}</p>
-                      <p className="text-muted mt-5 flex-1 text-[16px] leading-relaxed">
+                      <p className="text-brand mt-2 text-[18px]">{p.claim}</p>
+                      <p className="text-muted mt-5 flex-1 text-[18px] leading-relaxed">
                         {p.resumen}
                       </p>
 
@@ -130,7 +130,7 @@ export default function PortafolioPage() {
                         {p.metricas.map((m) => (
                           <div key={m.etiqueta}>
                             <p className="display text-fg text-2xl">{m.valor}</p>
-                            <p className="text-faint mt-1 text-[9px] font-semibold tracking-[0.12em] uppercase">
+                            <p className="text-faint mt-1 text-[10px] font-semibold tracking-[0.12em] uppercase">
                               {m.etiqueta}
                             </p>
                           </div>
@@ -140,7 +140,7 @@ export default function PortafolioPage() {
                       <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
                         <Link
                           href={`/productos/${p.slug}`}
-                          className="text-brand hover:text-fg inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.18em] uppercase transition-colors"
+                          className="text-brand hover:text-fg inline-flex items-center gap-2 text-[12px] font-semibold tracking-[0.18em] uppercase transition-colors"
                         >
                           Más info
                           <ArrowRightIcon size={14} />
@@ -150,7 +150,7 @@ export default function PortafolioPage() {
                             href={p.sitio}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-faint hover:text-fg inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.18em] uppercase transition-colors"
+                            className="text-faint hover:text-fg inline-flex items-center gap-2 text-[12px] font-semibold tracking-[0.18em] uppercase transition-colors"
                           >
                             Ver plataforma
                             <ArrowUpRightIcon size={14} />
@@ -189,7 +189,7 @@ export default function PortafolioPage() {
                     <p className="text-fg mt-2 text-base font-medium">{c.empresa}</p>
                   </div>
 
-                  <p className="text-muted text-[16px] leading-relaxed lg:col-span-3">
+                  <p className="text-muted text-[18px] leading-relaxed lg:col-span-3">
                     {c.trabajo}
                   </p>
 
@@ -203,7 +203,7 @@ export default function PortafolioPage() {
                       href={c.enlace}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-brand hover:text-fg inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.18em] uppercase transition-colors"
+                      className="text-brand hover:text-fg inline-flex items-center gap-2 text-[12px] font-semibold tracking-[0.18em] uppercase transition-colors"
                     >
                       Ver sitio
                       <ArrowUpRightIcon size={14} />
@@ -232,11 +232,11 @@ export default function PortafolioPage() {
                 <Card className="flex h-full flex-col gap-4 p-7">
                   <div className="flex items-start justify-between gap-4">
                     <h3 className="display text-fg text-xl">{p.nombre}</h3>
-                    <span className="border-line text-faint shrink-0 border px-2 py-0.5 text-[10px] tracking-wider uppercase">
+                    <span className="border-line text-faint shrink-0 border px-2 py-0.5 text-[11px] tracking-wider uppercase">
                       {p.estado}
                     </span>
                   </div>
-                  <p className="text-muted text-[15px] leading-relaxed">{p.descripcion}</p>
+                  <p className="text-muted text-[16px] leading-relaxed">{p.descripcion}</p>
                 </Card>
               </StaggerItem>
             ))}
@@ -253,7 +253,7 @@ export default function PortafolioPage() {
                 <h2 className="display text-fg text-[clamp(1.75rem,3.5vw,2.5rem)] leading-tight">
                   ¿Su proyecto es el <span className="text-faint italic">siguiente</span>?
                 </h2>
-                <p className="text-muted mt-4 max-w-md text-[16px] leading-relaxed">
+                <p className="text-muted mt-4 max-w-md text-[18px] leading-relaxed">
                   Cuéntenos qué necesita y le decimos con franqueza cómo lo abordaríamos.
                 </p>
               </div>

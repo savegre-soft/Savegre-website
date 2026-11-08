@@ -189,7 +189,7 @@ export default function CrmClient() {
           {email && <span className="text-faint text-xs">{email}</span>}
           <button
             onClick={salir}
-            className="border-line-strong text-muted hover:border-faint hover:text-fg border px-4 py-2 text-[11px] font-semibold tracking-[0.15em] uppercase transition-colors"
+            className="border-line-strong text-muted hover:border-faint hover:text-fg border px-4 py-2 text-[12px] font-semibold tracking-[0.15em] uppercase transition-colors"
           >
             Salir
           </button>
@@ -227,7 +227,7 @@ export default function CrmClient() {
       {/* Lista */}
       <div className="mt-8">
         {error && (
-          <p className="border border-red-900 bg-red-950 px-4 py-3 text-[13px] text-red-300">
+          <p className="border border-red-900 bg-red-950 px-4 py-3 text-[14px] text-red-300">
             {error}
           </p>
         )}
@@ -301,7 +301,7 @@ function Fila({
         aria-expanded={abierto}
       >
         <span
-          className={`shrink-0 border px-2 py-0.5 text-[10px] font-semibold tracking-wider uppercase ${badge}`}
+          className={`shrink-0 border px-2 py-0.5 text-[11px] font-semibold tracking-wider uppercase ${badge}`}
         >
           {etiqueta(c.status)}
         </span>
@@ -322,7 +322,7 @@ function Fila({
       {/* Detalle */}
       {abierto && (
         <div className="border-line border-t px-5 py-5">
-          <p className="text-muted text-[10px] tracking-[0.05em] uppercase">
+          <p className="text-muted text-[11px] tracking-[0.05em] uppercase">
             Mensaje
           </p>
           <p className="text-fg mt-2 text-sm leading-relaxed whitespace-pre-wrap">
@@ -345,7 +345,7 @@ function Fila({
           <div className="mt-5">
             <label
               htmlFor={`nota-${c.id}`}
-              className="text-muted text-[10px] tracking-[0.05em] uppercase"
+              className="text-muted text-[11px] tracking-[0.05em] uppercase"
             >
               Nota interna
             </label>
@@ -360,7 +360,7 @@ function Fila({
             {notaSucia && (
               <button
                 onClick={() => onNota(nota)}
-                className="bg-brand-fill hover:bg-brand-dim mt-2 px-4 py-1.5 text-[10px] font-semibold tracking-[0.15em] text-white uppercase transition-colors"
+                className="bg-brand-fill hover:bg-brand-dim mt-2 px-4 py-1.5 text-[11px] font-semibold tracking-[0.15em] text-white uppercase transition-colors"
               >
                 Guardar nota
               </button>
@@ -371,7 +371,7 @@ function Fila({
           <div className="border-line mt-5 flex flex-wrap items-center gap-3 border-t pt-4">
             <label
               htmlFor={`estado-${c.id}`}
-              className="text-muted text-[10px] tracking-[0.05em] uppercase"
+              className="text-muted text-[11px] tracking-[0.05em] uppercase"
             >
               Estado
             </label>

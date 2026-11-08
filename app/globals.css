@@ -29,6 +29,14 @@
   /* Tipografía — las variables las inyecta next/font en <html> */
   --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-cormorant), ui-serif, Georgia, serif;
+
+  /* Escala de tamaños de cuerpo — subida un punto respecto al default de
+     Tailwind para mejorar la legibilidad en todo el sitio. Los titulares
+     (text-xl y superiores) conservan sus valores por defecto. */
+  --text-xs: 0.8125rem; /* 13px (antes 12) */
+  --text-sm: 0.9375rem; /* 15px (antes 14) */
+  --text-base: 1.0625rem; /* 17px (antes 16) */
+  --text-lg: 1.1875rem; /* 19px (antes 18) */
 }
 
 /* ─── Base ─── */
@@ -65,7 +73,7 @@ body {
 
 /* Etiqueta de sección en versalitas — antes se repetía a mano en 6 sitios */
 .eyebrow {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.25em;
   text-transform: uppercase;
@@ -79,7 +87,7 @@ body {
    no un `.map()`, y así el marcado queda legible. */
 .legal-prose {
   color: var(--color-muted);
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.8;
 }
 
@@ -141,7 +149,7 @@ body {
   min-width: 34rem;
   border-collapse: collapse;
   margin: 1rem 0 1.5rem;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .legal-prose th,

@@ -26,12 +26,12 @@ export default function ContactChannels() {
             <span className="text-whatsapp">
               <WhatsAppIcon size={20} />
             </span>
-            <h3 className="text-fg text-[16px] font-medium">WhatsApp</h3>
-            <span className="bg-whatsapp/15 text-whatsapp ml-auto rounded-full px-2.5 py-0.5 text-[10px] font-semibold tracking-wider uppercase">
+            <h3 className="text-fg text-[18px] font-medium">WhatsApp</h3>
+            <span className="bg-whatsapp/15 text-whatsapp ml-auto rounded-full px-2.5 py-0.5 text-[11px] font-semibold tracking-wider uppercase">
               Más rápido
             </span>
           </div>
-          <p className="text-fg mt-3 text-[16px]">{whatsapp.display}</p>
+          <p className="text-fg mt-3 text-[18px]">{whatsapp.display}</p>
           <p className="text-muted mt-1 text-xs">
             Escríbenos y te respondemos en horario laboral
           </p>
@@ -42,9 +42,9 @@ export default function ContactChannels() {
             <span className="text-whatsapp">
               <WhatsAppIcon size={20} />
             </span>
-            <h3 className="text-fg text-[16px] font-medium">WhatsApp</h3>
+            <h3 className="text-fg text-[18px] font-medium">WhatsApp</h3>
           </div>
-          <p className="text-muted mt-3 text-[16px]">Número por configurar</p>
+          <p className="text-muted mt-3 text-[18px]">Número por configurar</p>
           <p className="text-faint mt-1 text-xs">
             Mientras tanto, escríbenos por correo o con el formulario
           </p>
@@ -56,11 +56,11 @@ export default function ContactChannels() {
           <span className="text-brand">
             <MailIcon size={18} />
           </span>
-          <h3 className="text-fg text-[16px] font-medium">Correo</h3>
+          <h3 className="text-fg text-[18px] font-medium">Correo</h3>
         </div>
         <a
           href={`mailto:${site.email}`}
-          className="text-brand hover:text-fg mt-3 block text-[16px] transition-colors"
+          className="text-brand hover:text-fg mt-3 block text-[18px] transition-colors"
         >
           {site.email}
         </a>
@@ -72,9 +72,9 @@ export default function ContactChannels() {
           <span className="text-brand">
             <MapPinIcon size={18} />
           </span>
-          <h3 className="text-fg text-[16px] font-medium">Ubicación</h3>
+          <h3 className="text-fg text-[18px] font-medium">Ubicación</h3>
         </div>
-        <p className="text-muted mt-3 text-[16px]">{site.location}</p>
+        <p className="text-muted mt-3 text-[18px]">{site.location}</p>
         <p className="text-faint mt-1 text-xs">Zona horaria: {site.timezone}</p>
       </div>
 
@@ -83,9 +83,9 @@ export default function ContactChannels() {
           <span className="text-brand">
             <ClockIcon size={18} />
           </span>
-          <h3 className="text-fg text-[16px] font-medium">Horario</h3>
+          <h3 className="text-fg text-[18px] font-medium">Horario</h3>
         </div>
-        <p className="text-muted mt-3 text-[16px]">{site.schedule.weekdays}</p>
+        <p className="text-muted mt-3 text-[18px]">{site.schedule.weekdays}</p>
         <p className="text-faint mt-1 text-xs">{site.schedule.weekend}</p>
       </div>
     </div>

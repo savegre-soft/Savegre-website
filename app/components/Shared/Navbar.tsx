@@ -43,7 +43,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 aria-current={isActive ? 'page' : undefined}
-                className={`group relative py-1 text-[13px] font-medium tracking-wide transition-colors ${
+                className={`group relative py-1 text-[14px] font-medium tracking-wide transition-colors ${
                   isActive ? 'text-fg' : 'text-muted hover:text-fg'
                 }`}
               >
@@ -62,7 +62,7 @@ export default function Navbar() {
         {/* CTA — escritorio */}
         <Link
           href="/contact"
-          className="bg-brand-fill hover:bg-brand-dim hidden px-5 py-2.5 text-[11px] font-semibold tracking-[0.15em] text-white uppercase transition-colors md:block"
+          className="bg-brand-fill hover:bg-brand-dim hidden px-5 py-2.5 text-[12px] font-semibold tracking-[0.15em] text-white uppercase transition-colors md:block"
         >
           Empezar proyecto
         </Link>
@@ -119,7 +119,7 @@ export default function Navbar() {
               <Link
                 href="/contact"
                 onClick={cerrar}
-                className="bg-brand-fill hover:bg-brand-dim mt-5 mb-2 px-5 py-3.5 text-center text-[11px] font-semibold tracking-[0.15em] text-white uppercase transition-colors"
+                className="bg-brand-fill hover:bg-brand-dim mt-5 mb-2 px-5 py-3.5 text-center text-[12px] font-semibold tracking-[0.15em] text-white uppercase transition-colors"
               >
                 Empezar proyecto
               </Link>

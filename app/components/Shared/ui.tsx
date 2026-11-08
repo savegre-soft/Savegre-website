@@ -68,7 +68,7 @@ export function PageHeader({
         )}
       </h1>
       {lead && (
-        <p className="text-muted mt-6 max-w-xl text-[17px] leading-relaxed">{lead}</p>
+        <p className="text-muted mt-6 max-w-xl text-[19px] leading-relaxed">{lead}</p>
       )}
     </header>
   )
@@ -106,14 +106,14 @@ export function SectionHeading({
         </h2>
       </div>
       {aside && (
-        <p className="text-muted max-w-xs text-[15px] leading-relaxed">{aside}</p>
+        <p className="text-muted max-w-xs text-[16px] leading-relaxed">{aside}</p>
       )}
     </div>
   )
 }
 
 const buttonBase =
-  'inline-flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] ' +
+  'inline-flex items-center gap-2.5 text-[12px] font-semibold uppercase tracking-[0.18em] ' +
   'transition-[background-color,color,border-color,gap] duration-200 hover:gap-4'
 
 const buttonVariants = {
@@ -168,7 +168,7 @@ export function ButtonLink({
 /** Etiqueta de tecnología / categoría. */
 export function Tag({ children }: { children: React.ReactNode }) {
   return (
-    <span className="border-line text-faint border px-2.5 py-1 text-[10px] font-semibold tracking-widest uppercase">
+    <span className="border-line text-faint border px-2.5 py-1 text-[11px] font-semibold tracking-widest uppercase">
       {children}
     </span>
   )

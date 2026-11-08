@@ -97,7 +97,7 @@ function erroresDePaso(
 }
 
 const inputBase =
-  'w-full border bg-ink px-4 py-3 text-[16px] text-fg transition-colors placeholder:text-faint ' +
+  'w-full border bg-ink px-4 py-3 text-[18px] text-fg transition-colors placeholder:text-faint ' +
   'focus:border-brand focus-visible:outline-none'
 
 export default function ContactForm() {
@@ -224,7 +224,7 @@ export default function ContactForm() {
         <motion.p
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          className="inline-flex items-center gap-2 border border-green-900 bg-green-950 px-4 py-2.5 text-[15px] text-green-300"
+          className="inline-flex items-center gap-2 border border-green-900 bg-green-950 px-4 py-2.5 text-[16px] text-green-300"
           role="status"
         >
           <CheckIcon size={15} />
@@ -349,7 +349,7 @@ export default function ContactForm() {
             type="button"
             onClick={retroceder}
             disabled={enviando}
-            className="text-muted hover:text-fg px-2 py-3.5 text-[11px] font-semibold tracking-[0.15em] uppercase transition-colors disabled:cursor-not-allowed disabled:opacity-60"
+            className="text-muted hover:text-fg px-2 py-3.5 text-[12px] font-semibold tracking-[0.15em] uppercase transition-colors disabled:cursor-not-allowed disabled:opacity-60"
           >
             ← Atrás
           </button>
@@ -358,7 +358,7 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={enviando}
-          className="bg-brand-fill hover:bg-brand-dim active:scale-[0.98] px-8 py-3.5 text-[11px] font-semibold tracking-[0.15em] text-white uppercase transition-all disabled:cursor-not-allowed disabled:opacity-60"
+          className="bg-brand-fill hover:bg-brand-dim active:scale-[0.98] px-8 py-3.5 text-[12px] font-semibold tracking-[0.15em] text-white uppercase transition-all disabled:cursor-not-allowed disabled:opacity-60"
         >
           {paso < ULTIMO
             ? 'Siguiente →'
@@ -377,7 +377,7 @@ export default function ContactForm() {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className="mt-4 inline-flex items-center gap-2 border border-red-900 bg-red-950 px-4 py-2.5 text-[15px] text-red-300"
+              className="mt-4 inline-flex items-center gap-2 border border-red-900 bg-red-950 px-4 py-2.5 text-[16px] text-red-300"
             >
               No pudimos enviar tu consulta. Inténtalo de nuevo o escríbenos a
               contacto@savegresoft.com.
@@ -444,7 +444,7 @@ function Campo({
       )}
 
       {error && (
-        <p id={errorId} className="text-[12px] text-red-400">
+        <p id={errorId} className="text-[13px] text-red-400">
           {error}
         </p>
       )}

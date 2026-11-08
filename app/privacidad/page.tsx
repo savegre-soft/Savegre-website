@@ -52,7 +52,7 @@ export default function PrivacidadPage() {
         />
 
         <div className="legal-prose mt-12">
-          <p className="text-faint text-[13px] tracking-[0.05em] uppercase">
+          <p className="text-faint text-[14px] tracking-[0.05em] uppercase">
             Última actualización: {ACTUALIZADA}
           </p>
 
