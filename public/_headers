@@ -57,10 +57,17 @@
 # Supabase (connect-src): el formulario de contacto y el mini-CRM (/crm)
 # hablan por REST/Auth con el proyecto. `wss:` cubre el canal realtime del
 # SDK aunque hoy no se use.
+#
+# DANA (connect-src): el asistente por pasos del formulario de contacto envía
+# el lead a https://dana.savegresoft.com/api/public/forms/… por fetch.
+#
+# Cloudflare Web Analytics (script-src + connect-src): Cloudflare inyecta
+# static.cloudflareinsights.com/beacon.min.js, que reporta por RUM a
+# cloudflareinsights.com. Quitar ambos hosts si se desactiva Web Analytics.
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: DENY
   Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.googletagmanager.com https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://www.facebook.com; font-src 'self'; connect-src 'self' https://wlyaeqnhbvndimkoqklu.supabase.co wss://wlyaeqnhbvndimkoqklu.supabase.co https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.g.doubleclick.net https://connect.facebook.net https://www.facebook.com; frame-src https://www.googletagmanager.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.googletagmanager.com https://connect.facebook.net https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://www.facebook.com; font-src 'self'; connect-src 'self' https://wlyaeqnhbvndimkoqklu.supabase.co wss://wlyaeqnhbvndimkoqklu.supabase.co https://dana.savegresoft.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.g.doubleclick.net https://connect.facebook.net https://www.facebook.com https://cloudflareinsights.com; frame-src https://www.googletagmanager.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
